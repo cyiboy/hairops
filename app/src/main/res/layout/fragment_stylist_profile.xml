@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/colorPrimary"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.StylistProfile">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="130dp"
+        android:id="@+id/profileImageStylist"
+        android:src="@drawable/user"
+        android:layout_gravity="center_horizontal"
+        />
+    <TextView
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="0.0"
+        android:id="@+id/walletBalanceSytlist"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textSize="34sp" />
+
+
+    <TextView
+        android:textColor="#fff"
+        android:id="@+id/nameOfUserStylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jason Ofua"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+    <TextView
+        android:textColor="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No 3 akara junction"
+        android:textAlignment="center"
+        android:id="@+id/addressOfUserStylist"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+    <TextView
+        android:textColor="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hair Stylist"
+        android:textAlignment="center"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/specializationOfUserStylist"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnWithdrawStylist"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="20dp"
+        android:paddingTop="10dp"
+        fancy:fb_defaultColor="@color/gold"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        fancy:fb_text="WITHDRAW BALANCE"
+        fancy:fb_textColor="#fff"
+        fancy:fb_textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        fancy:fb_radius="30dp"/>
+
+    <TextView
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPDATE PROFILE"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:id="@+id/updateProfileStylist"
+        android:textSize="18sp" />
+
+    <TextView
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HELP"
+        android:id="@+id/txtHelpStylist"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+    <TextView
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGOUT"
+        android:id="@+id/logoutStylist"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+
+
+</LinearLayout>

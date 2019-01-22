@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    tools:context=".Catergory.BarbingCategory">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:id="@+id/imgBarbingMen"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/men"
+            android:scaleType="centerCrop"
+            android:layout_height="150dp" />
+
+
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/imgBarbingWomen"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/women"
+            android:scaleType="centerCrop"
+            android:layout_height="150dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="MEN"
+            android:textAlignment="center"
+            android:textColor="@color/gold"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="WOMEN"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textColor="@color/gold"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="180dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/bookHairDressing"
+            android:layout_height="150dp">
+
+            <ImageView
+                android:id="@+id/imgBarbingChildren"
+                android:layout_width="match_parent"
+                android:src="@drawable/children"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent" />
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CHILDREN"
+        android:textAlignment="center"
+        android:layout_gravity="bottom"
+        android:textColor="@color/gold"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+
+</LinearLayout>

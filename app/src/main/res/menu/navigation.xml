@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/customerHome"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/stylistBooking"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Booking" />
+
+    <item
+        android:id="@+id/customerTransaction"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Transaction" />
+    <item
+        android:id="@+id/customerProfile"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Profile" />
+
+</menu>

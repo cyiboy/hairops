@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.user.hairr">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDIKrSQ48biSJGn0yLNplhbcidOSGvanCo" />
+        <meta-data
+            android:name="co.paystack.android.PublicKey"
+            android:value="pk_live_4afdfb0ea3e9399af540b2764cce1587c0f82149" />
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".StackActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Home" />
+        <activity android:name=".HairStylistCompleteReg" />
+        <activity android:name=".CustomersCompleteReg" />
+        <activity
+            android:name=".HomeAdmin"
+            android:label="HairOps" />
+        <activity
+            android:name=".HomeCustomer"
+            android:label="HairOps" />
+        <activity
+            android:name=".HomeStylist"
+            android:label="HairOps" />
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".Catergory.BarbingCategory" />
+        <activity android:name=".Catergory.MakeupCategory" />
+        <activity android:name=".Catergory.HairDressingCatergory" />
+        <activity android:name=".Styles.BarbingStylesCategory" />
+        <activity android:name=".Styles.BarbingStyleWomen" />
+        <activity android:name=".Styles.BarbingStyleChildren"></activity>
+    </application>
+
+</manifest>

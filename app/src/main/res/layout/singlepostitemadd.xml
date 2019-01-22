@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="36dp"
+    android:paddingRight="36dp"
+    android:paddingBottom="16dp"
+    android:background="@color/gold"
+    android:orientation="vertical"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+
+
+
+    <ImageView
+        android:id="@+id/postImageAdd"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/adduser"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="300dp"
+        android:layout_height="180dp" />
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:hint="Enter post text"
+        android:id="@+id/edtAddPost"
+        android:textColorHint="#fff"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:layout_height="wrap_content" />
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnAddPost"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        fancy:fb_defaultColor="@color/colorPrimary"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        fancy:fb_text="Add Post"
+        fancy:fb_textColor="#fff"
+        fancy:fb_textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        fancy:fb_radius="30dp"/>
+
+</LinearLayout>
+
