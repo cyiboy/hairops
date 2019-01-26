@@ -4,17 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.user.hairr.Login.LoginFragment;
-import com.example.user.hairr.Login.OnLoginListener;
-import com.example.user.hairr.Login.OnSignUpListener;
 import com.example.user.hairr.Login.SignUpFragment;
 import com.example.user.hairr.databinding.ActivityMainBinding;
+import com.example.user.hairr.intro.intro;
 import com.google.firebase.auth.FirebaseAuth;
 
 import static android.view.View.INVISIBLE;
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
+        intro introScreen = new intro();
         LoginFragment topLoginFragment = new LoginFragment();
         SignUpFragment topSignUpFragment = new SignUpFragment();
 

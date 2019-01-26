@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.user.hairr.Home;
 import com.example.user.hairr.HomeAdmin;
 import com.example.user.hairr.HomeCustomer;
 import com.example.user.hairr.HomeStylist;
@@ -53,17 +52,18 @@ public class LoginFragment extends Fragment implements OnLoginListener {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_login, container, false);
         auth = FirebaseAuth.getInstance();
-        edtEmail = (EditText)root.findViewById(R.id.edtLoginEmail);
-        edtPassword = (EditText)root.findViewById(R.id.edtLoginPassword);
+        edtEmail = (EditText)root.findViewById(R.id.loginEmail);
+        edtPassword = (EditText)root.findViewById(R.id.loginPassword);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Users");
         dialog = new ProgressDialog(getContext());
 
-        login = (Button)root.findViewById(R.id.btnLogin);
+        login = (Button)root.findViewById(R.id.loginButton);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startLoginIn();
+              //  startLoginIn();
+                Toast.makeText(getActivity(), "it worked", Toast.LENGTH_SHORT).show();
             }
         });
 

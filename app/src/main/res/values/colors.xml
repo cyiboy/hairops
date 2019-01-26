@@ -2,9 +2,12 @@
 <resources>
     <color name="colorPrimary">#000</color>
     <color name="colorPrimaryDark">#000</color>
+    <color name="darkGold">#dc161600</color>
+    <color name="darkop">#AD000000</color>
+    <color name="darkLight">#ADB9B7B7</color>
     <color name="secondPage">#a19229</color>
     <color name="colorAccent">#ba68c8</color>
-    <color name="text">#ffffff</color>
+    <color name="colorWhite">#ffffff</color>
     <color name="text_two">#94ffffff</color>
     <color name="green">#940ce61f</color>
     <color name="gold">#a19229</color>
