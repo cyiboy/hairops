@@ -178,12 +178,13 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="818582" />
-                            <entry key="height" value="32" />
-                            <entry key="outputName" value="vert" />
+                            <entry key="height" value="15" />
+                            <entry key="outputName" value="ic_like" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\MR AGBENRO" />
-                            <entry key="width" value="32" />
+                            <entry key="sourceFile" value="C:\Users\MR AGBENRO\Desktop\hackerton\hairops design\like.svg" />
+                            <entry key="width" value="15" />
                           </map>
                         </option>
                       </PersistentState>

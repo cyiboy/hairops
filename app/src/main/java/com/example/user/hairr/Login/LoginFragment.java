@@ -62,8 +62,8 @@ public class LoginFragment extends Fragment implements OnLoginListener {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  startLoginIn();
-                Toast.makeText(getActivity(), "it worked", Toast.LENGTH_SHORT).show();
+               startLoginIn();
+              //  Toast.makeText(getActivity(), "it worked", Toast.LENGTH_SHORT).show();
             }
         });
 
