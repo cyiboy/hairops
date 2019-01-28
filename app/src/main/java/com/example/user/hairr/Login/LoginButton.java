@@ -125,15 +125,15 @@ public class LoginButton extends View {
         loginPaint = new Paint();
         loginPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorWhite));
         loginPaint.setTextAlign(CENTER);
-        loginPaint.setTextSize(dpToPixels(16));
+        loginPaint.setTextSize(dpToPixels(14));
 
         orPaint = new Paint();
         orPaint.setColor(ContextCompat.getColor(getContext(), R.color.text_two));
-        orPaint.setTextSize(dpToPixels(16));
+        orPaint.setTextSize(dpToPixels(14));
 
         signUpPaint = new Paint();
         signUpPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorWhite));
-        signUpPaint.setTextSize(dpToPixels(64));
+        signUpPaint.setTextSize(dpToPixels(40));
         signUpPaint.setTextAlign(CENTER);
 //        signUpPaint.setAlpha(255);
     }

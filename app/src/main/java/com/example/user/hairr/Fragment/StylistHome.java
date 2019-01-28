@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,15 +25,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.hairr.CustomersCompleteReg;
-import com.example.user.hairr.HomeCustomer;
-import com.example.user.hairr.Model.Customer;
 import com.example.user.hairr.Model.Post;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -295,8 +289,8 @@ public class StylistHome extends Fragment {
             super(itemView);
 
             mView = itemView;
-            like = (ImageView) mView.findViewById(R.id.imgLike);
-            comment = (ImageView) mView.findViewById(R.id.imgComment);
+            //like = (ImageView) mView.findViewById(R.id.imgLike);
+           // comment = (ImageView) mView.findViewById(R.id.imgComment);
             userImage = (ImageView) mView.findViewById(R.id.posterImage);
             postImage = (ImageView) mView.findViewById(R.id.postImage);
             userLayout = (LinearLayout)mView.findViewById(R.id.linUser);

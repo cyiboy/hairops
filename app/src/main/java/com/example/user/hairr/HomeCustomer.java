@@ -6,7 +6,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.example.user.hairr.Fragment.customerBooking;
 import com.example.user.hairr.Fragment.customerHome;
@@ -15,7 +14,7 @@ import com.example.user.hairr.Fragment.customerrofile;
 import com.example.user.hairr.Utils.BottomNavigationViewHelper;
 
 public class HomeCustomer extends AppCompatActivity {
-
+    Fragment fragment;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -23,7 +22,7 @@ public class HomeCustomer extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment =null;
+
             switch (item.getItemId()) {
                 case R.id.customerHome:
                      fragment = new customerHome();
@@ -51,7 +50,8 @@ public class HomeCustomer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_customer);
-
+        fragment =new customerHome();
+        loadFragment(fragment);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

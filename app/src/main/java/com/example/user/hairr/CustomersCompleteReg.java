@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -56,7 +57,8 @@ public class CustomersCompleteReg extends AppCompatActivity {
     private String lat,lng,email,name,phoneNumber,orgainzation,address;
     private MaterialSpinner spinnerOrganization;
 
-    private FancyButton setLocation,completeSignupCustomer;
+    private FancyButton setLocation;
+    Button completeSignupCustomer;
 
     private static final String[] organi = {
             "Organization",
@@ -96,7 +98,7 @@ public class CustomersCompleteReg extends AppCompatActivity {
 
 
         setLocation = (FancyButton)findViewById(R.id.btnPickCustomerLocation);
-        completeSignupCustomer = (FancyButton)findViewById(R.id.btnCompleteCustomerRegistration);
+        completeSignupCustomer =  findViewById(R.id.btnCompleteCustomerRegistration);
         completeSignupCustomer.setOnClickListener(view -> startSignUp());
         setLocation.setOnClickListener(view -> {
             PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();

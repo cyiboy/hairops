@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:background="#fff"
     android:padding="10dp"
@@ -28,61 +29,91 @@
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/posterImage"
+        android:layout_margin="5dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@color/gold"/>
 
-            <ImageView
-                android:layout_width="40dp"
-                android:id="@+id/posterImage"
-                android:layout_height="40dp"
-                android:src="@drawable/like"
-                android:layout_marginRight="13dp"/>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/posterName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textSize="16sp"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:id="@+id/posterName"
+                    android:layout_marginLeft="5dp"
                     android:text="Username"
-                    />
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                   />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="1st jan"
+                    android:textColor="#818582"
+                    android:textSize="11sp" />
+            </LinearLayout>
+<ImageView
+    android:layout_gravity="center"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:srcCompat="@drawable/vert"/>
 
         </LinearLayout>
 
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:fontFamily="@font/roboto"
+                    android:textSize="12sp"
+                    android:text="@string/hello"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/postalText"/>
+
+            </LinearLayout>
+
     <ImageView
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:src="@color/gold"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:id="@+id/postImage"
         android:scaleType="centerCrop"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/colorPrimary">
-    </LinearLayout>
+
 
 
         <RelativeLayout
+            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp">
 
-            <ImageView
-                android:id="@+id/imgComment"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/comments" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imgLike"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="13dp"
-                android:layout_toLeftOf="@+id/imgComment"
-                android:src="@drawable/like" />
+            </LinearLayout>
 
         </RelativeLayout>
         </LinearLayout>
