@@ -168,7 +168,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio3/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_more_vert_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio3/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_close_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -178,13 +178,11 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="color" value="818582" />
-                            <entry key="height" value="15" />
-                            <entry key="outputName" value="ic_like" />
+                            <entry key="height" value="40" />
+                            <entry key="outputName" value="ic_close_black_24dp" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\MR AGBENRO\Desktop\hackerton\hairops design\like.svg" />
-                            <entry key="width" value="15" />
+                            <entry key="sourceFile" value="C:\Users\MR AGBENRO\Desktop\hackerton\hairops design\logout.svg" />
+                            <entry key="width" value="40" />
                           </map>
                         </option>
                       </PersistentState>

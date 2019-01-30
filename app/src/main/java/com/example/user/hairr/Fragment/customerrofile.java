@@ -46,7 +46,7 @@ public class customerrofile extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference userRef,requestMoney;
     private ImageView userImage;
-    private LinearLayout logout,help,updateProfile;
+    private LinearLayout logout,help,updateProfile,fundWallet;
     TextView stylistName,stylistBalance;
     private ProgressDialog dialog;
 
@@ -83,8 +83,16 @@ public class customerrofile extends Fragment {
        // stylistSpec = (TextView)view.findViewById(R.id.specializationOfUser);
         logout =  view.findViewById(R.id.logoutUser);
         help =  view.findViewById(R.id.txtHelpUser);
+        fundWallet =  view.findViewById(R.id.btnFundWallet);
         updateProfile = view.findViewById(R.id.updateProfileUser);
       //  withdraw = (FancyButton)view.findViewById(R.id.btnFundWallet);
+
+        fundWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fundWallet();
+            }
+        });
 
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,6 +232,8 @@ public class customerrofile extends Fragment {
                         }
                     });
 
+                    stylistName.setText(model.getName());
+                    stylistBalance.setText("Wallet Balance : N "+ String.valueOf(model.getBalance()));
                 }else {
                     Toast.makeText(getContext(), "could not fetch your data please try again", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();

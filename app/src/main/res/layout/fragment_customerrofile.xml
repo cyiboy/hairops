@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 <LinearLayout
+    android:id="@+id/update"
     android:layout_marginTop="20dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -54,7 +55,11 @@ android:fontFamily="@font/roboto_bold"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
 
-
+<LinearLayout
+    android:layout_margin="5dp"
+    android:background="@color/darkli"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"></LinearLayout>
 
 
 
@@ -62,25 +67,32 @@ android:fontFamily="@font/roboto_bold"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="0.0"
+            android:text="Wallet Balance : "
             android:id="@+id/walletBalanceUser"
-
             android:layout_marginTop="15dp"
-
-            android:textSize="18sp" />
-
-
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:textSize="24sp" />
 
 
         <LinearLayout
-            android:id="@+id/btnFundWallet"
+            android:layout_margin="5dp"
+            android:background="@color/darkli"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></LinearLayout>
 
+        <LinearLayout
+
+
+
+            android:id="@+id/btnFundWallet"
             android:gravity="center_vertical"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="70dp">
 
             <TextView
+                android:layout_weight="1"
                 android:textColor="#000"
                 android:fontFamily="@font/roboto"
                 android:textSize="20sp"
@@ -89,18 +101,28 @@ android:fontFamily="@font/roboto_bold"
                 android:text="FUND WALLET"
 
                 />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fancy:srcCompat="@drawable/ic_wallet"/>
         </LinearLayout>
 
-
+        <LinearLayout
+        android:layout_margin="5dp"
+        android:background="@color/darkli"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></LinearLayout>
     <LinearLayout
 
         android:id="@+id/updateProfileUser"
          android:gravity="center_vertical"
-      android:orientation="vertical"
+      android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="70dp">
 
         <TextView
+            android:layout_weight="1"
             android:textColor="#000"
             android:fontFamily="@font/roboto"
 
@@ -109,16 +131,27 @@ android:fontFamily="@font/roboto_bold"
           android:text="UPDATE PROFILE"
             android:textSize="20sp"
            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            fancy:srcCompat="@drawable/ic_edit"/>
     </LinearLayout>
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:background="@color/darkli"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></LinearLayout>
         <LinearLayout
 
             android:id="@+id/txtHelpUser"
             android:gravity="center_vertical"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="70dp">
 
             <TextView
+                android:layout_weight="1"
                 android:textColor="#000"
                 android:fontFamily="@font/roboto"
                   android:textSize="20sp"
@@ -127,19 +160,29 @@ android:fontFamily="@font/roboto_bold"
                 android:text="HELP"
 
                  />
-        </LinearLayout>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fancy:srcCompat="@drawable/ic_help"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:background="@color/darkli"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></LinearLayout>
 
         <LinearLayout
 
             android:id="@+id/logoutUser"
 
             android:gravity="center_vertical"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="70dp">
 
             <TextView
+                android:layout_weight="1"
                 android:textColor="#000"
                 android:fontFamily="@font/roboto"
                 android:textSize="20sp"
@@ -148,6 +191,11 @@ android:fontFamily="@font/roboto_bold"
                 android:text="LOGOUT"
 
                 />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                fancy:srcCompat="@drawable/ic_logout"/>
         </LinearLayout>
 
 

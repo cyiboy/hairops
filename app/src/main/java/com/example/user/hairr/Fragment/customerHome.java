@@ -38,6 +38,8 @@ public class customerHome extends Fragment {
     private RecyclerView postList;
     private DatabaseReference mUsersDatabase,postDatabase;
     private LinearLayoutManager mLayoutManager;
+    private LinearLayout comment;
+    private String key;
 
 
 
@@ -64,6 +66,15 @@ public class customerHome extends Fragment {
         postList = (RecyclerView) view.findViewById(R.id.lastestNews);
 
         mLayoutManager = new LinearLayoutManager(getContext());
+        comment = view.findViewById(R.id.linComment);
+
+        comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
 
         postList.setHasFixedSize(true);
         postList.setLayoutManager(mLayoutManager);
@@ -118,7 +129,7 @@ public class customerHome extends Fragment {
                         dialog.show();
                     }
                 });
-                String key = getRef(position).getKey();
+                key = getRef(position).getKey();
 
             }
         };
