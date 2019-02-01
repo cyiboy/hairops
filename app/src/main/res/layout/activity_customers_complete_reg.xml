@@ -5,7 +5,7 @@
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:padding="10dp"
-    android:background="@color/gold"
+    android:background="@mipmap/backgroundtwo"
     android:layout_height="match_parent"
     tools:context=".CustomersCompleteReg">
 
@@ -22,6 +22,7 @@
             android:id="@+id/addImageCustomer"
             android:layout_height="90dp" />
     <EditText
+        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal"
@@ -36,6 +37,7 @@
         android:textColor="#ffffff" />
 
     <EditText
+        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:id="@+id/edtCustomerEmail"
@@ -50,6 +52,7 @@
         android:textColor="#ffffff" />
 
         <EditText
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:id="@+id/edtCustomerPhoneNumber"
@@ -64,6 +67,7 @@
             android:textColor="#ffffff" />
 
         <EditText
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:id="@+id/edtCustomerAddress"
@@ -76,7 +80,22 @@
             android:paddingStart="32dp"
             android:hint="Home Address"
             android:textColor="#ffffff" />
-
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnPickCustomerLocation"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            fancy:fb_defaultColor="@color/darkop"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            fancy:fb_text="Pick Your Home Location"
+            fancy:fb_textColor="@color/colorWhite"
+            fancy:fb_textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            fancy:fb_radius="30dp"/>
         <com.jaredrummler.materialspinner.MaterialSpinner
             android:id="@+id/organization"
             android:layout_width="match_parent"
@@ -85,48 +104,32 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
             android:hint="Organization"
-            android:textColorHint="@color/gold"
-            app:ms_arrow_tint="@color/gold"
+            android:textColorHint="@color/colorWhite"
+            app:ms_arrow_tint="@color/colorWhite"
             app:ms_background_color="@color/colorPrimary"
             app:ms_dropdown_height="wrap_content"
             app:ms_dropdown_max_height="350dp"
-            app:ms_hint_color="@color/gold"
-            app:ms_text_color="@color/gold" />
-
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btnPickCustomerLocation"
-            android:layout_marginTop="20dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            fancy:fb_defaultColor="@color/colorPrimary"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            fancy:fb_text="Pick Your Home Location"
-            fancy:fb_textColor="@color/gold"
-            fancy:fb_textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            fancy:fb_radius="30dp"/>
+            app:ms_hint_color="@color/darkop"
+            app:ms_text_color="@color/colorWhite" />
 
 
-        <mehdi.sakout.fancybuttons.FancyButton
+
+
+
+        <Button
             android:id="@+id/btnCompleteCustomerRegistration"
-            android:layout_marginTop="20dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            fancy:fb_defaultColor="@color/colorPrimary"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            fancy:fb_text="Complete Registration"
-            fancy:fb_textColor="@color/gold"
-            fancy:fb_textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            fancy:fb_radius="30dp"/>
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/loginPassword"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/_dark"
+            android:fontFamily="@font/roboto_bold"
+    android:textAllCaps="false"
+            android:foregroundTint="@color/darkop"
+            android:text="complete Registration"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </ScrollView>

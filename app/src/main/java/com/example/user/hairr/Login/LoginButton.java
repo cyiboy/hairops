@@ -3,6 +3,7 @@ package com.example.user.hairr.Login;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -101,6 +102,8 @@ public class LoginButton extends View {
         init();
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public LoginButton(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
@@ -120,17 +123,17 @@ public class LoginButton extends View {
         paint2.setStyle(FILL);
 
         loginPaint = new Paint();
-        loginPaint.setColor(ContextCompat.getColor(getContext(), R.color.text));
+        loginPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorWhite));
         loginPaint.setTextAlign(CENTER);
-        loginPaint.setTextSize(dpToPixels(16));
+        loginPaint.setTextSize(dpToPixels(14));
 
         orPaint = new Paint();
         orPaint.setColor(ContextCompat.getColor(getContext(), R.color.text_two));
-        orPaint.setTextSize(dpToPixels(16));
+        orPaint.setTextSize(dpToPixels(14));
 
         signUpPaint = new Paint();
-        signUpPaint.setColor(ContextCompat.getColor(getContext(), R.color.text));
-        signUpPaint.setTextSize(dpToPixels(64));
+        signUpPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorWhite));
+        signUpPaint.setTextSize(dpToPixels(40));
         signUpPaint.setTextAlign(CENTER);
 //        signUpPaint.setAlpha(255);
     }

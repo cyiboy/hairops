@@ -12,10 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.user.hairr.Model.Post;
@@ -142,8 +140,8 @@ public class customerHome extends Fragment {
             super(itemView);
 
             mView = itemView;
-            like = (ImageView) mView.findViewById(R.id.imgLike);
-            comment = (ImageView) mView.findViewById(R.id.imgComment);
+           // like = (ImageView) mView.findViewById(R.id.imgLike);
+         //   comment = (ImageView) mView.findViewById(R.id.imgComment);
             userImage = (ImageView) mView.findViewById(R.id.posterImage);
             postImage = (ImageView) mView.findViewById(R.id.postImage);
             userLayout = (LinearLayout)mView.findViewById(R.id.linUser);

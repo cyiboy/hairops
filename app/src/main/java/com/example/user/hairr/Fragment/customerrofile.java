@@ -15,13 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Switch;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.hairr.MainActivity;
 import com.example.user.hairr.Model.Customer;
-import com.example.user.hairr.Model.HairStylist;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,7 +37,6 @@ import co.paystack.android.Paystack;
 import co.paystack.android.PaystackSdk;
 import co.paystack.android.model.Card;
 import co.paystack.android.model.Charge;
-import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,9 +46,10 @@ public class customerrofile extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference userRef,requestMoney;
     private ImageView userImage;
-    private TextView stylistName,stylistBalance,stylistAddress,stylistSpec,logout,help,updateProfile;
+    private LinearLayout logout,help,updateProfile;
+    TextView stylistName,stylistBalance;
     private ProgressDialog dialog;
-    private FancyButton withdraw;
+
     private Customer model;
     private String uid;
 
@@ -78,14 +77,14 @@ public class customerrofile extends Fragment {
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
         requestMoney = FirebaseDatabase.getInstance().getReference().child("MoneyRequest");
         userImage = (ImageView)view.findViewById(R.id.profileImage);
-        stylistBalance = (TextView)view.findViewById(R.id.walletBalanceUser);
-        stylistName = (TextView)view.findViewById(R.id.nameOfUser);
-        stylistAddress = (TextView)view.findViewById(R.id.addressOfUser);
-        stylistSpec = (TextView)view.findViewById(R.id.specializationOfUser);
-        logout = (TextView)view.findViewById(R.id.logoutUser);
-        help = (TextView)view.findViewById(R.id.txtHelpUser);
-        updateProfile = (TextView)view.findViewById(R.id.updateProfileUser);
-        withdraw = (FancyButton)view.findViewById(R.id.btnFundWallet);
+        stylistBalance =  view.findViewById(R.id.walletBalanceUser);
+        stylistName =  view.findViewById(R.id.nameOfUser);
+       // stylistAddress = (TextView)view.findViewById(R.id.addressOfUser);
+       // stylistSpec = (TextView)view.findViewById(R.id.specializationOfUser);
+        logout =  view.findViewById(R.id.logoutUser);
+        help =  view.findViewById(R.id.txtHelpUser);
+        updateProfile = view.findViewById(R.id.updateProfileUser);
+      //  withdraw = (FancyButton)view.findViewById(R.id.btnFundWallet);
 
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,12 +110,6 @@ public class customerrofile extends Fragment {
             }
         });
 
-        withdraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fundWallet();
-            }
-        });
 
         fetchData();
     }
@@ -216,11 +209,6 @@ public class customerrofile extends Fragment {
                 if (dataSnapshot.exists()) {
                     dialog.dismiss();
                     model = dataSnapshot.getValue(Customer.class);
-
-                    stylistBalance.setText(String.valueOf(model.getBalance()));
-                    stylistAddress.setText(model.getAddress());
-                    stylistName.setText(model.getName());
-                    stylistSpec.setText(model.getOrganization());
 
                     Picasso.with(getContext()).load(model.getImageUrl()).transform(new CircleTransform()) .networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
                         @Override
