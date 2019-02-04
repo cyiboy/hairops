@@ -2,9 +2,33 @@ package com.example.user.hairr.Model;
 
 public class Withdraw {
 
-    private String name,amount,bankName,bankAmountNumber,bankAccountName,uid;
+    private String name,amount,bankName,bankAmountNumber,bankAccountName,uid,balance,date,status;
 
     public Withdraw() {
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 
     public String getUid() {

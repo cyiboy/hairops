@@ -64,6 +64,7 @@ public class customerHome extends Fragment {
         postList = (RecyclerView) view.findViewById(R.id.lastestNews);
 
         mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager.setReverseLayout(true);
 
         postList.setHasFixedSize(true);
         postList.setLayoutManager(mLayoutManager);

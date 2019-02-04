@@ -36,6 +36,9 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -51,6 +54,9 @@ public class StylistProfile extends Fragment {
     private FancyButton withdraw;
     private HairStylist model;
     private String uid;
+    private Calendar calendar;
+    private SimpleDateFormat simpledateformat;
+    private String Date;
 
 
     public StylistProfile() {
@@ -172,11 +178,20 @@ public class StylistProfile extends Fragment {
     private void requestForWithdrawer() {
         dialog.setMessage("Requesting Money Withdrawal..please wait");
         dialog.show();
+        calendar = Calendar.getInstance();
+        simpledateformat = new SimpleDateFormat("dd-MM-yyyy");
+        Date = simpledateformat.format(calendar.getTime());
+
+        double a = model.getBalance();
+        double b = a - 200;
         Withdraw withdraw  = new Withdraw();
+        withdraw.setBalance(String.valueOf(model.getBalance()));
         withdraw.setAmount(String.valueOf(model.getBalance()));
         withdraw.setBankAccountName(model.getBankAccountName());
         withdraw.setBankAmountNumber(model.getBankAccountNumber());
+        withdraw.setDate(Date);
         withdraw.setBankName(model.getBankName());
+        withdraw.setStatus("unpaid");
         withdraw.setName(model.getName());
         withdraw.setUid(uid);
 
