@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
 
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
     tools:context=".Fragment.customerrofile">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,139 +15,195 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-<LinearLayout
-    android:layout_marginTop="20dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-android:fontFamily="@font/roboto_bold"
-            android:id="@+id/nameOfUser"
+
+        <LinearLayout
+            android:id="@+id/update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jason Ofua"
-             android:textColor="#000"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp">
 
-            android:textSize="36sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <TextView
+                <TextView
+                    android:id="@+id/nameOfUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Jason Ofua"
+                    android:textColor="#000"
 
+                    android:textSize="36sp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View and edit profile"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:src="@drawable/user" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View and edit profile"
-            android:textSize="18sp" />
-
-
-    </LinearLayout>
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_margin="10dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/profileImage"
-        android:src="@drawable/user"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
-
-
-
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="@color/darkli"></LinearLayout>
 
 
         <TextView
 
+            android:id="@+id/walletBalanceUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="0.0"
-            android:id="@+id/walletBalanceUser"
-
             android:layout_marginTop="15dp"
-
-            android:textSize="18sp" />
-
-
+            android:layout_marginBottom="4dp"
+            android:text="Wallet Balance : "
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
 
         <LinearLayout
-            android:id="@+id/btnFundWallet"
-
-            android:gravity="center_vertical"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="0.5dp"
+            android:background="@color/darkli"></LinearLayout>
+
+        <LinearLayout
+
+
+            android:id="@+id/btnFundWallet"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:textColor="#000"
-                android:fontFamily="@font/roboto"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FUND WALLET"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="Fund wallet"
+                android:textColor="#000"
+                android:textSize="20sp"
 
                 />
+
+            <ImageView
+                android:layout_margin="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                fancy:srcCompat="@drawable/ic_wallet" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
 
-    <LinearLayout
+            android:background="@color/darkli"></LinearLayout>
 
-        android:id="@+id/updateProfileUser"
-         android:gravity="center_vertical"
-      android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
+        <LinearLayout
 
-        <TextView
-            android:textColor="#000"
-            android:fontFamily="@font/roboto"
+            android:id="@+id/updateProfileUser"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-          android:text="UPDATE PROFILE"
-            android:textSize="20sp"
-           />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/roboto"
+                android:text="Update profile"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_margin="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                fancy:srcCompat="@drawable/ic_edit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+
+            android:background="@color/darkli"></LinearLayout>
+
         <LinearLayout
 
             android:id="@+id/txtHelpUser"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:textColor="#000"
-                android:fontFamily="@font/roboto"
-                  android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HELP"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="Help"
+                android:textColor="#000"
+                android:textSize="20sp"
 
-                 />
+                />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="15dp"
+                fancy:srcCompat="@drawable/ic_help" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+
+            android:background="@color/darkli"></LinearLayout>
 
         <LinearLayout
 
             android:id="@+id/logoutUser"
 
-            android:gravity="center_vertical"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:textColor="#000"
-                android:fontFamily="@font/roboto"
-                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LOGOUT"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="Logout"
+                android:textColor="#000"
+                android:textSize="20sp"
 
                 />
+
+            <ImageView
+                android:layout_margin="25dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                fancy:srcCompat="@drawable/ic_logout" />
         </LinearLayout>
 
 

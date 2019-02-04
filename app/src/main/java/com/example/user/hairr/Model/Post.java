@@ -2,6 +2,7 @@ package com.example.user.hairr.Model;
 
 public class Post {
         String username,postImageUrl,userImage,posterId,userSpecialization,posttText;
+        int likes, comments;
 
     public Post() {
     }
@@ -52,5 +53,21 @@ public class Post {
 
     public void setUserImage(String userImage) {
         this.userImage = userImage;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getComments() {
+        return comments;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
     }
 }

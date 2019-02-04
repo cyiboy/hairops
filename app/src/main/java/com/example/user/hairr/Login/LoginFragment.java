@@ -17,6 +17,7 @@ import com.example.user.hairr.HomeAdmin;
 import com.example.user.hairr.HomeCustomer;
 import com.example.user.hairr.HomeStylist;
 import com.example.user.hairr.R;
+import com.example.user.hairr.StackActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -100,15 +101,23 @@ public class LoginFragment extends Fragment implements OnLoginListener {
                                     .addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            String status = dataSnapshot.child("status").getValue().toString();
+                                            if (dataSnapshot.exists()) {
+                                                String status = dataSnapshot.child("status").getValue().toString();
 
-                                            if (status.equalsIgnoreCase("customer")){
-                                                startActivity(new Intent(getContext(), HomeCustomer.class));
-                                            }else if (status.equalsIgnoreCase("stylist")){
-                                                startActivity(new Intent(getContext(), HomeStylist.class));
-                                            }else if (status.equalsIgnoreCase("admin")){
-                                                startActivity(new Intent(getContext(), HomeAdmin.class));
+                                                if (status.equalsIgnoreCase("customer")) {
+                                                    startActivity(new Intent(getContext(), HomeCustomer.class));
+                                                } else if (status.equalsIgnoreCase("stylist")) {
+                                                    startActivity(new Intent(getContext(), HomeStylist.class));
+                                                } else if (status.equalsIgnoreCase("admin")) {
+                                                    startActivity(new Intent(getContext(), HomeAdmin.class));
+                                                }
+
+
+                                                } else {
+                                                 getContext().startActivity(new Intent(getContext(), StackActivity.class));
+
                                             }
+
                                         }
 
                                         @Override

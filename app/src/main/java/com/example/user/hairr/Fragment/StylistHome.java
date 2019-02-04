@@ -53,12 +53,12 @@ import mehdi.sakout.fancybuttons.FancyButton;
  * A simple {@link Fragment} subclass.
  */
 public class StylistHome extends Fragment {
+    private static final int PICK_IMAGE_REQUEST = 2;
     FirebaseAuth auth;
     private RecyclerView postList;
-    private DatabaseReference mUsersDatabase,postDatabase;
+    private DatabaseReference mUsersDatabase, postDatabase;
     private LinearLayoutManager mLayoutManager;
     private FloatingActionButton addPost;
-    private static final int PICK_IMAGE_REQUEST = 2;
     private ProgressDialog mProgressBar;
     private ImageView circleImageView;
     private Uri mImageUri;
@@ -109,7 +109,7 @@ public class StylistHome extends Fragment {
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.singlepostitemadd);
-         circleImageView = dialog.findViewById(R.id.postImageAdd);
+        circleImageView = dialog.findViewById(R.id.postImageAdd);
         EditText styistName = dialog.findViewById(R.id.edtAddPost);
 
         FancyButton button = dialog.findViewById(R.id.btnAddPost);
@@ -117,7 +117,7 @@ public class StylistHome extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              startUpload(styistName.getText().toString().trim());
+                startUpload(styistName.getText().toString().trim());
             }
         });
 
@@ -134,7 +134,7 @@ public class StylistHome extends Fragment {
 
     private void startUpload(String trim) {
 
-        if (mImageUri != null){
+        if (mImageUri != null) {
             mProgressBar.setMessage("Completing registration.. please wait");
             mProgressBar.show();
 
@@ -144,7 +144,7 @@ public class StylistHome extends Fragment {
             fileReference.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()){
+                    if (!task.isSuccessful()) {
                         throw task.getException();
                     }
                     return fileReference.getDownloadUrl();
@@ -152,7 +152,7 @@ public class StylistHome extends Fragment {
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Uri downUri = task.getResult();
                         String imageUrl = downUri.toString();
                         String uid = auth.getCurrentUser().getUid();
@@ -170,10 +170,12 @@ public class StylistHome extends Fragment {
                                 post.setUserImage(imageUrls);
                                 post.setUsername(name);
                                 post.setUserSpecialization(spec);
+                                post.setComments(0);
+                                post.setLikes(0);
 
-                                if (trim.isEmpty()){
+                                if (trim.isEmpty()) {
                                     post.setPosttText("");
-                                }else {
+                                } else {
                                     post.setPosttText(trim);
                                 }
 
@@ -181,7 +183,7 @@ public class StylistHome extends Fragment {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()){
+                                                if (task.isSuccessful()) {
                                                     mProgressBar.dismiss();
                                                     Toast.makeText(getContext(), "upload done", Toast.LENGTH_SHORT).show();
 
@@ -204,7 +206,6 @@ public class StylistHome extends Fragment {
                         });
 
 
-
                     }
                 }
             });
@@ -225,7 +226,7 @@ public class StylistHome extends Fragment {
     }
 
     private void initAdapter() {
-        FirebaseRecyclerAdapter<Post,PostViewHolder> adapter  = new FirebaseRecyclerAdapter<Post, PostViewHolder>(
+        FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(
                 Post.class,
                 R.layout.singlepostitem,
                 PostViewHolder.class,
@@ -235,8 +236,8 @@ public class StylistHome extends Fragment {
             protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
 
                 viewHolder.setDisplayName(model.getUsername());
-                viewHolder.setPostImage(model.getPostImageUrl(),getContext());
-                viewHolder.setUserImage(model.getUserImage(),getContext());
+                viewHolder.setPostImage(model.getPostImageUrl(), getContext());
+                viewHolder.setUserImage(model.getUserImage(), getContext());
                 viewHolder.userLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -263,7 +264,6 @@ public class StylistHome extends Fragment {
                         stylistSpacialization.setText(model.getUserSpecialization());
 
 
-
                         dialog.show();
                     }
                 });
@@ -273,81 +273,6 @@ public class StylistHome extends Fragment {
         };
 
         postList.setAdapter(adapter);
-    }
-
-    public static class PostViewHolder extends RecyclerView.ViewHolder {
-
-        View mView;
-        ImageView comment;
-        ImageView like;
-        ImageView userImage;
-        ImageView postImage;
-        LinearLayout userLayout;
-
-
-        public PostViewHolder(View itemView) {
-            super(itemView);
-
-            mView = itemView;
-            //like = (ImageView) mView.findViewById(R.id.imgLike);
-           // comment = (ImageView) mView.findViewById(R.id.imgComment);
-            userImage = (ImageView) mView.findViewById(R.id.posterImage);
-            postImage = (ImageView) mView.findViewById(R.id.postImage);
-            userLayout = (LinearLayout)mView.findViewById(R.id.linUser);
-
-        }
-
-        public void setDisplayName(String name){
-
-            TextView userNameView = (TextView) mView.findViewById(R.id.posterName);
-            userNameView.setText(name);
-
-        }
-
-        public void setUserImage(String status, Context context){
-
-            Picasso.with(context).load(status).transform(new CircleTransform()) .networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
-                @Override
-                public void onSuccess() {
-
-                }
-
-                @Override
-                public void onError() {
-                    Picasso.with(context)
-                            .load(status).into(userImage);
-
-                }
-            });
-
-
-
-        }
-
-
-        public void setPostImage(String status, Context context){
-
-            Picasso.with(context).load(status).transform(new CircleTransform()) .networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
-                @Override
-                public void onSuccess() {
-
-                }
-
-                @Override
-                public void onError() {
-                    Picasso.with(context)
-                            .load(status).into(postImage);
-
-                }
-            });
-
-
-
-        }
-
-
-
-
     }
 
     private String getFileExtension(Uri uri) {
@@ -365,13 +290,84 @@ public class StylistHome extends Fragment {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-         if (requestCode == PICK_IMAGE_REQUEST && resultCode == getActivity().RESULT_OK
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == getActivity().RESULT_OK
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
             Picasso.with(getContext()).load(mImageUri).transform(new CircleTransform()).into(circleImageView);
 
 
         }
+    }
+
+    public static class PostViewHolder extends RecyclerView.ViewHolder {
+
+        View mView;
+        ImageView comment;
+        ImageView like;
+        ImageView userImage;
+        ImageView postImage;
+        LinearLayout userLayout;
+
+
+        public PostViewHolder(View itemView) {
+            super(itemView);
+
+            mView = itemView;
+            //like = (ImageView) mView.findViewById(R.id.imgLike);
+            // commentM = (ImageView) mView.findViewById(R.id.imgComment);
+            userImage = (ImageView) mView.findViewById(R.id.posterImage);
+            postImage = (ImageView) mView.findViewById(R.id.postImage);
+            userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
+
+        }
+
+        public void setDisplayName(String name) {
+
+            TextView userNameView = (TextView) mView.findViewById(R.id.posterName);
+            userNameView.setText(name);
+
+        }
+
+        public void setUserImage(String status, Context context) {
+
+            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(context)
+                            .load(status).into(userImage);
+
+                }
+            });
+
+
+        }
+
+
+        public void setPostImage(String status, Context context) {
+
+            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(context)
+                            .load(status).into(postImage);
+
+                }
+            });
+
+
+        }
+
+
     }
 
 }
