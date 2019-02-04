@@ -3,6 +3,7 @@ package com.example.user.hairr.Fragment;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,11 +37,12 @@ public class customerHome extends Fragment {
 
     FirebaseAuth auth;
     private RecyclerView postList;
-    private DatabaseReference mUsersDatabase,postDatabase;
+    private DatabaseReference mUsersDatabase, postDatabase;
     private LinearLayoutManager mLayoutManager;
     private LinearLayout comment;
     private String key;
-
+    int num_of_likes;
+    int num_of_comment;
 
 
     public customerHome() {
@@ -68,13 +70,7 @@ public class customerHome extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         comment = view.findViewById(R.id.linComment);
 
-        comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-            }
-        });
 
         postList.setHasFixedSize(true);
         postList.setLayoutManager(mLayoutManager);
@@ -88,7 +84,7 @@ public class customerHome extends Fragment {
     }
 
     private void initAdapter() {
-        FirebaseRecyclerAdapter<Post,PostViewHolder> adapter  = new FirebaseRecyclerAdapter<Post, PostViewHolder>(
+        FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(
                 Post.class,
                 R.layout.singlepostitem,
                 PostViewHolder.class,
@@ -98,8 +94,8 @@ public class customerHome extends Fragment {
             protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
 
                 viewHolder.setDisplayName(model.getUsername());
-                viewHolder.setPostImage(model.getPostImageUrl(),getContext());
-                viewHolder.setUserImage(model.getUserImage(),getContext());
+                viewHolder.setPostImage(model.getPostImageUrl(), getContext());
+                viewHolder.setUserImage(model.getUserImage(), getContext());
                 viewHolder.userLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -125,10 +121,34 @@ public class customerHome extends Fragment {
                         stylistSpacialization.setText(model.getUserSpecialization());
 
 
-
                         dialog.show();
                     }
                 });
+                viewHolder.like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if(model.getLikes()==0){
+                            model.getLikes();
+                        }else {
+                            model.getLikes();
+                        }
+                    }
+                });
+                viewHolder.comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), com.example.user.hairr.comment.class);
+
+                        intent.putExtra("postid", model.getPosterId());
+                        startActivity(intent);
+
+
+
+
+                    }
+                });
+
                 key = getRef(position).getKey();
 
             }
@@ -136,6 +156,7 @@ public class customerHome extends Fragment {
 
         postList.setAdapter(adapter);
     }
+
 
     public static class PostViewHolder extends RecyclerView.ViewHolder {
 
@@ -151,24 +172,24 @@ public class customerHome extends Fragment {
             super(itemView);
 
             mView = itemView;
-           // like = (ImageView) mView.findViewById(R.id.imgLike);
-         //   comment = (ImageView) mView.findViewById(R.id.imgComment);
+            like = (ImageView) mView.findViewById(R.id.postLike);
+            comment = (ImageView) mView.findViewById(R.id.postComment);
             userImage = (ImageView) mView.findViewById(R.id.posterImage);
             postImage = (ImageView) mView.findViewById(R.id.postImage);
-            userLayout = (LinearLayout)mView.findViewById(R.id.linUser);
+            userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
 
         }
 
-        public void setDisplayName(String name){
+        public void setDisplayName(String name) {
 
             TextView userNameView = (TextView) mView.findViewById(R.id.posterName);
             userNameView.setText(name);
 
         }
 
-        public void setUserImage(String status, Context context){
+        public void setUserImage(String status, Context context) {
 
-            Picasso.with(context).load(status).transform(new CircleTransform()) .networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
+            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
                 @Override
                 public void onSuccess() {
 
@@ -183,13 +204,12 @@ public class customerHome extends Fragment {
             });
 
 
-
         }
 
 
-        public void setPostImage(String status, Context context){
+        public void setPostImage(String status, Context context) {
 
-            Picasso.with(context).load(status).transform(new CircleTransform()) .networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
+            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
                 @Override
                 public void onSuccess() {
 
@@ -204,10 +224,7 @@ public class customerHome extends Fragment {
             });
 
 
-
         }
-
-
 
 
     }

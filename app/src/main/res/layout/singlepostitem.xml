@@ -114,6 +114,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/postLike"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
@@ -136,7 +137,7 @@
                 android:gravity="right">
 
                 <ImageView
-                    android:id="@+id/postChat"
+                    android:id="@+id/postComment"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
