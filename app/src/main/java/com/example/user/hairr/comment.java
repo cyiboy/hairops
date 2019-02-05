@@ -144,7 +144,7 @@ public class comment extends AppCompatActivity {
         TextView commentName, comment;
         ImageView userImage;
 
-        LinearLayout userLayout;
+
 
 
         public PostViewHolder(View itemView) {
@@ -153,9 +153,9 @@ public class comment extends AppCompatActivity {
             mView = itemView;
             commentName = mView.findViewById(R.id.commentname);
             comment = mView.findViewById(R.id.commentText);
-            userImage = (ImageView) mView.findViewById(R.id.posterImage);
+            userImage = (ImageView) mView.findViewById(R.id.commentImg);
             // postImage = (ImageView) mView.findViewById(R.id.postImage);
-            userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
+
 
         }
 

@@ -179,6 +179,8 @@ public class AllBooking extends Fragment {
 
             }
         };
+
+        requestedMoneyRv.setAdapter(adapter);
     }
 
     public static class WithdrawerViewHolder extends RecyclerView.ViewHolder {

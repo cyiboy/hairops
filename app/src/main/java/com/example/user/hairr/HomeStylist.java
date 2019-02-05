@@ -10,10 +10,13 @@ import android.widget.TextView;
 
 import com.example.user.hairr.Fragment.StylistHome;
 import com.example.user.hairr.Fragment.StylistProfile;
+import com.example.user.hairr.Fragment.customerHome;
 import com.example.user.hairr.Fragment.stylistBookings;
 import com.example.user.hairr.Fragment.stylistTransaction;
+import com.example.user.hairr.Utils.BottomNavigationViewHelper;
 
 public class HomeStylist extends AppCompatActivity {
+    android.support.v4.app.Fragment fragment;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -21,23 +24,26 @@ public class HomeStylist extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            android.support.v4.app.Fragment fragment = null;
             switch (item.getItemId()) {
                 case R.id.stylistHome:
                     fragment = new StylistHome();
-                    break;
+                    loadFragment(fragment);
+                    return true;
                 case R.id.stylistBooking:
                    fragment = new stylistBookings();
-                    break;
+                    loadFragment(fragment);
+                    return true;
                 case R.id.stylistTransaction:
                    fragment = new stylistTransaction();
-                    break;
+                    loadFragment(fragment);
+                    return true;
 
                 case R.id.stylistProfile:
-                   fragment = new StylistProfile();
-                    break;
+                    fragment = new StylistProfile();
+                    loadFragment(fragment);
+                    return true;
             }
-          return  loadFragment(fragment);
+          return false;
         }
     };
 
@@ -45,9 +51,10 @@ public class HomeStylist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_stylist);
-
-
+        fragment =new StylistHome();
+        loadFragment(fragment);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
     private boolean loadFragment(android.support.v4.app.Fragment fragment) {

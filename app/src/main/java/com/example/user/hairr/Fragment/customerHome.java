@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,9 +22,15 @@ import com.example.user.hairr.Model.Post;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -37,12 +44,11 @@ public class customerHome extends Fragment {
 
     FirebaseAuth auth;
     private RecyclerView postList;
-    private DatabaseReference mUsersDatabase, postDatabase;
+    private DatabaseReference mUsersDatabase, postDatabase,likes;
     private LinearLayoutManager mLayoutManager;
     private LinearLayout comment;
-    private String key;
-    int num_of_likes;
-    int num_of_comment;
+    private String key,uid;
+    private boolean mProcessLike = false;
 
 
     public customerHome() {
@@ -63,15 +69,17 @@ public class customerHome extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         auth = FirebaseAuth.getInstance();
+        uid = auth.getCurrentUser().getUid();
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         postDatabase = FirebaseDatabase.getInstance().getReference().child("Posts");
+        likes = FirebaseDatabase.getInstance().getReference().child("Likes");
         postList = (RecyclerView) view.findViewById(R.id.lastestNews);
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        comment = view.findViewById(R.id.linComment);
+        mLayoutManager.setReverseLayout(true);
 
-
-
+        postDatabase.keepSynced(true);
+        likes.keepSynced(true);
         postList.setHasFixedSize(true);
         postList.setLayoutManager(mLayoutManager);
 
@@ -80,6 +88,12 @@ public class customerHome extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        initAdapter();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         initAdapter();
     }
 
@@ -92,10 +106,14 @@ public class customerHome extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
+                key = getRef(position).getKey();
+                String uid = auth.getCurrentUser().getUid();
 
                 viewHolder.setDisplayName(model.getUsername());
                 viewHolder.setPostImage(model.getPostImageUrl(), getContext());
                 viewHolder.setUserImage(model.getUserImage(), getContext());
+                viewHolder.setLikeBtn(key);
+                viewHolder.setNumberOfLikes(key);
                 viewHolder.userLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -124,22 +142,41 @@ public class customerHome extends Fragment {
                         dialog.show();
                     }
                 });
-                viewHolder.like.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                viewHolder.like.setOnClickListener(view -> {
 
-                        if(model.getLikes()==0){
-                            model.getLikes();
-                        }else {
-                            model.getLikes();
-                        }
-                    }
+                    mProcessLike = true;
+
+                        likes.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (mProcessLike) {
+
+                                    if (dataSnapshot.child(key).hasChild(uid)) {
+                                        likes.child(key).child(uid).removeValue();
+                                        viewHolder.like.setImageResource(R.drawable.ic_unlike);
+                                        mProcessLike = false;
+                                        viewHolder.setNumberOfLikes(key);
+
+                                    } else {
+                                        likes.child(key).child(uid).setValue("liked");
+                                        viewHolder.like.setImageResource(R.drawable.ic_like);
+                                        mProcessLike = false;
+                                        viewHolder.setNumberOfLikes(key);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
                 });
                 viewHolder.comment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(getContext(), com.example.user.hairr.comment.class);
-
                         intent.putExtra("postid", model.getPosterId());
                         startActivity(intent);
 
@@ -149,7 +186,6 @@ public class customerHome extends Fragment {
                     }
                 });
 
-                key = getRef(position).getKey();
 
             }
         };
@@ -166,7 +202,10 @@ public class customerHome extends Fragment {
         ImageView userImage;
         ImageView postImage;
         LinearLayout userLayout;
-
+        FirebaseAuth auth;
+        TextView numberOfLikes;
+        DatabaseReference likes;
+        String uidd;
 
         public PostViewHolder(View itemView) {
             super(itemView);
@@ -177,6 +216,51 @@ public class customerHome extends Fragment {
             userImage = (ImageView) mView.findViewById(R.id.posterImage);
             postImage = (ImageView) mView.findViewById(R.id.postImage);
             userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
+            numberOfLikes = (TextView)mView.findViewById(R.id.numberOfLikes);
+            auth = FirebaseAuth.getInstance();
+            uidd = auth.getCurrentUser().getUid();
+            likes = FirebaseDatabase.getInstance().getReference().child("Likes");
+            likes.keepSynced(true);
+
+        }
+
+        public void setNumberOfLikes(String key){
+
+            likes.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    int size = (int) dataSnapshot.getChildrenCount();
+
+                    numberOfLikes.setText(String.valueOf(size));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+        }
+
+        public void setLikeBtn(String key){
+
+            likes.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(key).hasChild(uidd)){
+                        like.setImageResource(R.drawable.ic_like);
+
+                    }else {
+                        like.setImageResource(R.drawable.ic_unlike);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
 
         }
 

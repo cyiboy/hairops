@@ -56,7 +56,7 @@ public class StylistHome extends Fragment {
     private static final int PICK_IMAGE_REQUEST = 2;
     FirebaseAuth auth;
     private RecyclerView postList;
-    private DatabaseReference mUsersDatabase, postDatabase;
+    private DatabaseReference mUsersDatabase, postDatabase,likes;
     private LinearLayoutManager mLayoutManager;
     private FloatingActionButton addPost;
     private ProgressDialog mProgressBar;
@@ -64,8 +64,8 @@ public class StylistHome extends Fragment {
     private Uri mImageUri;
     private StorageReference mStorageRef;
     private StorageTask mUploadTask;
-
-
+    private boolean mProcessLike = false;
+    private String key,uid;
     public StylistHome() {
         // Required empty public constructor
     }
@@ -89,6 +89,7 @@ public class StylistHome extends Fragment {
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         postDatabase = FirebaseDatabase.getInstance().getReference().child("Posts");
         mStorageRef = FirebaseStorage.getInstance().getReference().child("Post Upload");
+        likes = FirebaseDatabase.getInstance().getReference().child("Likes");
         postList = (RecyclerView) view.findViewById(R.id.rvPost);
         addPost = (FloatingActionButton) view.findViewById(R.id.btnAddPost);
 
@@ -100,8 +101,11 @@ public class StylistHome extends Fragment {
         });
 
         mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager.setReverseLayout(true);
 
         postList.setHasFixedSize(true);
+        postDatabase.keepSynced(true);
+        likes.keepSynced(true);
         postList.setLayoutManager(mLayoutManager);
     }
 
@@ -234,10 +238,15 @@ public class StylistHome extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
+                key = getRef(position).getKey();
+                String uid = auth.getCurrentUser().getUid();
+
 
                 viewHolder.setDisplayName(model.getUsername());
                 viewHolder.setPostImage(model.getPostImageUrl(), getContext());
                 viewHolder.setUserImage(model.getUserImage(), getContext());
+                viewHolder.setLikeBtn(key);
+                viewHolder.setNumberOfLikes(key);
                 viewHolder.userLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -267,7 +276,53 @@ public class StylistHome extends Fragment {
                         dialog.show();
                     }
                 });
-                String key = getRef(position).getKey();
+
+                viewHolder.like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mProcessLike = true;
+
+                        likes.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (mProcessLike) {
+
+                                    if (dataSnapshot.child(key).hasChild(uid)) {
+                                        likes.child(key).child(uid).removeValue();
+                                        viewHolder.like.setImageResource(R.drawable.ic_unlike);
+                                        mProcessLike = false;
+                                        viewHolder.setNumberOfLikes(key);
+
+                                    } else {
+                                        likes.child(key).child(uid).setValue("liked");
+                                        viewHolder.like.setImageResource(R.drawable.ic_like);
+                                        mProcessLike = false;
+                                        viewHolder.setNumberOfLikes(key);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                });
+                viewHolder.comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), com.example.user.hairr.comment.class);
+                        intent.putExtra("postid", model.getPosterId());
+                        startActivity(intent);
+
+
+
+
+                    }
+                });
+
+
 
             }
         };
@@ -307,19 +362,68 @@ public class StylistHome extends Fragment {
         ImageView userImage;
         ImageView postImage;
         LinearLayout userLayout;
+        FirebaseAuth auth;
+        TextView numberOfLikes;
+        DatabaseReference likes;
+        String uidd;
 
 
         public PostViewHolder(View itemView) {
             super(itemView);
 
             mView = itemView;
-            //like = (ImageView) mView.findViewById(R.id.imgLike);
-            // commentM = (ImageView) mView.findViewById(R.id.imgComment);
+            like = (ImageView) mView.findViewById(R.id.postLike);
+            comment = (ImageView) mView.findViewById(R.id.postComment);
             userImage = (ImageView) mView.findViewById(R.id.posterImage);
             postImage = (ImageView) mView.findViewById(R.id.postImage);
             userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
+            numberOfLikes = (TextView)mView.findViewById(R.id.numberOfLikes);
+            auth = FirebaseAuth.getInstance();
+            uidd = auth.getCurrentUser().getUid();
+            likes = FirebaseDatabase.getInstance().getReference().child("Likes");
+            likes.keepSynced(true);
 
         }
+        public void setNumberOfLikes(String key){
+
+            likes.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    int size = (int) dataSnapshot.getChildrenCount();
+
+                    numberOfLikes.setText(String.valueOf(size));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+        }
+
+        public void setLikeBtn(String key){
+
+            likes.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(key).hasChild(uidd)){
+                        like.setImageResource(R.drawable.ic_like);
+
+                    }else {
+                        like.setImageResource(R.drawable.ic_unlike);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
 
         public void setDisplayName(String name) {
 

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,9 +50,9 @@ public class StylistProfile extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference userRef,requestMoney;
     private ImageView userImage;
-    private TextView stylistName,stylistBalance,stylistAddress,stylistSpec,logout,help,updateProfile;
+    private TextView stylistName,stylistBalance,stylistAddress,stylistSpec;
     private ProgressDialog dialog;
-    private FancyButton withdraw;
+    private LinearLayout withdraw,logout,help,updateProfile;
     private HairStylist model;
     private String uid;
     private Calendar calendar;
@@ -81,12 +82,10 @@ public class StylistProfile extends Fragment {
         userImage = (ImageView)view.findViewById(R.id.profileImageStylist);
         stylistBalance = (TextView)view.findViewById(R.id.walletBalanceSytlist);
         stylistName = (TextView)view.findViewById(R.id.nameOfUserStylist);
-        stylistAddress = (TextView)view.findViewById(R.id.addressOfUserStylist);
-        stylistSpec = (TextView)view.findViewById(R.id.specializationOfUserStylist);
-        logout = (TextView)view.findViewById(R.id.logoutStylist);
-        help = (TextView)view.findViewById(R.id.txtHelpStylist);
-        updateProfile = (TextView)view.findViewById(R.id.updateProfileStylist);
-        withdraw = (FancyButton)view.findViewById(R.id.btnWithdrawStylist);
+        logout = (LinearLayout) view.findViewById(R.id.logoutStylist);
+        help = (LinearLayout) view.findViewById(R.id.txtHelpStylist);
+        updateProfile = (LinearLayout) view.findViewById(R.id.updateProfileStylist);
+        withdraw = (LinearLayout) view.findViewById(R.id.btnWithdrawStylist);
 
         withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,9 +229,7 @@ public class StylistProfile extends Fragment {
                     model = dataSnapshot.getValue(HairStylist.class);
 
                     stylistBalance.setText(String.valueOf(model.getBalance()));
-                    stylistAddress.setText(model.getAddress());
                     stylistName.setText(model.getName());
-                    stylistSpec.setText(model.getSpecialization());
 
                     Picasso.with(getContext()).load(model.getImageUrl()).transform(new CircleTransform()) .networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
                         @Override

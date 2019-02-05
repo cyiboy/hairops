@@ -1,113 +1,305 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/colorPrimary"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.StylistProfile">
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="130dp"
-        android:id="@+id/profileImageStylist"
-        android:src="@drawable/user"
-        android:layout_gravity="center_horizontal"
-        />
-    <TextView
-        android:textColor="#fff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="0.0"
-        android:id="@+id/walletBalanceSytlist"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:textStyle="bold"
-        android:textSize="34sp" />
+    <!--<ImageView-->
+        <!--android:layout_width="120dp"-->
+        <!--android:layout_height="130dp"-->
+        <!--android:id="@+id/profileImageStylist"-->
+        <!--android:src="@drawable/user"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--/>-->
+    <!--<TextView-->
+        <!--android:textColor="#fff"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--tools:text="0.0"-->
+        <!--android:id="@+id/walletBalanceSytlist"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="34sp" />-->
 
 
-    <TextView
-        android:textColor="#fff"
-        android:id="@+id/nameOfUserStylist"
+    <!--<TextView-->
+        <!--android:textColor="#fff"-->
+        <!--android:id="@+id/nameOfUserStylist"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Jason Ofua"-->
+        <!--android:textAlignment="center"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="18sp" />-->
+
+    <!--<TextView-->
+        <!--android:textColor="#fff"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="No 3 akara junction"-->
+        <!--android:textAlignment="center"-->
+        <!--android:id="@+id/addressOfUserStylist"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="18sp" />-->
+    <!--<TextView-->
+        <!--android:textColor="#fff"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Hair Stylist"-->
+        <!--android:textAlignment="center"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:id="@+id/specializationOfUserStylist"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="18sp" />-->
+
+
+
+
+    <!--<mehdi.sakout.fancybuttons.FancyButton-->
+        <!--android:id="@+id/btnWithdrawStylist"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:paddingBottom="10dp"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:paddingTop="10dp"-->
+        <!--fancy:fb_defaultColor="@color/gold"-->
+        <!--android:layout_marginLeft="40dp"-->
+        <!--android:layout_marginRight="40dp"-->
+        <!--fancy:fb_text="WITHDRAW BALANCE"-->
+        <!--fancy:fb_textColor="#fff"-->
+        <!--fancy:fb_textSize="20sp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--fancy:fb_radius="30dp"/>-->
+
+    <!--<TextView-->
+        <!--android:textColor="#fff"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="UPDATE PROFILE"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:id="@+id/updateProfileStylist"-->
+        <!--android:textSize="18sp" />-->
+
+    <!--<TextView-->
+        <!--android:textColor="#fff"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="HELP"-->
+        <!--android:id="@+id/txtHelpStylist"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="18sp" />-->
+    <!--<TextView-->
+        <!--android:textColor="#fff"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="LOGOUT"-->
+        <!--android:id="@+id/logoutStylist"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="18sp" />-->
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Jason Ofua"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        android:orientation="vertical">
 
-    <TextView
-        android:textColor="#fff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No 3 akara junction"
-        android:textAlignment="center"
-        android:id="@+id/addressOfUserStylist"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textSize="18sp" />
-    <TextView
-        android:textColor="#fff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hair Stylist"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/specializationOfUserStylist"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+        <LinearLayout
+            android:id="@+id/update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/nameOfUserStylist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Jason Ofua"
+                    android:textColor="#000"
+                    android:textSize="36sp" />
 
+                <TextView
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/btnWithdrawStylist"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="20dp"
-        android:paddingTop="10dp"
-        fancy:fb_defaultColor="@color/gold"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        fancy:fb_text="WITHDRAW BALANCE"
-        fancy:fb_textColor="#fff"
-        fancy:fb_textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        fancy:fb_radius="30dp"/>
-
-    <TextView
-        android:textColor="#fff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UPDATE PROFILE"
-        android:layout_marginTop="15dp"
-        android:textStyle="bold"
-        android:id="@+id/updateProfileStylist"
-        android:textSize="18sp" />
-
-    <TextView
-        android:textColor="#fff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HELP"
-        android:id="@+id/txtHelpStylist"
-        android:textStyle="bold"
-        android:textSize="18sp" />
-    <TextView
-        android:textColor="#fff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGOUT"
-        android:id="@+id/logoutStylist"
-        android:textStyle="bold"
-        android:textSize="18sp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View and edit profile"
+                    android:textSize="18sp" />
 
 
+            </LinearLayout>
 
-</LinearLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImageStylist"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:src="@drawable/user" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="@color/darkli"></LinearLayout>
+
+
+        <TextView
+
+            android:id="@+id/walletBalanceSytlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="4dp"
+            android:text="Wallet Balance : "
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/darkli"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnWithdrawStylist"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="WITHDRAW BALANCE"
+                android:textColor="#000"
+                android:textSize="20sp"
+
+                />
+
+            <ImageView
+                android:layout_margin="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                fancy:srcCompat="@drawable/ic_wallet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+
+            android:background="@color/darkli"></LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/updateProfileStylist"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/roboto"
+                android:text="Update profile"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_margin="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                fancy:srcCompat="@drawable/ic_edit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+
+            android:background="@color/darkli"></LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/txtHelpStylist"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="Help"
+                android:textColor="#000"
+                android:textSize="20sp"
+
+                />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_margin="15dp"
+                fancy:srcCompat="@drawable/ic_help" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/darkli"></LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/logoutStylist"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="Logout"
+                android:textColor="#000"
+                android:textSize="20sp"
+
+                />
+
+            <ImageView
+                android:layout_margin="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                fancy:srcCompat="@drawable/ic_logout" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
