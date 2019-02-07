@@ -1,22 +1,28 @@
 package com.example.user.hairr.Fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.user.hairr.Catergory.BarbingCategory;
 import com.example.user.hairr.Catergory.HairDressingCatergory;
 import com.example.user.hairr.Catergory.MakeupCategory;
 import com.example.user.hairr.R;
-import com.example.user.hairr.Utils.CircleTransform;
-import com.squareup.picasso.Picasso;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -24,8 +30,10 @@ import com.squareup.picasso.Picasso;
  */
 public class customerBooking extends Fragment {
 
-    ImageView barbing,makeup,hairdressing;
-
+    FirebaseAuth auth;
+CardView barbing,makeup,hairdressing;
+private DatabaseReference mUsersDatabase, postDatabase;
+TextView tname;
 
     public customerBooking() {
         // Required empty public constructor
@@ -42,45 +50,46 @@ public class customerBooking extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+barbing= view.findViewById(R.id.bookHairCut);
+makeup = view.findViewById(R.id.bookMakeup);
+hairdressing = view.findViewById(R.id.bookHairDressing);
+        auth = FirebaseAuth.getInstance();
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        makeup = (ImageView)view.findViewById(R.id.imgMakeup);
-        barbing = (ImageView)view.findViewById(R.id.imgBarbing);
-        hairdressing =(ImageView)view.findViewById(R.id.imgHairDressing);
-
-
-        Picasso.with(getContext()).load(R.drawable.barbing).transform(new CircleTransform())
-                .into(barbing);
-
-        Picasso.with(getContext()).load(R.drawable.hairdressing).transform(new CircleTransform())
-                .into(hairdressing);
-
-        Picasso.with(getContext()).load(R.drawable.makeup).transform(new CircleTransform())
-                .into(makeup);
-
-        makeup.setOnClickListener(new View.OnClickListener() {
+        mUsersDatabase.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), MakeupCategory.class));
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+tname.setText("Hi "+ dataSnapshot.child("name").getValue().toString() +"what whould you love to book today");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getContext(), "error occours: "+databaseError.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
         barbing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), BarbingCategory.class));
-            }
-        });
-
-
-        hairdressing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), HairDressingCatergory.class));
-            }
-        });
-
-
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(getContext(), BarbingCategory.class));
+    }
+});
+       makeup.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(getContext(), MakeupCategory.class));
+           }
+       });
+hairdressing.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        startActivity(new Intent(getContext(), HairDressingCatergory.class));
+    }
+});
 
     }
 }
