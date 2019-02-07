@@ -3,102 +3,79 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Catergory.BarbingCategory">
 
 
-
-    <LinearLayout
+    <Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
 
-        <ImageView
-            android:layout_width="0dp"
-            android:id="@+id/imgBarbingMen"
-            android:layout_weight="1"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/men"
-            android:scaleType="centerCrop"
-            android:layout_height="150dp" />
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
 
 
+        <RelativeLayout
 
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:id="@+id/imgBarbingWomen"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/women"
-            android:scaleType="centerCrop"
-            android:layout_height="150dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/onback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/op"
+                app:srcCompat="@drawable/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/roboto_bold"
+                android:text="booking"
+                android:textAllCaps="true"
+                android:textColor="#000"
+                android:textSize="14dp" />
+        </RelativeLayout>
+    </Toolbar>
 
 
-    <LinearLayout
+    <ImageView
+        android:foregroundTint="@color/darkli"
+        android:foreground="@color/darkp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="220dp"
+        android:background="@drawable/barbing" />
 
+    <android.support.design.widget.AppBarLayout
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="MEN"
-            android:textAlignment="center"
-            android:textColor="@color/gold"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content" />
-
-
-        <TextView
-            android:layout_width="0dp"
-            android:text="WOMEN"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textColor="@color/gold"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
 
-        <android.support.v7.widget.CardView
-            android:layout_width="180dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/bookHairDressing"
-            android:layout_height="150dp">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <ImageView
-                android:id="@+id/imgBarbingChildren"
-                android:layout_width="match_parent"
-                android:src="@drawable/children"
-                android:scaleType="centerCrop"
-                android:layout_height="match_parent" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/gold"
+            app:tabTextColor="@color/darkGold" />
 
-        </android.support.v7.widget.CardView>
+    </android.support.design.widget.AppBarLayout>
 
-
-    </LinearLayout>
-
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CHILDREN"
-        android:textAlignment="center"
-        android:layout_gravity="bottom"
-        android:textColor="@color/gold"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
 </LinearLayout>
