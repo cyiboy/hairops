@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.user.hairr.Catergory.BarbingCategory;
 import com.example.user.hairr.Catergory.HairDressingCatergory;
 import com.example.user.hairr.Catergory.MakeupCategory;
 import com.example.user.hairr.R;

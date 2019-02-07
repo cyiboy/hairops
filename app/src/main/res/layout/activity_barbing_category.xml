@@ -47,9 +47,11 @@
 
 
     <ImageView
+        android:foregroundTint="@color/darkli"
+        android:foreground="@color/darkp"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:background="@color/darkli" />
+        android:background="@drawable/barbing" />
 
     <android.support.design.widget.AppBarLayout
 

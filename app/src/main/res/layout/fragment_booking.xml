@@ -35,7 +35,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:hint="type"
+                    android:hint="select type"
                     android:textColorHint="@color/colorPrimary"
                     app:ms_arrow_tint="@color/colorPrimary"
                     app:ms_background_color="@color/colorWhite"
@@ -108,6 +108,7 @@
                         android:layout_height="wrap_content"
                         android:text="select date"/>
                     <TextView
+                        android:visibility="invisible"
                         android:id="@+id/dateText"
                         android:layout_marginLeft="20dp"
                         android:textColor="@color/colorPrimary"
@@ -147,6 +148,7 @@
                         android:layout_height="wrap_content"
                         android:text="select date"/>
                     <TextView
+                        android:visibility="invisible"
                         android:id="@+id/locationText"
                         android:layout_marginLeft="20dp"
                         android:textColor="@color/colorPrimary"
@@ -165,11 +167,11 @@
                 android:layout_height="1dp"/>
 
             <Button
-                android:id="@+id/btnCompleteCustomerRegistration"
+                android:id="@+id/btnbook"
                 android:layout_gravity="center"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:layout_below="@id/loginPassword"
+
                 android:layout_marginTop="20dp"
                 android:background="@drawable/_dark"
                 android:fontFamily="@font/roboto_bold"
