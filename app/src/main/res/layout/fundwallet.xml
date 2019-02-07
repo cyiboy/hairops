@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textColor="@color/gold"
+        android:text="Fund Wallet"/>
+
+   <android.support.design.widget.TextInputLayout
+       android:layout_width="match_parent"
+       android:layout_marginTop="20dp"
+       android:layout_height="wrap_content">
+
+
+       <EditText
+           android:id="@+id/edtCardNumber"
+           android:layout_width="match_parent"
+           android:hint="Card Number"
+           android:layout_height="wrap_content" />
+
+   </android.support.design.widget.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/edtExpireMonth"
+                android:layout_width="match_parent"
+                android:hint="Expire Month"
+                android:inputType="number"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:id="@+id/edtExpireYear"
+                android:layout_width="match_parent"
+                android:hint="Expire Year"
+                android:inputType="number"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/edtCVC"
+            android:layout_width="match_parent"
+            android:hint="CVC"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/edtAmount"
+            android:layout_width="match_parent"
+            android:hint="Enter Amount"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnPickCustomerLocation"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        fancy:fb_defaultColor="@color/darkop"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        fancy:fb_text="Fund Wallet"
+        fancy:fb_textColor="@color/colorWhite"
+        fancy:fb_textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        fancy:fb_radius="30dp"/>
+
+
+    </LinearLayout>
+

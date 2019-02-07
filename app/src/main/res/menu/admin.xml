@@ -6,16 +6,21 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/allBooking"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/requestedMoney"
+        android:icon="@drawable/ic_transactions"
+        android:title="Money Request" />
 
     <item
         android:id="@+id/allTransaction"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:icon="@drawable/ic_wallet"
+        android:title="Transactions" />
     <item
         android:id="@+id/allUser"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:icon="@drawable/ic_profile"
+        android:title="Users" />
+
+    <item
+        android:id="@+id/allBookings"
+        android:icon="@drawable/ic_booking"
+        android:title="Bookings" />
 </menu>
