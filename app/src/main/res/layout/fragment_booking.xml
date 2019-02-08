@@ -13,11 +13,13 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="4dp"
                 android:layout_height="wrap_content">
                 <TextView
                     android:fontFamily="@font/roboto_bold"
@@ -25,11 +27,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
-                    android:textSize="20dp"
-                    android:text="For whome"/>
+                    android:textSize="16sp"
+                    android:text="For whom"/>
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
-                    android:id="@+id/type"
+                    android:id="@+id/selectType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -54,6 +56,7 @@
 
             <LinearLayout
                 android:orientation="vertical"
+                android:layout_marginBottom="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
@@ -62,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
                     android:text="hair style"/>
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
@@ -89,6 +92,7 @@
                 android:layout_height="1dp"/>
             <LinearLayout
                 android:orientation="vertical"
+                android:layout_marginBottom="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
@@ -97,14 +101,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
                     android:text="pick date"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <Button
+                        android:id="@+id/selectTimeAndDate"
                         android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
+                        android:padding="8dp"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/colorWhite"
                         android:layout_height="wrap_content"
                         android:text="select date"/>
                     <TextView
@@ -136,17 +144,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="16sp"
                     android:text="pick location"/>
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_marginBottom="4dp"
                     android:layout_height="wrap_content">
                     <Button
                         android:id="@+id/selectLocation"
                         android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
+                        android:padding="8dp"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/colorWhite"
                         android:layout_height="wrap_content"
-                        android:text="select date"/>
+                        android:text="select location"/>
                     <TextView
                         android:visibility="invisible"
                         android:id="@+id/locationText"
@@ -163,21 +175,49 @@
 
             <LinearLayout
                 android:background="#000"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"/>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="Number of People"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:id="@+id/edtNumberOfPeople"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
             <Button
-                android:id="@+id/btnbook"
+                android:id="@+id/btnNext"
                 android:layout_gravity="center"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-
                 android:layout_marginTop="20dp"
                 android:background="@drawable/_dark"
                 android:fontFamily="@font/roboto_bold"
                 android:textAllCaps="false"
-
-                android:text="book"
+                android:text="Next"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 

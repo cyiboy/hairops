@@ -32,9 +32,9 @@ import com.google.firebase.database.ValueEventListener;
 public class customerBooking extends Fragment {
 
     FirebaseAuth auth;
-CardView barbing,makeup,hairdressing;
-private DatabaseReference mUsersDatabase, postDatabase;
-TextView tname;
+    CardView barbing, makeup, hairdressing;
+    private DatabaseReference mUsersDatabase, postDatabase;
+    TextView tname;
 
     public customerBooking() {
         // Required empty public constructor
@@ -51,9 +51,10 @@ TextView tname;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-barbing= view.findViewById(R.id.bookHairCut);
-makeup = view.findViewById(R.id.bookMakeup);
-hairdressing = view.findViewById(R.id.bookHairDressing);
+        barbing = view.findViewById(R.id.bookHairCut);
+        makeup = view.findViewById(R.id.bookMakeup);
+        hairdressing = view.findViewById(R.id.bookHairDressing);
+        tname = view.findViewById(R.id.titleTxt);
         auth = FirebaseAuth.getInstance();
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
@@ -62,35 +63,34 @@ hairdressing = view.findViewById(R.id.bookHairDressing);
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-tname.setText("Hi "+ dataSnapshot.child("name").getValue().toString() +"what whould you love to book today");
+                tname.setText("Hi "  + "what whould you love to book today");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(), "error occours: "+databaseError.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "error occours: " + databaseError.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
-
         barbing.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        startActivity(new Intent(getContext(), BarbingCategory.class));
-    }
-});
-       makeup.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               startActivity(new Intent(getContext(), MakeupCategory.class));
-           }
-       });
-hairdressing.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        startActivity(new Intent(getContext(), HairDressingCatergory.class));
-    }
-});
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), BarbingCategory.class));
+            }
+        });
+        makeup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), MakeupCategory.class));
+            }
+        });
+        hairdressing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), HairDressingCatergory.class));
+            }
+        });
 
     }
 }

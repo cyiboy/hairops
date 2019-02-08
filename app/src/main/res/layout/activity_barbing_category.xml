@@ -14,14 +14,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp">
 
 
         <RelativeLayout
-
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -50,7 +47,7 @@
         android:foregroundTint="@color/darkli"
         android:foreground="@color/darkp"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="150dp"
         android:background="@drawable/barbing" />
 
     <android.support.design.widget.AppBarLayout
@@ -67,7 +64,7 @@
             app:tabGravity="fill"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/gold"
-            app:tabTextColor="@color/darkGold" />
+            app:tabTextColor="@color/colorWhite" />
 
     </android.support.design.widget.AppBarLayout>
 
