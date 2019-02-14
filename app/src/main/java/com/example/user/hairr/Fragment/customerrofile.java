@@ -4,8 +4,10 @@ package com.example.user.hairr.Fragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -57,14 +59,14 @@ public class customerrofile extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference userRef,fundingTrans;
     private ImageView userImage;
-    private LinearLayout logout,help,updateProfile,fundWallet;
+    private LinearLayout logout,help,updateProfile,fundWallet, updateuserprofile;
     TextView stylistName,stylistBalance;
     private ProgressDialog dialog;
     private  Dialog dialogs;
     private Calendar calendar;
     private SimpleDateFormat simpledateformat;
     private String Date;
-
+SharedPreferences preferences;
     private Customer model;
     private String uid;
 
@@ -94,12 +96,15 @@ public class customerrofile extends Fragment {
         userImage = (ImageView)view.findViewById(R.id.profileImage);
         stylistBalance =  view.findViewById(R.id.walletBalanceUser);
         stylistName =  view.findViewById(R.id.nameOfUser);
-       // stylistAddress = (TextView)view.findViewById(R.id.addressOfUser);
+        preferences = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        // stylistAddress = (TextView)view.findViewById(R.id.addressOfUser);
        // stylistSpec = (TextView)view.findViewById(R.id.specializationOfUser);
         logout =  view.findViewById(R.id.logoutUser);
         help =  view.findViewById(R.id.txtHelpUser);
         fundWallet =  view.findViewById(R.id.btnFundWallet);
         updateProfile = view.findViewById(R.id.updateProfileUser);
+        updateuserprofile = view.findViewById(R.id.update);
       //  withdraw = (FancyButton)view.findViewById(R.id.btnFundWallet);
 
         fundWallet.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +125,8 @@ public class customerrofile extends Fragment {
         updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODo create update page for update profile
+                startActivity(new Intent(getContext(), com.example.user.hairr.updateProfile.class));
+
             }
         });
 
@@ -175,7 +181,7 @@ public class customerrofile extends Fragment {
         EditText cardExpireYear = dialogs.findViewById(R.id.edtExpireYear);
         EditText cardCVC = dialogs.findViewById(R.id.edtCVC);
         EditText amount = dialogs.findViewById(R.id.edtAmount);
-        FancyButton button = dialogs.findViewById(R.id.close);
+        FancyButton button = dialogs.findViewById(R.id.btnPickCustomerLocation);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,7 +195,7 @@ public class customerrofile extends Fragment {
                startTrans(number,month,year,cvc,amoun);
             }
         });
-
+        dialogs.show();
 
     }
 
@@ -269,6 +275,12 @@ public class customerrofile extends Fragment {
 
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchData();
     }
 
     private void fetchData() {

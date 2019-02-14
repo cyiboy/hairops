@@ -63,7 +63,7 @@ public class customerBooking extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                tname.setText("Hi "  + "what whould you love to book today");
+                tname.setText("Hi "+ dataSnapshot.child("name").getValue().toString() + "what whould you love to book today");
             }
 
             @Override
