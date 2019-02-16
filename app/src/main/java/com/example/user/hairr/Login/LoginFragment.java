@@ -2,7 +2,9 @@ package com.example.user.hairr.Login;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -40,7 +42,7 @@ public class LoginFragment extends Fragment implements OnLoginListener {
    private  EditText edtEmail,edtPassword;
    private Button login;
    private ProgressDialog dialog;
-
+SharedPreferences preferences;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -57,7 +59,7 @@ public class LoginFragment extends Fragment implements OnLoginListener {
         edtPassword = (EditText)root.findViewById(R.id.loginPassword);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Users");
         dialog = new ProgressDialog(getContext());
-
+        preferences = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
         login = (Button)root.findViewById(R.id.loginButton);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +105,21 @@ public class LoginFragment extends Fragment implements OnLoginListener {
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.exists()) {
                                                 String status = dataSnapshot.child("status").getValue().toString();
+                                                String name = dataSnapshot.child("name").getValue().toString();
+                                                String phoneNumber = dataSnapshot.child("phoneNumber").getValue().toString();
+                                                String orgainzation = dataSnapshot.child("orgainzation").getValue().toString();
+                                                String imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
+                                                String address = dataSnapshot.child("address").getValue().toString();
+
+
+                                                SharedPreferences.Editor edit = preferences.edit();
+                                                edit.putString("firstName",name);
+                                                edit.putString("phoneNumber",phoneNumber);
+                                                edit.putString("oga",orgainzation);
+                                                edit.putString("imageUrl",imageUrl);
+                                                edit.putString("address",address);
+                                                edit.apply();
+
 
                                                 if (status.equalsIgnoreCase("customer")) {
                                                     startActivity(new Intent(getContext(), HomeCustomer.class));

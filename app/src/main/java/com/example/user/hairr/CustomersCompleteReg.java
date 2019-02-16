@@ -56,7 +56,7 @@ public class CustomersCompleteReg extends AppCompatActivity {
     private LatLng latLng;
     private String lat,lng,email,name,phoneNumber,orgainzation,address;
     private MaterialSpinner spinnerOrganization;
-
+SharedPreferences preferences;
     private FancyButton setLocation;
     Button completeSignupCustomer;
 
@@ -74,7 +74,7 @@ public class CustomersCompleteReg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customers_complete_reg);
-
+        preferences = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
         mProgressBar = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         circleImageView = (ImageView)findViewById(R.id.addImageCustomer);
@@ -137,12 +137,13 @@ public class CustomersCompleteReg extends AppCompatActivity {
                     }
                     return fileReference.getDownloadUrl();
                 }
+
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()){
                         Uri downUri = task.getResult();
-                       String imageUrl = downUri.toString();
+                        String imageUrl = downUri.toString();
 
 
                         Customer customer = new Customer();
@@ -167,7 +168,14 @@ public class CustomersCompleteReg extends AppCompatActivity {
                                             SharedPreferences.Editor editor = sharedpreferences.edit();
                                             editor.putString(STATUS, "customer");
                                             editor.apply();
-
+                                            SharedPreferences.Editor edit = preferences.edit();
+                                            edit.putString("firstName",name);
+                                            edit.putString("email",email);
+                                            edit.putString("phoneNumber",phoneNumber);
+                                            edit.putString("oga",orgainzation);
+                                            edit.putString("imageUrl",imageUrl);
+                                            edit.putString("address",address);
+                                            edit.apply();
                                             startActivity(new Intent(CustomersCompleteReg.this,HomeCustomer.class));
                                         }
                                     }
