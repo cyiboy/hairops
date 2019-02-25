@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.user.hairr.AllStylists;
 import com.example.user.hairr.CustomersCompleteReg;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
@@ -128,6 +129,9 @@ public class booking extends Fragment {
                             @Override
                             public void onDateSelected(Date date) {
 
+                                simpledateformat = new SimpleDateFormat("yyyy.MM.dd HH:mm z");
+                                Dated = simpledateformat.format(date);
+
                             }
                         })
                         .curved()
@@ -135,6 +139,22 @@ public class booking extends Fragment {
             }
         });
 
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent stylist = new Intent(getContext(), AllStylists.class);
+                stylist.putExtra("type",Type);
+                stylist.putExtra("style",Style);
+                stylist.putExtra("date",Dated);
+                stylist.putExtra("longitude",lng);
+                stylist.putExtra("spec","Barber");
+                stylist.putExtra("specType","normal");
+                stylist.putExtra("latitude",lat);
+                stylist.putExtra("numberOfPerson",numberOfPeople.getText().toString().trim());
+                getContext().startActivity(stylist);
+            }
+        });
 
 
 
@@ -179,40 +199,5 @@ public class booking extends Fragment {
         }
     }
 
-    public static class DatePickerFragment extends android.support.v4.app.DialogFragment implements DatePickerDialog.OnDateSetListener
-    {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-        public void onDateSet(DatePicker view, int year, int month, int day) {
 
-           startTimePicker(year,month,day);
-        }
-
-        private void startTimePicker(int year, int month, int day) {
-            TimePicker mTimePicker = new TimePicker();
-            mTimePicker.show(getFragmentManager(), "Select time");
-        }
-
-
-    }
-
-    public static class TimePicker extends android.support.v4.app.DialogFragment implements TimePickerDialog.OnTimeSetListener {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-            return new TimePickerDialog(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
-        }
-        @Override
-        public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
-
-        }
-    }
 }

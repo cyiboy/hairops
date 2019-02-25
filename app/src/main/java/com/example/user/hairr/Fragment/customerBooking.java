@@ -57,18 +57,19 @@ public class customerBooking extends Fragment {
         tname = view.findViewById(R.id.titleTxt);
         auth = FirebaseAuth.getInstance();
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        String uid = auth.getCurrentUser().getUid();
 
-        mUsersDatabase.child(auth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        mUsersDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                tname.setText("Hi "+ dataSnapshot.child("name").getValue().toString() + "what whould you love to book today");
+                tname.setText("Hi "+ dataSnapshot.child("name").getValue().toString() + "what would you love to book today");
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(), "error occours: " + databaseError.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "error occurs: " + databaseError.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 

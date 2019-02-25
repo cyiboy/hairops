@@ -47,7 +47,7 @@ public class comment extends AppCompatActivity {
         Intent intent = getIntent();
         String postid = intent.getStringExtra("postid");
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
-  postDatabase = FirebaseDatabase.getInstance().getReference().child("Posts/"+postid+"/comment");
+        postDatabase = FirebaseDatabase.getInstance().getReference().child("Posts/"+postid+"/comment");
 
         close= findViewById(R.id.close);
         comment=findViewById(R.id.edtComments);

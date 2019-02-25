@@ -101,8 +101,6 @@ public class StylistHome extends Fragment {
         });
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        mLayoutManager.setReverseLayout(true);
-
         postList.setHasFixedSize(true);
         postDatabase.keepSynced(true);
         likes.keepSynced(true);
