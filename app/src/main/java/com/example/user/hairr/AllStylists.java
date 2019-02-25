@@ -1,0 +1,293 @@
+package com.example.user.hairr;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.location.Location;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.user.hairr.Model.Booking;
+import com.example.user.hairr.Model.Customer;
+import com.example.user.hairr.Model.HairStylist;
+import com.example.user.hairr.Utils.CircleTransform;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+
+import mehdi.sakout.fancybuttons.FancyButton;
+
+public class AllStylists extends AppCompatActivity {
+    FirebaseAuth auth;
+    private RecyclerView stylistRv;
+    private DatabaseReference mUsersDatabase,bookingRef;
+    private LinearLayoutManager mLayoutManager;
+    private Query stylistQuery;
+    private String lng,lat,type,numberOfPeople,date,style,spec,specType;
+    private Customer customer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_all_stylists);
+
+        lng = getIntent().getStringExtra("longitude");
+        lat = getIntent().getStringExtra("latitude");
+        type = getIntent().getStringExtra("type");
+        numberOfPeople = getIntent().getStringExtra("numberOfPerson");
+        date = getIntent().getStringExtra("date");
+        style = getIntent().getStringExtra("style");
+        spec = getIntent().getStringExtra("spec");
+        specType = getIntent().getStringExtra("specType");
+
+        auth = FirebaseAuth.getInstance();
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+        bookingRef = FirebaseDatabase.getInstance().getReference().child("Bookings");
+        stylistRv = (RecyclerView) findViewById(R.id.rvAllStylist);
+
+        mLayoutManager = new LinearLayoutManager(this);
+
+        if (spec.equalsIgnoreCase("Barber")){
+            stylistQuery = mUsersDatabase.orderByChild("specialization").equalTo("Barber");
+        }else if (spec.equalsIgnoreCase("Hair Stylist")){
+            stylistQuery = mUsersDatabase.orderByChild("specialization").equalTo("Hair Stylist");
+        }else {
+            stylistQuery = mUsersDatabase.orderByChild("specialization").equalTo("Makeup Artist");
+        }
+
+        stylistRv.setHasFixedSize(true);
+        stylistRv.setLayoutManager(mLayoutManager);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initAdapter();
+    }
+
+    private void initAdapter() {
+        FirebaseRecyclerAdapter<HairStylist,AllStylistViewHolder> adapter = new FirebaseRecyclerAdapter<HairStylist, AllStylistViewHolder>(
+
+                HairStylist.class,
+                R.layout.singleuseritem,
+                AllStylistViewHolder.class,
+                stylistQuery
+        ) {
+            @Override
+            protected void populateViewHolder(AllStylistViewHolder viewHolder, HairStylist model, int position) {
+
+                viewHolder.setDisplayName(model.getName());
+                viewHolder.setUserImage(model.getImageUrl(),AllStylists.this);
+
+                Location loc1 = new Location("");
+                loc1.setLatitude(Double.parseDouble(lat));
+                loc1.setLongitude(Double.parseDouble(lng));
+
+                Location loc2 = new Location("");
+                loc2.setLatitude(Double.parseDouble(model.getLatitude()));
+                loc2.setLongitude(Double.parseDouble(model.getLongitude()));
+
+                float distanceInMeters = loc1.distanceTo(loc2);
+
+                viewHolder.setDistance(String.valueOf(distanceInMeters)+" meters from you");
+
+                viewHolder.viewDetails.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final Dialog dialog = new Dialog(AllStylists.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.singlebookitem);
+                        final ImageView stylistImage = dialog.findViewById(R.id.imgBookStylist);
+                        TextView styistName = dialog.findViewById(R.id.txtBookStylistName);
+                        TextView stylistSpacialization = dialog.findViewById(R.id.txtBookStylistProfession);
+                        TextView stylistAddress = dialog.findViewById(R.id.txtBookStylistAddress);
+                        FancyButton button = dialog.findViewById(R.id.btnBook);
+
+                        button.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                String uid = auth.getCurrentUser().getUid();
+
+                                mUsersDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                        if (dataSnapshot.exists()) {
+                                            customer = dataSnapshot.getValue(Customer.class);
+                                            Booking booking = new Booking();
+                                            booking.setAddressOfStylist(model.getAddress());
+                                            booking.setCustomerName(customer.getName());
+                                            booking.setCustomerNumber(customer.getNumber());
+                                            booking.setDate(date);
+                                            booking.setLatitude(lat);
+                                            booking.setLongitude(lng);
+                                            booking.setNameOfStylist(model.getName());
+                                            booking.setNumberOfPeople(numberOfPeople);
+                                            booking.setStyle(style);
+                                            booking.setType(type);
+
+                                            if (spec.equalsIgnoreCase("Barber")){
+                                                if (type.equalsIgnoreCase("Male")){
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 1000;
+                                                    int finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+
+                                                }else if (type.equalsIgnoreCase("Female")){
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 1000;
+                                                    int finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+                                                }else {
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 700;
+                                                    int finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+                                                }
+                                            }else if (spec.equalsIgnoreCase("Makeup Artist")){
+                                               if (specType.equalsIgnoreCase("normal")){
+                                                   int number = Integer.parseInt(numberOfPeople);
+                                                   int price = number * 1000;
+                                                   int finalPrice = price + 500;
+                                                   booking.setPrice(String.valueOf(finalPrice));
+                                               }else {
+                                                   int number = Integer.parseInt(numberOfPeople);
+                                                   int price = number * 25000;
+                                                   int finalPrice = price + 500;
+                                                   booking.setPrice(String.valueOf(finalPrice));
+                                               }
+                                            }else {
+
+                                                if (specType.equalsIgnoreCase("braiding")){
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 3000;
+                                                    int finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+                                                }else {
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 3000;
+                                                    int finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+                                                }
+
+                                            }
+
+                                            booking.setNumberOfStylist(model.getNumber());
+
+
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+                            }
+                        });
+
+                        Picasso.with(AllStylists.this).load(model.getImageUrl()).transform(new CircleTransform()).into(stylistImage);
+
+                        styistName.setText(model.getName());
+                        stylistSpacialization.setText(model.getSpecialization());
+                        stylistAddress.setText(model.getAddress());
+
+
+                        dialog.show();
+                    }
+                });
+
+
+            }
+        };
+        stylistRv.setAdapter(adapter);
+    }
+
+    public static class AllStylistViewHolder extends RecyclerView.ViewHolder {
+
+        View mView;
+        ImageView userImage;
+        Button viewDetails,viewInMap;
+        TextView name,occupation,distance;
+
+
+        public AllStylistViewHolder(View itemView) {
+            super(itemView);
+
+            mView = itemView;
+            // like = (ImageView) mView.findViewById(R.id.imgLike);
+            //   comment = (ImageView) mView.findViewById(R.id.imgComment);
+            userImage = (ImageView) mView.findViewById(R.id.allStylistProfileImage);
+            name = (TextView)mView.findViewById(R.id.allStylistName);
+            occupation = (TextView)mView.findViewById(R.id.allStylistOccupation);
+            distance = (TextView)mView.findViewById(R.id.allStylistDistance);
+            viewDetails = (Button)mView.findViewById(R.id.btnViewDetails);
+            viewInMap = (Button)mView.findViewById(R.id.btnViewInMap);
+
+        }
+
+        public void setDisplayName(String sname){
+
+            name.setText(sname);
+
+        }
+
+
+        public void setDistance(String name){
+
+            distance.setText(name);
+
+        }
+
+
+        public void setOccupation(String name){
+
+            occupation.setText(name);
+
+        }
+
+
+
+        public void setUserImage(String status, Context context){
+
+            Picasso.with(context).load(status).transform(new CircleTransform()) .networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(context)
+                            .load(status).into(userImage);
+
+                }
+            });
+
+
+
+        }
+
+
+    }
+}

@@ -37,11 +37,14 @@
                 android:textAllCaps="true"
                 android:textColor="#000"
                 android:textSize="14dp" />
+
             <ImageButton
-                android:layout_alignParentEnd="true"
                 android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
                 android:background="@color/op"
                 app:srcCompat="@drawable/save" />
         </RelativeLayout>
@@ -55,13 +58,13 @@
     <Button
         android:id="@+id/changePics"
         android:layout_gravity="center"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/_dark"
         android:fontFamily="@font/roboto_bold"
         android:textAllCaps="false"
-        android:text="change pics"
+        android:text="change profile picture"
         android:textColor="@color/colorWhite"
         android:textSize="20sp" />
 

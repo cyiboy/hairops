@@ -23,4 +23,5 @@
 . Paying online reduces the risk of late fees because you can see that their payment has been scheduled.
 . Renters have three payment methods to choose from: ACH, debit or credit card.
 </string>
+    <string name="title_activity_stylist_map">Map</string>
 </resources>
