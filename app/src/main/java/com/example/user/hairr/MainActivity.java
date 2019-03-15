@@ -3,15 +3,16 @@ package com.example.user.hairr;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.FrameLayout;
 
+import com.example.user.hairr.Login.LoginButton;
 import com.example.user.hairr.Login.LoginFragment;
 import com.example.user.hairr.Login.SignUpFragment;
-import com.example.user.hairr.databinding.ActivityMainBinding;
 import com.example.user.hairr.intro.intro;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,13 +25,23 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private static final String TAG = "MainActivity";
     private String uid;
-    ActivityMainBinding binding;
     private boolean isLogin = true;
+   // ActivityMainBinding binding;
+    CoordinatorLayout layout;
+    LoginButton button;
+    FrameLayout login_fragment;
+    FrameLayout signup_fragment;
+    FlexibleFrameLayout wrapper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+        button = (LoginButton) findViewById(R.id.button);
+        login_fragment = (FrameLayout) findViewById(R.id.login_fragment);
+        signup_fragment = (FrameLayout) findViewById(R.id.sign_up_fragment);
+        layout = (CoordinatorLayout)findViewById(R.id.corinator);
+        wrapper  = (FlexibleFrameLayout)findViewById(R.id.wrapper);
 
         auth = FirebaseAuth.getInstance();
 
@@ -49,19 +60,19 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.sign_up_fragment, topSignUpFragment)
                 .commit();
 
-        binding.loginFragment.setRotation(-90);
+      login_fragment.setRotation(-90);
 
-        binding.button.setOnSignUpListener( topSignUpFragment);
-        binding.button.setOnLoginListener(topLoginFragment);
+        button.setOnSignUpListener( topSignUpFragment);
+       button.setOnLoginListener(topLoginFragment);
 
-        binding.button.setOnButtonSwitched(isLogin -> {
-            binding.getRoot()
-                    .setBackgroundColor(ContextCompat.getColor(
+      button.setOnButtonSwitched(isLogin -> {
+
+                 layout.setBackgroundColor(ContextCompat.getColor(
                             this,
                             isLogin ? R.color.colorPrimary : R.color.secondPage));
         });
 
-        binding.loginFragment.setVisibility(INVISIBLE);
+        login_fragment.setVisibility(INVISIBLE);
 
 
     }
@@ -69,38 +80,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        binding.loginFragment.setPivotX(binding.loginFragment.getWidth() / 2);
-        binding.loginFragment.setPivotY(binding.loginFragment.getHeight());
-        binding.signUpFragment.setPivotX(binding.signUpFragment.getWidth() / 2);
-        binding.signUpFragment.setPivotY(binding.signUpFragment.getHeight());
+        login_fragment.setPivotX(login_fragment.getWidth() / 2);
+        login_fragment.setPivotY(login_fragment.getHeight());
+        signup_fragment.setPivotX(signup_fragment.getWidth() / 2);
+        signup_fragment.setPivotY(signup_fragment.getHeight());
     }
 
     public void switchFragment(View v) {
         if (isLogin) {
-            binding.loginFragment.setVisibility(VISIBLE);
-            binding.loginFragment.animate().rotation(0).setListener(new AnimatorListenerAdapter() {
+           login_fragment.setVisibility(VISIBLE);
+            login_fragment.animate().rotation(0).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    binding.signUpFragment.setVisibility(INVISIBLE);
-                    binding.signUpFragment.setRotation(90);
-                    binding.wrapper.setDrawOrder(ORDER_LOGIN_STATE);
+                   signup_fragment.setVisibility(INVISIBLE);
+                    signup_fragment.setRotation(90);
+                   wrapper.setDrawOrder(ORDER_LOGIN_STATE);
                 }
             });
         } else {
-            binding.signUpFragment.setVisibility(VISIBLE);
-            binding.signUpFragment.animate().rotation(0).setListener(new AnimatorListenerAdapter() {
+           signup_fragment.setVisibility(VISIBLE);
+            signup_fragment.animate().rotation(0).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    binding.loginFragment.setVisibility(INVISIBLE);
-                    binding.loginFragment.setRotation(-90);
-                    binding.wrapper.setDrawOrder(ORDER_SIGN_UP_STATE);
+                    login_fragment.setVisibility(INVISIBLE);
+                    login_fragment.setRotation(-90);
+                   wrapper.setDrawOrder(ORDER_SIGN_UP_STATE);
                 }
             });
         }
 
         isLogin = !isLogin;
-        binding.button.startAnimation();
+       button.startAnimation();
     }
 }
