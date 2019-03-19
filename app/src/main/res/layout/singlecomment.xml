@@ -7,8 +7,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/commentImg"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_margin="5dp"
         android:src="@color/darkGold" />
 
@@ -18,7 +18,7 @@
         android:layout_margin="5dp"
         app:cardBackgroundColor="@color/darkl2"
         app:cardCornerRadius="10dp"
-        app:cardElevation="5dp">
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.user.hairr">
 
     <!--
@@ -17,6 +18,8 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
+        android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true">
@@ -40,7 +43,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.user.hairr.AllStylists" />
         </activity>
-        <activity android:name=".AllStylists" />
+        <activity android:name=".AllStylists"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".intro.intro"
             android:label="Hairops"

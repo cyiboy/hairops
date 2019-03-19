@@ -206,14 +206,13 @@ public class AllStylists extends AppCompatActivity {
                                             booking.setNumberOfStylist(model.getNumber());
 
 
-                                            book.child(key).setValue(booking)
+                                            book.setValue(booking)
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()){
 
                                                                 AdminBooking adminBooking = new AdminBooking();
-
                                                                 adminBooking.setBookingKey(key);
                                                                 adminBooking.setClientName(customer.getName());
                                                                 adminBooking.setClientNumber(customer.getNumber());
@@ -222,6 +221,10 @@ public class AllStylists extends AppCompatActivity {
                                                                 adminBooking.setStylistName(model.getName());
                                                                 adminBooking.setStylistNumber(model.getNumber());
                                                                 adminBooking.setTotalAmount(String.valueOf(finalPrice));
+                                                                adminBooking.setClientImageUrl(customer.getImageUrl());
+                                                                adminBooking.setStylistImageUrl(model.getImageUrl());
+                                                                adminBooking.setStyle(style);
+                                                                adminBooking.setStatus("Unconfirmed");
 
 
                                                                 adminBookingRef.push().setValue(adminBooking)

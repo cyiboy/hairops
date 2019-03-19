@@ -19,7 +19,7 @@
             android:layout_height="90dp" />
         <TextView
             android:textSize="20sp"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="56dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
@@ -33,7 +33,7 @@
 
         <TextView
             android:textSize="20sp"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="56dp"
             android:id="@+id/txtBookStylistAddress"
             android:paddingEnd="32dp"
@@ -47,7 +47,7 @@
 
         <TextView
             android:textSize="20sp"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="56dp"
             android:id="@+id/txtBookStylistProfession"
             android:paddingEnd="32dp"
@@ -61,21 +61,22 @@
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBook"
-            android:layout_marginTop="20dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            fancy:fb_defaultColor="@color/darkop"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            fancy:fb_defaultColor="@color/darkop"
+            fancy:fb_radius="30dp"
             fancy:fb_text="Book"
             fancy:fb_textColor="@color/colorWhite"
-            fancy:fb_textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            fancy:fb_radius="30dp"/>
+            fancy:fb_textSize="16sp" />
 
 
     </LinearLayout>

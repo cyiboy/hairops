@@ -244,9 +244,29 @@ SharedPreferences preferences;
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
-                                    dialog.dismiss();
-                                    Toast.makeText(getContext(), "Transaction Successful", Toast.LENGTH_LONG).show();
-                                    dialogs.dismiss();
+
+                                    uid = auth.getCurrentUser().getUid();
+
+                                    userRef.child(uid).child("balance").setValue(Double.valueOf(amoun))
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()){
+                                                        fetchData();
+                                                        dialog.dismiss();
+                                                        Toast.makeText(getContext(), "Transaction Successful", Toast.LENGTH_LONG).show();
+                                                        dialogs.dismiss();
+
+                                                    }
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+
                                 }
                             }
                         }).addOnFailureListener(new OnFailureListener() {

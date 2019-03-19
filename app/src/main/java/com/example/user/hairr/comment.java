@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.hairr.Model.commentM;
 import com.example.user.hairr.Utils.CircleTransform;
@@ -45,9 +46,9 @@ public class comment extends AppCompatActivity {
         setContentView(R.layout.activity_comment);
         auth = FirebaseAuth.getInstance();
         Intent intent = getIntent();
-        String postid = intent.getStringExtra("postid");
+         key = intent.getStringExtra("postid");
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
-        postDatabase = FirebaseDatabase.getInstance().getReference().child("Posts/"+postid+"/comment");
+        postDatabase = FirebaseDatabase.getInstance().getReference().child("comment").child(key);
 
         close= findViewById(R.id.close);
         comment=findViewById(R.id.edtComments);
@@ -88,11 +89,15 @@ public class comment extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 
+                        if (task.isSuccessful()){
+                            comment.setText("");
+                        }
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        Toast.makeText(comment.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -128,7 +133,6 @@ public class comment extends AppCompatActivity {
                 viewHolder.setUserImage(model.getUserImage(), getApplicationContext());
                 viewHolder.commentName.setText(model.getUsername());
                 viewHolder.comment.setText(model.getCommentText());
-
                 key = getRef(position).getKey();
 
             }

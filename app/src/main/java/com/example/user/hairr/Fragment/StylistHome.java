@@ -137,7 +137,7 @@ public class StylistHome extends Fragment {
     private void startUpload(String trim) {
 
         if (mImageUri != null) {
-            mProgressBar.setMessage("Completing registration.. please wait");
+            mProgressBar.setMessage("Uploading Post.. please wait");
             mProgressBar.show();
 
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
@@ -245,6 +245,7 @@ public class StylistHome extends Fragment {
                 viewHolder.setUserImage(model.getUserImage(), getContext());
                 viewHolder.setLikeBtn(key);
                 viewHolder.setNumberOfLikes(key);
+                viewHolder.postText.setText(model.getPosttText());
                 viewHolder.userLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -361,7 +362,7 @@ public class StylistHome extends Fragment {
         ImageView postImage;
         LinearLayout userLayout;
         FirebaseAuth auth;
-        TextView numberOfLikes;
+        TextView numberOfLikes,postText;
         DatabaseReference likes;
         String uidd;
 
@@ -376,6 +377,7 @@ public class StylistHome extends Fragment {
             postImage = (ImageView) mView.findViewById(R.id.postImage);
             userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
             numberOfLikes = (TextView)mView.findViewById(R.id.numberOfLikes);
+            postText = (TextView)mView.findViewById(R.id.postalText);
             auth = FirebaseAuth.getInstance();
             uidd = auth.getCurrentUser().getUid();
             likes = FirebaseDatabase.getInstance().getReference().child("Likes");
