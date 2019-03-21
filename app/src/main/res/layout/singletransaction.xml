@@ -27,7 +27,7 @@
 
 
                 <ImageView
-                    android:id="@+id/posterImage"
+                    android:id="@+id/imgClientBooked"
                     android:layout_width="40dp"
                     android:layout_height="25dp"
                     android:layout_marginRight="13dp"
@@ -55,6 +55,7 @@
                 android:layout_marginBottom="5dp">
 
                 <TextView
+                    android:id="@+id/txtTypeBooked"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -65,8 +66,7 @@
                     android:textStyle="bold" />
 
                 <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnEditProfieStylist"
-
+                    android:id="@+id/btnStartService"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
@@ -88,6 +88,7 @@
                 android:layout_marginBottom="5dp">
 
                 <TextView
+                    android:id="@+id/txtStyleBooked"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -109,6 +110,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtStatus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

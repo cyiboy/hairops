@@ -157,6 +157,8 @@ public class AllStylists extends AppCompatActivity {
                                             booking.setStatusClient("Not Started");
                                             booking.setStatusStylist("Not Started");
                                             booking.setStyle(style);
+                                            booking.setClientImageUrl(customer.getImageUrl());
+                                            booking.setStylistImageUrl(model.getImageUrl());
                                             booking.setType(type);
 
                                             if (spec.equalsIgnoreCase("Barber")){
