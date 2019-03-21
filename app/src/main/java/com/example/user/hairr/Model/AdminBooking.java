@@ -2,9 +2,17 @@ package com.example.user.hairr.Model;
 
 public class AdminBooking {
 
-    private String bookingKey,clientName,clientNumber,stylistName,serviceBooked,numberOfPeople,totalAmount,stylistNumber,clientImageUrl,stylistImageUrl,status,style;
+    private String bookingKey,clientName,clientNumber,stylistName,serviceBooked,numberOfPeople,totalAmount,stylistNumber,clientImageUrl,stylistImageUrl,status,style,stylistUid;
 
     public AdminBooking() {
+    }
+
+    public String getStylistUid() {
+        return stylistUid;
+    }
+
+    public void setStylistUid(String stylistUid) {
+        this.stylistUid = stylistUid;
     }
 
     public String getStyle() {

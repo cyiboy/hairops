@@ -145,6 +145,9 @@ SharedPreferences preferences;
                         Uri downUri = task.getResult();
                         String imageUrl = downUri.toString();
 
+                        String uid = mAuth.getCurrentUser().getUid();
+
+
 
                         Customer customer = new Customer();
                         customer.setEmail(email);
@@ -156,6 +159,7 @@ SharedPreferences preferences;
                         customer.setLongitude(lng);
                         customer.setStatus("customer");
                         customer.setAddress(address);
+                        customer.setUid(uid);
                         customer.setBalance(0.0);
 
                         String uploadId = mAuth.getCurrentUser().getUid();

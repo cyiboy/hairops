@@ -147,7 +147,7 @@ public class AllTransaction extends Fragment {
                                             stylistBookingModel.setClientName(model.getClientName());
                                             stylistBookingModel.setStyle(model.getStyle());
 
-                                            bookingRef.child(uid).push().setValue(stylistBookingModel)
+                                            bookingRef.child(model.getStylistUid()).push().setValue(stylistBookingModel)
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
@@ -174,6 +174,8 @@ public class AllTransaction extends Fragment {
 
                             }
                         });
+
+                        dialog.show();
 
 
                     }

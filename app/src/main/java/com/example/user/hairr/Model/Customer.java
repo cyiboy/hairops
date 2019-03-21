@@ -2,7 +2,7 @@ package com.example.user.hairr.Model;
 
 public class Customer {
 
-    private String name,number,email,imageUrl,organization,address,longitude,latitude,status;
+    private String name,number,email,imageUrl,organization,address,longitude,latitude,status,uid;
     private double balance;
 
     public Customer() {
@@ -18,6 +18,14 @@ public class Customer {
         this.longitude = longitude;
         this.latitude = latitude;
         this.status = status;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public double getBalance() {

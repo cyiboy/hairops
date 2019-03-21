@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.user.hairr.Fragment.booking;
 import com.example.user.hairr.Model.AdminBooking;
 import com.example.user.hairr.Model.Booking;
+import com.example.user.hairr.Model.BookingTransactionModel;
 import com.example.user.hairr.Model.Customer;
 import com.example.user.hairr.Model.HairStylist;
 import com.example.user.hairr.Utils.CircleTransform;
@@ -42,7 +43,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class AllStylists extends AppCompatActivity {
     FirebaseAuth auth;
     private RecyclerView stylistRv;
-    private DatabaseReference mUsersDatabase,bookingRef,adminBookingRef;
+    private DatabaseReference mUsersDatabase,bookingRef,adminBookingRef,transRef;
     private LinearLayoutManager mLayoutManager;
     private Query stylistQuery;
     private String lng,lat,type,numberOfPeople,date,style,spec,specType;
@@ -67,6 +68,7 @@ public class AllStylists extends AppCompatActivity {
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         bookingRef = FirebaseDatabase.getInstance().getReference().child("Bookings");
         adminBookingRef = FirebaseDatabase.getInstance().getReference().child("adminBooking");
+        transRef = FirebaseDatabase.getInstance().getReference().child("bookingTransaction");
         stylistRv = (RecyclerView) findViewById(R.id.rvAllStylist);
 
         mLayoutManager = new LinearLayoutManager(this);
@@ -224,6 +226,7 @@ public class AllStylists extends AppCompatActivity {
                                                                 adminBooking.setClientImageUrl(customer.getImageUrl());
                                                                 adminBooking.setStylistImageUrl(model.getImageUrl());
                                                                 adminBooking.setStyle(style);
+                                                                adminBooking.setStylistUid(model.getUid());
                                                                 adminBooking.setStatus("Unconfirmed");
 
 
@@ -233,9 +236,28 @@ public class AllStylists extends AppCompatActivity {
                                                                             public void onComplete(@NonNull Task<Void> task) {
 
                                                                                 if (task.isSuccessful()){
-                                                                                    Toast.makeText(AllStylists.this, "Your booking has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
-                                                                                    dialog.dismiss();
-                                                                                    startActivity(new Intent(AllStylists.this,HomeCustomer.class));
+
+                                                                                    BookingTransactionModel bookingTransactionModel  = new BookingTransactionModel();
+                                                                                    bookingTransactionModel.setBookingKey(key);
+
+                                                                                    transRef.child(uid).push().setValue(bookingTransactionModel)
+                                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                @Override
+                                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                                    if (task.isSuccessful()){
+                                                                                                        Toast.makeText(AllStylists.this, "Your booking has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
+                                                                                                        dialog.dismiss();
+                                                                                                        startActivity(new Intent(AllStylists.this,HomeCustomer.class));
+                                                                                                    }
+                                                                                                }
+                                                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                                        @Override
+                                                                                        public void onFailure(@NonNull Exception e) {
+                                                                                            dialog.dismiss();
+                                                                                            Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                        }
+                                                                                    });
+
                                                                                 }
 
                                                                             }

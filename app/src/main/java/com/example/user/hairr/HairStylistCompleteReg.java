@@ -163,6 +163,8 @@ public class HairStylistCompleteReg extends AppCompatActivity {
                         Uri downUri = task.getResult();
                         String imageUrl = downUri.toString();
 
+                        String uid = mAuth.getCurrentUser().getUid();
+
                         HairStylist hairStylist = new HairStylist();
                         hairStylist.setAddress(address);
                         hairStylist.setBankAccountName(bankaccountname);
@@ -178,6 +180,7 @@ public class HairStylistCompleteReg extends AppCompatActivity {
                         hairStylist.setStatus("stylist");
                         hairStylist.setName(name);
                         hairStylist.setBalance(0.0);
+                        hairStylist.setUid(uid);
 
 
                         String uploadId = mAuth.getCurrentUser().getUid();

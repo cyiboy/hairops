@@ -2,7 +2,7 @@ package com.example.user.hairr.Model;
 
 public class HairStylist {
 
-    private String name,number,email,imageUrl,experienceLevel,specialization,address,longitude,latitude,status,bankName,bankAccountNumber,bankAccountName;
+    private String name,number,email,imageUrl,experienceLevel,specialization,address,longitude,latitude,status,bankName,bankAccountNumber,bankAccountName,uid;
     private double balance;
 
     public HairStylist() {
@@ -23,6 +23,14 @@ public class HairStylist {
         this.bankName = bankName;
         this.bankAccountNumber = bankAccountNumber;
         this.bankAccountName = bankAccountName;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public double getBalance() {
