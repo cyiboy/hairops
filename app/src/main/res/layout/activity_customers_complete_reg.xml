@@ -10,6 +10,7 @@
     tools:context=".CustomersCompleteReg">
 
     <LinearLayout
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -18,39 +19,51 @@
         <ImageView
             android:layout_width="90dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/adduser"
+            app:srcCompat="@drawable/add_a_photo"
             android:id="@+id/addImageCustomer"
             android:layout_height="90dp" />
-    <EditText
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:id="@+id/edtCustomerName"
-        android:textColorHint="#8effffff"
-        android:paddingEnd="32dp"
-        android:background="@drawable/bubble"
-        android:gravity="center_vertical"
-        android:paddingStart="32dp"
-        android:hint="Name"
-        android:textColor="#ffffff" />
+        <EditText
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:id="@+id/edtCustomerName"
+            android:textColorHint="#8effffff"
+            android:paddingEnd="32dp"
+            android:background="@drawable/bubble"
+            android:gravity="center_vertical"
+            android:paddingStart="32dp"
+            android:hint="Name"
+            android:textColor="#ffffff" />
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
-    <EditText
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:id="@+id/edtCustomerEmail"
-        android:paddingEnd="32dp"
-        android:inputType="textEmailAddress"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bubble"
-        android:textColorHint="#8effffff"
-        android:gravity="center_vertical"
-        android:paddingStart="32dp"
-        android:hint="Email"
-        android:textColor="#ffffff" />
+        <EditText
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:id="@+id/edtCustomerEmail"
+            android:paddingEnd="32dp"
+            android:inputType="textEmailAddress"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bubble"
+            android:textColorHint="#8effffff"
+            android:gravity="center_vertical"
+            android:paddingStart="32dp"
+            android:hint="Email"
+            android:textColor="#ffffff" />
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
         <EditText
             android:textSize="20sp"
@@ -60,13 +73,19 @@
             android:paddingEnd="32dp"
             android:layout_gravity="center_horizontal"
             android:inputType="phone"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bubble"
             android:textColorHint="#8effffff"
             android:gravity="center_vertical"
             android:paddingStart="32dp"
             android:hint="Phone Number"
             android:textColor="#ffffff" />
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
         <EditText
             android:textSize="20sp"
@@ -75,29 +94,13 @@
             android:id="@+id/edtCustomerAddress"
             android:paddingEnd="32dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bubble"
             android:textColorHint="#8effffff"
             android:gravity="center_vertical"
             android:paddingStart="32dp"
             android:hint="Home Address"
             android:textColor="#ffffff" />
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btnPickCustomerLocation"
-            android:layout_marginTop="20dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            fancy:fb_defaultColor="@color/darkop"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            fancy:fb_text="Pick Your Home Location"
-            fancy:fb_textColor="@color/colorWhite"
-            fancy:fb_textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            fancy:fb_radius="30dp"/>
         <com.jaredrummler.materialspinner.MaterialSpinner
             android:id="@+id/organization"
             android:layout_width="match_parent"
@@ -107,12 +110,28 @@
             android:layout_marginTop="20dp"
             android:hint="Organization"
             android:textColorHint="@color/colorWhite"
-            app:ms_arrow_tint="@color/colorWhite"
-            app:ms_background_color="@color/colorPrimary"
+            app:ms_background_color="@color/darkli"
             app:ms_dropdown_height="wrap_content"
             app:ms_dropdown_max_height="350dp"
-            app:ms_hint_color="@color/darkop"
+            app:ms_hint_color="@color/colorWhite"
             app:ms_text_color="@color/colorWhite" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnPickCustomerLocation"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            fancy:fb_defaultColor="@color/darkli"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            fancy:fb_text="Pick Your Home Location"
+            fancy:fb_textColor="@color/colorWhite"
+            fancy:fb_textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            fancy:fb_radius="30dp"/>
 
 
 
@@ -122,16 +141,16 @@
             android:id="@+id/btnCompleteCustomerRegistration"
             android:layout_gravity="center"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_below="@id/loginPassword"
             android:layout_marginTop="60dp"
             android:background="@drawable/_dark"
             android:fontFamily="@font/roboto_bold"
-    android:textAllCaps="false"
+            android:textAllCaps="false"
             android:foregroundTint="@color/darkop"
             android:text="complete Registration"
             android:textColor="@color/colorWhite"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </ScrollView>
