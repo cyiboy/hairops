@@ -199,6 +199,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:hint="0"
+                    android:selectAllOnFocus="false"
                     android:inputType="number"
                     android:id="@+id/edtNumberOfPeople"
                     android:layout_marginRight="10dp"

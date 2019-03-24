@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@mipmap/background"
+    android:background="@mipmap/background"
     android:orientation="vertical"
     tools:context="com.example.user.hairr.Login.LoginFragment">
 
@@ -21,10 +21,11 @@ android:background="@mipmap/background"
         android:textSize="20sp" />
 
     <EditText
+        android:layout_centerInParent="true"
         android:id="@+id/loginPassword"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@id/view"
+
         android:background="@drawable/edittext_colorless_bg"
         android:fontFamily="@font/roboto"
         android:hint="@string/password"
@@ -33,13 +34,13 @@ android:background="@mipmap/background"
         android:textColorHint="@color/darkLight"
         android:textColor="@color/colorWhite"
         android:textSize="20sp" />
-<RelativeLayout
-    android:id="@+id/view"
-    android:layout_margin="20dp"
-    android:layout_centerInParent="true"
-    android:background="@color/colorWhite"
-    android:layout_width="match_parent"
-    android:layout_height="1dp"/>
+    <RelativeLayout
+        android:id="@+id/view"
+        android:layout_margin="20dp"
+        android:layout_above="@id/loginPassword"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 
     <Button
         android:id="@+id/loginButton"
@@ -51,9 +52,20 @@ android:background="@mipmap/background"
         android:background="@drawable/_dark"
         android:fontFamily="@font/roboto_bold"
 
-        android:foregroundTint="@color/darkop"
+        android:foregroundTint="@color/colorPrimary"
         android:text="LOGIN"
         android:textColor="@color/colorWhite"
         android:textSize="20sp" />
+    <TextView
+        android:id="@+id/forget"
+        android:fontFamily="@font/roboto_bold"
+        android:layout_margin="10dp"
+        android:layout_below="@id/loginButton"
+        android:text="forget password"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
