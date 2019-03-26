@@ -67,7 +67,6 @@ public class customerTransaction extends Fragment {
         rvStylistTransaction = (RecyclerView) view.findViewById(R.id.rvStylistCustomerTransaction);
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        mLayoutManager.setReverseLayout(true);
 
         rvStylistTransaction.setHasFixedSize(true);
         rvStylistTransaction.setLayoutManager(mLayoutManager);

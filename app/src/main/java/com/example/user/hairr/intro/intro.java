@@ -13,14 +13,14 @@ public class intro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
-        int secounds =1;
+        int secounds = 1;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-       startActivity(new Intent(intro.this,com.example.user.hairr.MainActivity.class));
-            finish();
+                startActivity(new Intent(intro.this, com.example.user.hairr.MainActivity.class));
+                finish();
             }
-        } ,secounds*1000);
+        }, secounds * 1000);
 
     }
 }
