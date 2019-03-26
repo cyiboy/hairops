@@ -1,33 +1,22 @@
 package com.example.user.hairr.Fragment;
 
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.user.hairr.AllStylists;
-import com.example.user.hairr.CustomersCompleteReg;
 import com.example.user.hairr.R;
-import com.example.user.hairr.Utils.CircleTransform;
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -38,9 +27,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.jaredrummler.materialspinner.MaterialSpinner;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,7 +37,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class booking extends Fragment {
+public class hairdressing extends Fragment {
     Button btnNext, pickdate, picklocation;
     TextView selectdate, selectlocation;
     private MaterialSpinner spinnertype, spinnerstyle;
@@ -65,9 +51,8 @@ public class booking extends Fragment {
     private SimpleDateFormat simpledateformat;
 
     private static final String[] type = {
-            "Male",
-            "Female",
-            "Children"
+            "Woman",
+            "Young Girl"
 
 
     };
@@ -83,7 +68,7 @@ public class booking extends Fragment {
 
     };
 
-    public booking() {
+    public hairdressing() {
         // Required empty public constructor
     }
 
@@ -92,8 +77,9 @@ public class booking extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_booking, container, false);
+        return inflater.inflate(R.layout.fragment_hairdressing, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View views, @Nullable Bundle savedInstanceState) {
@@ -131,10 +117,11 @@ public class booking extends Fragment {
 
                                 simpledateformat = new SimpleDateFormat("yyyy.MM.dd HH:mm z");
                                 Dated = simpledateformat.format(date);
-
+                                selectdate.setText(Dated);
+                                selectdate.setVisibility(View.VISIBLE);
                             }
                         })
-                        .curved()
+                        .curved().mainColor(getResources().getColor(R.color.colorPrimary))
                         .display();
             }
         });
@@ -148,7 +135,7 @@ public class booking extends Fragment {
                 stylist.putExtra("style",Style);
                 stylist.putExtra("date",Dated);
                 stylist.putExtra("longitude",lng);
-                stylist.putExtra("spec","Barber");
+                stylist.putExtra("spec","Hair Stylist");
                 stylist.putExtra("specType","normal");
                 stylist.putExtra("latitude",lat);
                 stylist.putExtra("numberOfPerson",numberOfPeople.getText().toString().trim());

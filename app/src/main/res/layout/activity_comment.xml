@@ -7,34 +7,14 @@
     android:layout_height="match_parent"
         >
 
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorWhite"
-        android:gravity="right">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp">
-
-            <ImageView
-                android:id="@+id/close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                app:srcCompat="@drawable/ic_close_black_24dp" />
-        </RelativeLayout>
-
-    </Toolbar>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvComments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/linCOmmentFields"
-        android:layout_below="@id/toolbar"
+
         android:layout_marginBottom="0dp">
 
     </android.support.v7.widget.RecyclerView>
@@ -45,45 +25,47 @@
     android:layout_height="wrap_content"
     android:text="No Comment"
     android:textSize="30sp"/>
-    <LinearLayout
+
+
+
+
+
+    <Toolbar
+
         android:id="@+id/linCOmmentFields"
+        android:layout_alignParentBottom="true"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <EditText
-            android:id="@+id/edtComments"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_weight="3"
-            android:background="@drawable/bubble"
-            android:fontFamily="@font/roboto"
-            android:gravity="center_vertical"
-            android:hint="Enter Comment"
-            android:inputType="text"
-            android:paddingStart="32dp"
-            android:paddingEnd="32dp"
-            android:textColor="#ffffff"
-            android:textColorHint="#8effffff"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/imgSendComment"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/bubble"
-            android:padding="8dp"
-            app:srcCompat="@drawable/send" />
-    </LinearLayout>
 
 
+        tools:ignore="InvalidId">
+
+        <LinearLayout
+android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+                <EditText
+                    android:id="@+id/edtComments"
+                    android:textColor="@color/darkp"
+android:layout_weight="1"
+                    android:textSize="15sp"
+                     android:background="@drawable/comment_edittext"
+                android:paddingLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:hint="Write a comment" />
+<ImageView
+    android:id="@+id/imgSendComment"
+    android:layout_margin="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/send"/>
+
+        </LinearLayout>
+
+    </Toolbar>
 </RelativeLayout>

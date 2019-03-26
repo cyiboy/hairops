@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +29,9 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
-public class comment extends AppCompatActivity {
-    ImageView close, send;
+public class comment extends AppCompatActivity{
+    TextView textView;
+    ImageView  send;
     EditText comment;
     FirebaseAuth auth;
     RecyclerView list;
@@ -50,17 +50,11 @@ public class comment extends AppCompatActivity {
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         postDatabase = FirebaseDatabase.getInstance().getReference().child("comment").child(key);
 
-        close= findViewById(R.id.close);
+
         comment=findViewById(R.id.edtComments);
         send=findViewById(R.id.imgSendComment);
         list=findViewById(R.id.rvComments);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        send.setOnClickListener(new View.OnClickListener() {
+         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             sendcomment();
@@ -78,7 +72,7 @@ public class comment extends AppCompatActivity {
         String uid = auth.getCurrentUser().getUid();
         mUsersDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("name").getValue().toString();
                 String imageUrls = dataSnapshot.child("imageUrl").getValue().toString();
                 commentM commentM = new commentM();
@@ -114,7 +108,9 @@ public class comment extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+
         initAdapter();
+
     }
 
     private void initAdapter() {

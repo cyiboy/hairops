@@ -18,10 +18,33 @@
     <string name="title_activity_home_stylist">HomeStylist</string>
     <string name="title_activity_maps">Map</string>
     <string name="hello">
-        . Online payments are more convenient and flexible.
-. Does your renter still pay by check? Paying online means no time spent mailing checks or depositing money at your bank.
-. Paying online reduces the risk of late fees because you can see that their payment has been scheduled.
-. Renters have three payment methods to choose from: ACH, debit or credit card.
+         ...
 </string>
     <string name="title_activity_stylist_map">Map</string>
+    <string name="barbing"><b>style aivalble for men</b> \n
+
+      low cut\n
+	    skin cut\n
+	    afro cut for men\n
+	    gallas for men\n
+	    ponk for men\n
+	    round cut for men\n
+	    black niterbacar\n
+	    men hair cut + transport = 1,500\n
+           \n
+style aivalble for women\n
+	low cut\n
+	skin cut\n
+	gallas\n
+	afro\n
+	women hair cut + transport = 1,500\n
+            \n
+style aivalble for children\n
+	low cut\n
+	afro cut\n
+	ponk hair cut\n
+	gallas hair cut\n
+	children hair cut + transport = 1,000\n
+
+    </string>
 </resources>

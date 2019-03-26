@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.hairr.Fragment.booking;
 import com.example.user.hairr.Model.AdminBooking;
 import com.example.user.hairr.Model.Booking;
 import com.example.user.hairr.Model.BookingTransactionModel;
@@ -245,7 +244,7 @@ public class AllStylists extends AppCompatActivity {
                                                                                                 @Override
                                                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                                                     if (task.isSuccessful()){
-                                                                                                        Toast.makeText(AllStylists.this, "Your booking has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
+                                                                                                        Toast.makeText(AllStylists.this, "Your barbing has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
                                                                                                         dialog.dismiss();
                                                                                                         startActivity(new Intent(AllStylists.this,HomeCustomer.class));
                                                                                                     }

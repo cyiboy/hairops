@@ -7,8 +7,9 @@
     <color name="darkp">#E8000000</color>
     <color name="darkli">#AD535353</color>
     <color name="darkl2">#adb9b4b4</color>
+    <color name="darkl3">#66818582</color> <color name="darkl4">#818582</color> <color name="darkl5">#1B3C3D3C</color>
     <color name="op">#00535353</color>
-    <color name="darkLight">#ADB9B7B7</color>
+    <color name="darkLight">#9CB9B7B7</color>
     <color name="secondPage">#a19229</color>
     <color name="colorAccent">#a19229</color>
     <color name="colorWhite">#ffffff</color>
