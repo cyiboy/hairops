@@ -58,6 +58,7 @@ public class comment extends AppCompatActivity{
             @Override
             public void onClick(View view) {
             sendcomment();
+
             }
         });
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -82,9 +83,10 @@ public class comment extends AppCompatActivity{
                 postDatabase.push().setValue(commentM).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-
+                        comment.clearComposingText();
                         if (task.isSuccessful()){
-                            comment.setText("");
+
+
                         }
 
                     }
