@@ -29,8 +29,12 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class comment extends AppCompatActivity{
-    TextView textView;
+    TextView date;
     ImageView  send;
     EditText comment;
     FirebaseAuth auth;
@@ -54,6 +58,7 @@ public class comment extends AppCompatActivity{
         comment=findViewById(R.id.edtComments);
         send=findViewById(R.id.imgSendComment);
         list=findViewById(R.id.rvComments);
+        date= findViewById(R.id.commentTime);
          send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +74,7 @@ public class comment extends AppCompatActivity{
     }
 
    private void sendcomment() {
+        String date = new SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).format(new Date());
         String mainComment = comment.getText().toString().trim();
         String uid = auth.getCurrentUser().getUid();
         mUsersDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -80,6 +86,7 @@ public class comment extends AppCompatActivity{
                 commentM.setCommentText(mainComment);
                 commentM.setUserImage(imageUrls);
                 commentM.setUsername(name);
+                commentM.setCommentDate(date);
                 postDatabase.push().setValue(commentM).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -131,6 +138,7 @@ public class comment extends AppCompatActivity{
                 viewHolder.setUserImage(model.getUserImage(), getApplicationContext());
                 viewHolder.commentName.setText(model.getUsername());
                 viewHolder.comment.setText(model.getCommentText());
+                viewHolder.date.setText(model.getCommentDate());
                 key = getRef(position).getKey();
 
             }
@@ -143,8 +151,9 @@ public class comment extends AppCompatActivity{
     public static class PostViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
-        TextView commentName, comment;
+        TextView commentName, comment, date;
         ImageView userImage;
+
 
 
 
@@ -156,6 +165,7 @@ public class comment extends AppCompatActivity{
             commentName = mView.findViewById(R.id.commentname);
             comment = mView.findViewById(R.id.commentText);
             userImage = (ImageView) mView.findViewById(R.id.commentImg);
+            date = mView.findViewById(R.id.commentTime);
             // postImage = (ImageView) mView.findViewById(R.id.postImage);
 
 
