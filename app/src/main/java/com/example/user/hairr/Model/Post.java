@@ -1,34 +1,10 @@
 package com.example.user.hairr.Model;
 
 public class Post {
-        String username,postImageUrl,userImage,posterId,userSpecialization,posttText;
-        int likes, comments;
+    String username, postImageUrl, userImage, posterId, userSpecialization, posttText, date;
+    int likes, comments;
 
     public Post() {
-    }
-
-    public String getPosttText() {
-        return posttText;
-    }
-
-    public void setPosttText(String posttText) {
-        this.posttText = posttText;
-    }
-
-    public String getUserSpecialization() {
-        return userSpecialization;
-    }
-
-    public void setUserSpecialization(String userSpecialization) {
-        this.userSpecialization = userSpecialization;
-    }
-
-    public String getPosterId() {
-        return posterId;
-    }
-
-    public void setPosterId(String posterId) {
-        this.posterId = posterId;
     }
 
     public String getUsername() {
@@ -53,6 +29,38 @@ public class Post {
 
     public void setUserImage(String userImage) {
         this.userImage = userImage;
+    }
+
+    public String getPosterId() {
+        return posterId;
+    }
+
+    public void setPosterId(String posterId) {
+        this.posterId = posterId;
+    }
+
+    public String getUserSpecialization() {
+        return userSpecialization;
+    }
+
+    public void setUserSpecialization(String userSpecialization) {
+        this.userSpecialization = userSpecialization;
+    }
+
+    public String getPosttText() {
+        return posttText;
+    }
+
+    public void setPosttText(String posttText) {
+        this.posttText = posttText;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getLikes() {

@@ -2,10 +2,11 @@ package com.example.user.hairr.Model;
 
 public class commentM {
 
-    String username, userImage, commentText;
+    String username, userImage, commentText, commentDate;
 public commentM(){
 
     }
+
     public String getUsername() {
         return username;
     }
@@ -28,5 +29,13 @@ public commentM(){
 
     public void setCommentText(String commentText) {
         this.commentText = commentText;
+    }
+
+    public String getCommentDate() {
+        return commentDate;
+    }
+
+    public void setCommentDate(String commentDate) {
+        this.commentDate = commentDate;
     }
 }

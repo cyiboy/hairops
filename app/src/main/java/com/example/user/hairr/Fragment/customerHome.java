@@ -22,10 +22,7 @@ import com.example.user.hairr.Model.Post;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -109,6 +106,7 @@ public class customerHome extends Fragment {
                 viewHolder.setLikeBtn(key);
                 viewHolder.setNumberOfLikes(key);
                 viewHolder.postText.setText(model.getPosttText());
+                viewHolder.date.setText(model.getDate());
                 viewHolder.userLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -198,9 +196,10 @@ public class customerHome extends Fragment {
         ImageView postImage;
         LinearLayout userLayout;
         FirebaseAuth auth;
-        TextView numberOfLikes,postText;
+        TextView numberOfLikes,postText, date;
         DatabaseReference likes;
         String uidd;
+
 
         public PostViewHolder(View itemView) {
             super(itemView);
@@ -213,6 +212,7 @@ public class customerHome extends Fragment {
             userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
             numberOfLikes = (TextView)mView.findViewById(R.id.numberOfLikes);
             postText = (TextView)mView.findViewById(R.id.postalText);
+            date = mView.findViewById(R.id.date);
             auth = FirebaseAuth.getInstance();
             uidd = auth.getCurrentUser().getUid();
             likes = FirebaseDatabase.getInstance().getReference().child("Likes");
@@ -289,7 +289,7 @@ public class customerHome extends Fragment {
 
         public void setPostImage(String status, Context context) {
 
-            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
+            Picasso.with(context).load(status).networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
                 @Override
                 public void onSuccess() {
 

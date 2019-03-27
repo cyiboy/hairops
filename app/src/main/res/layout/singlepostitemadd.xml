@@ -5,7 +5,7 @@
     android:paddingLeft="36dp"
     android:paddingRight="36dp"
     android:paddingBottom="16dp"
-    android:background="@color/gold"
+    android:background="@color/darkop"
     android:orientation="vertical"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content">
@@ -14,9 +14,8 @@
 
     <ImageView
         android:id="@+id/postImageAdd"
-        android:scaleType="centerCrop"
         android:layout_marginTop="5dp"
-        android:src="@drawable/adduser"
+        android:src="@drawable/add_a_photo"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
         android:layout_height="180dp" />
@@ -42,11 +41,11 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp"
-        fancy:fb_defaultColor="@color/colorPrimary"
+        fancy:fb_defaultColor="@color/darkLight"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         fancy:fb_text="Add Post"
-        fancy:fb_textColor="#fff"
+        fancy:fb_textColor="#000"
         fancy:fb_textSize="16sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -166,7 +166,7 @@ public class stylistBookings extends Fragment {
                                                                                     @Override
                                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                                         if (task.isSuccessful()){
-                                                                                            Toast.makeText(getContext(), "Successfully accepted the booking, check your transaction tab to start it", Toast.LENGTH_SHORT).show();
+                                                                                            Toast.makeText(getContext(), "Successfully accepted the barbing, check your transaction tab to start it", Toast.LENGTH_SHORT).show();
                                                                                             dialog.dismiss();
                                                                                         }
                                                                                     }
