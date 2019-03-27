@@ -405,7 +405,7 @@ public class StylistHome extends Fragment {
 
         public void setLikeBtn(String key){
 
-            likes.addValueEventListener(new ValueEventListener() {
+            likes.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child(key).hasChild(uidd)){

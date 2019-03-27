@@ -71,7 +71,6 @@ public class AllTransaction extends Fragment {
         requestedMoneyRv = (RecyclerView) view.findViewById(R.id.rvAdminTransactions);
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        mLayoutManager.setReverseLayout(true);
 
         requestedMoneyRv.setHasFixedSize(true);
         requestedMoneyRv.setLayoutManager(mLayoutManager);
@@ -120,7 +119,7 @@ public class AllTransaction extends Fragment {
                         TextView totalAmount = dialog.findViewById(R.id.totalAmountDetail);
                         TextView status = dialog.findViewById(R.id.bookingStatus);
 
-                        FancyButton button = dialog.findViewById(R.id.btnAddPost);
+                        FancyButton button = dialog.findViewById(R.id.btnConfirmBooking);
 
 
                         clientName.setText(model.getClientName());
@@ -136,8 +135,8 @@ public class AllTransaction extends Fragment {
                             @Override
                             public void onClick(View view) {
 
-
-
+                                button.setEnabled(false);
+                                Toast.makeText(getContext(), "Confirming booking.  please wait", Toast.LENGTH_SHORT).show();
                                 adminBookingRef.child(key).child("status").setValue("Confirmed")
                                         .addOnCompleteListener(task -> {
                                             StylistBookingModel stylistBookingModel = new StylistBookingModel();
@@ -151,7 +150,7 @@ public class AllTransaction extends Fragment {
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
-
+                                                            dialog.dismiss();
                                                             // TODO send notification here
 
                                                         }
@@ -201,7 +200,7 @@ public class AllTransaction extends Fragment {
             mView = itemView;
             // like = (ImageView) mView.findViewById(R.id.imgLike);
             //   comment = (ImageView) mView.findViewById(R.id.imgComment);
-            userImage = (ImageView) mView.findViewById(R.id.allStylistProfileImage);
+            userImage = (ImageView) mView.findViewById(R.id.CustomerBookingImage);
             name = (TextView)mView.findViewById(R.id.customerBookingName);
             stylistaName = (TextView)mView.findViewById(R.id.stylistNameCustomerBooking);
             ahortDes = (TextView)mView.findViewById(R.id.swshortDescriptionCustomerBooking);

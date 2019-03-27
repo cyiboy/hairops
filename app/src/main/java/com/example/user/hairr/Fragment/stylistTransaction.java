@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.user.hairr.Model.Booking;
 import com.example.user.hairr.Model.BookingTransactionModel;
+import com.example.user.hairr.Model.Customer;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -41,7 +42,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class stylistTransaction extends Fragment {
     FirebaseAuth auth;
     private RecyclerView rvStylistTransaction;
-    private DatabaseReference customerBookingRef,stylistBookingRef;
+    private DatabaseReference customerBookingRef,stylistBookingRef,userRef;
     private LinearLayoutManager mLayoutManager;
 
 
@@ -64,11 +65,11 @@ public class stylistTransaction extends Fragment {
         String uid = auth.getCurrentUser().getUid();
         stylistBookingRef = FirebaseDatabase.getInstance().getReference().child("stylistBookings").child(uid);
         customerBookingRef = FirebaseDatabase.getInstance().getReference().child("Bookings");
+        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         rvStylistTransaction = (RecyclerView) view.findViewById(R.id.rvCustomerStylistTransaction);
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        mLayoutManager.setReverseLayout(true);
 
         rvStylistTransaction.setHasFixedSize(true);
         rvStylistTransaction.setLayoutManager(mLayoutManager);
@@ -104,14 +105,21 @@ public class stylistTransaction extends Fragment {
                                             viewHolder.setType(booking.getType());
                                             viewHolder.setUserImage(booking.getClientImageUrl(), getContext());
                                             viewHolder.setDate(booking.getDate());
-                                            viewHolder.setStatus(booking.getStatusClient());
+                                            viewHolder.setStatus(booking.getStatusStylist());
+                                            if (booking.getStatusStylist().equalsIgnoreCase("Not Started")){
+                                                viewHolder.btnStart.setText("Complete");
+                                            }else if (booking.getStatusStylist().equalsIgnoreCase("started")){
+                                                viewHolder.btnStart.setText("working");
+                                            }else {
+                                                viewHolder.btnStart.setText("Completed");
+                                            }
 
                                             viewHolder.btnStart.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View view) {
 
 
-                                                    if (booking.getStatusClient().equalsIgnoreCase("Not Started")){
+                                                    if (booking.getStatusStylist().equalsIgnoreCase("Not Started")){
                                                         customerBookingRef.child(model.getBookingKey()).child("statusStylist").setValue("Started")
                                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                     @Override
@@ -127,6 +135,23 @@ public class stylistTransaction extends Fragment {
                                                             }
                                                         });
 
+                                                    }else if(booking.getStatusStylist().equalsIgnoreCase("Started")){
+                                                        customerBookingRef.child(model.getBookingKey()).child("statusStylist").setValue("Finished")
+                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                        if (task.isSuccessful()){
+                                                                            viewHolder.btnStart.setText("Finished");
+                                                                        }
+                                                                    }
+                                                                }).addOnFailureListener(new OnFailureListener() {
+                                                            @Override
+                                                            public void onFailure(@NonNull Exception e) {
+                                                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });
+
+
                                                     }else {
 
                                                         customerBookingRef.child(model.getBookingKey()).child("statusStylist").setValue("Finished")
@@ -134,7 +159,46 @@ public class stylistTransaction extends Fragment {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                         if (task.isSuccessful()){
-                                                                            viewHolder.btnStart.setText("Completed");
+                                                                            viewHolder.setStatus("Finished");
+
+                                                                            if (booking.getStatusStylist().equalsIgnoreCase(booking.getStatusClient())){
+
+                                                                                userRef.child(booking.getStylistUid()).child("balance").setValue(booking.getPrice())
+                                                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                            @Override
+                                                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                                                if (task.isSuccessful()){
+
+
+                                                                                                    userRef.child(booking.getCustomerUid()).
+                                                                                                            addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                                                                @Override
+                                                                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                                                                    Customer customer = dataSnapshot.getValue(Customer.class);
+
+                                                                                                                    double balance = customer.getBalance();
+
+
+                                                                                                                }
+
+                                                                                                                @Override
+                                                                                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                                                                                }
+                                                                                                            });
+                                                                                                }
+                                                                                            }
+                                                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                                                    @Override
+                                                                                    public void onFailure(@NonNull Exception e) {
+
+                                                                                    }
+                                                                                });
+
+                                                                            }else {
+                                                                                Toast.makeText(getContext(), "Seems like the customer has not yet finished the transaction, please kindly let the customer know you are done.", Toast.LENGTH_SHORT).show();
+
+                                                                            }
                                                                         }
                                                                     }
                                                                 }).addOnFailureListener(new OnFailureListener() {
@@ -157,7 +221,7 @@ public class stylistTransaction extends Fragment {
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                        Toast.makeText(getContext(),databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(getContext(),databaseError.getMessage(), Toast.LENGTH_SHORT).show();
 
                                     }
                                 });

@@ -72,7 +72,7 @@ public class AllBooking extends Fragment {
         requestedMoneyRv = (RecyclerView) view.findViewById(R.id.rvMoneyRequest);
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        mLayoutManager.setReverseLayout(true);
+
 
         requestedMoneyRv.setHasFixedSize(true);
         requestedMoneyRv.setLayoutManager(mLayoutManager);
@@ -103,7 +103,6 @@ public class AllBooking extends Fragment {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()){
                                     imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
-                                    spec = dataSnapshot.child("specialization").getValue().toString();
                                     viewHolder.setBalance("Current balance is N "+model.getBalance());
                                     viewHolder.setDate(model.getDate());
                                     viewHolder.setDisplayName(model.getName());
@@ -196,7 +195,7 @@ public class AllBooking extends Fragment {
             mView = itemView;
             // like = (ImageView) mView.findViewById(R.id.imgLike);
             //   comment = (ImageView) mView.findViewById(R.id.imgComment);
-            userImage = (ImageView) mView.findViewById(R.id.posterImage);
+            userImage = (ImageView) mView.findViewById(R.id.profileImage);
            name = (TextView)mView.findViewById(R.id.stylistNameRequest);
            balance = (TextView)mView.findViewById(R.id.currentBalance);
            requestedAmount = (TextView)mView.findViewById(R.id.requestedAmount);

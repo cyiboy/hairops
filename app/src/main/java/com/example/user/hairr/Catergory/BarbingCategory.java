@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.user.hairr.Fragment.Details;
-import com.example.user.hairr.Fragment.booking;
+import com.example.user.hairr.Fragment.barbing;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.ViewPagerAdapter;
 
@@ -39,7 +39,7 @@ public class BarbingCategory extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new booking(),"Booking");
+        adapter.addFragment(new barbing(),"Booking");
         adapter.addFragment(new Details(), "Details");
         viewPager.setAdapter(adapter);
     }

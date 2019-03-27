@@ -4,12 +4,13 @@
     android:orientation="vertical"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="12dp">
 
 
     <TextView
         android:layout_marginTop="20dp"
         android:text="Nddy Andy"
+        android:layout_marginLeft="40dp"
         android:textSize="20sp"
         android:textColor="#000"
         android:id="@+id/clientNameDetails"
@@ -19,6 +20,7 @@
         android:layout_marginTop="20dp"
         android:text="08056432134"
         android:textSize="20sp"
+        android:layout_marginLeft="40dp"
         android:textColor="#000"
         android:id="@+id/clientNumberDetails"
         android:layout_width="match_parent"
@@ -27,6 +29,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:text="2 person(s)"
+        android:layout_marginLeft="40dp"
         android:textSize="20sp"
         android:textColor="#000"
         android:id="@+id/numberOFPeopleBookedFor"
@@ -37,6 +40,7 @@
 
         android:layout_marginTop="20dp"
         android:text="Barbing"
+        android:layout_marginLeft="40dp"
         android:textSize="20sp"
         android:textColor="#000"
         android:layout_width="match_parent"
@@ -46,6 +50,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:text="date"
+        android:layout_marginLeft="40dp"
         android:textSize="20sp"
         android:textColor="#000"
         android:layout_width="match_parent"
@@ -56,6 +61,7 @@
         android:layout_marginTop="20dp"
         android:text="N 5000"
         android:textSize="20sp"
+        android:layout_marginLeft="40dp"
         android:textColor="#000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -63,6 +69,7 @@
         android:id="@+id/bookingStyle"
         android:text="Punk"
         android:textSize="20sp"
+        android:layout_marginLeft="40dp"
         android:textColor="#000"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

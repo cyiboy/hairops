@@ -22,10 +22,7 @@ import com.example.user.hairr.Model.Post;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -150,12 +147,14 @@ public class customerHome extends Fragment {
                                         likes.child(key).child(uid).removeValue();
                                         viewHolder.like.setImageResource(R.drawable.ic_unlike);
                                         mProcessLike = false;
+                                        viewHolder.setLikeBtn(key);
                                         viewHolder.setNumberOfLikes(key);
 
                                     } else {
                                         likes.child(key).child(uid).setValue("liked");
                                         viewHolder.like.setImageResource(R.drawable.ic_like);
                                         mProcessLike = false;
+                                        viewHolder.setLikeBtn(key);
                                         viewHolder.setNumberOfLikes(key);
                                     }
                                 }
@@ -241,14 +240,38 @@ public class customerHome extends Fragment {
 
         public void setLikeBtn(String key){
 
-            likes.addValueEventListener(new ValueEventListener() {
+//            likes.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.exists()){
+//
+//                    }
+//                    if (dataSnapshot.child(key).hasChild(uidd)){
+//                        like.setImageResource(R.drawable.ic_like);
+//
+//                    }else {
+//                        like.setImageResource(R.drawable.ic_unlike);
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
+
+            likes.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child(key).hasChild(uidd)){
-                        like.setImageResource(R.drawable.ic_like);
+                    if (dataSnapshot.exists()) {
 
-                    }else {
-                        like.setImageResource(R.drawable.ic_unlike);
+
+                        if (dataSnapshot.child(key).hasChild(uidd)) {
+                            like.setImageResource(R.drawable.ic_like);
+
+                        } else {
+                            like.setImageResource(R.drawable.ic_unlike);
+                        }
                     }
                 }
 
@@ -289,7 +312,7 @@ public class customerHome extends Fragment {
 
         public void setPostImage(String status, Context context) {
 
-            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
+            Picasso.with(context).load(status).networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
                 @Override
                 public void onSuccess() {
 

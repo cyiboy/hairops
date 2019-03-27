@@ -1,33 +1,22 @@
 package com.example.user.hairr.Fragment;
 
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.user.hairr.AllStylists;
-import com.example.user.hairr.CustomersCompleteReg;
 import com.example.user.hairr.R;
-import com.example.user.hairr.Utils.CircleTransform;
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -38,9 +27,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.jaredrummler.materialspinner.MaterialSpinner;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,39 +37,24 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class booking extends Fragment {
+public class makup extends Fragment {
     Button btnNext, pickdate, picklocation;
     TextView selectdate, selectlocation;
-    private MaterialSpinner spinnertype, spinnerstyle;
+    private MaterialSpinner  spinnerstyle;
     int PLACE_PICKER_REQUEST = 1;
     private DatabaseReference mDatabaseRef;
     private LatLng latLng;
-    public String lat, lng,Type,Style,Dated,Time;
+    public String lat, lng, Style,Dated,Time;
     FirebaseAuth mAuth;
     EditText numberOfPeople;
     private Calendar calendar;
     private SimpleDateFormat simpledateformat;
-
-    private static final String[] type = {
-            "Male",
-            "Female",
-            "Children"
-
-
-    };
-
     private static final String[] style = {
-            "Low cut",
-            "skin cut",
-            "afro cut",
-            "ponk",
-            "black niterbacar",
-            "Round cut",
-            "gallas"
+            "Bridal Makeup",
+            "Normal Makeup"
 
     };
-
-    public booking() {
+    public makup() {
         // Required empty public constructor
     }
 
@@ -92,7 +63,7 @@ public class booking extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_booking, container, false);
+        return inflater.inflate(R.layout.fragment_makup, container, false);
     }
 
     @Override
@@ -101,7 +72,7 @@ public class booking extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        spinnertype = (MaterialSpinner)views.findViewById(R.id.selectType);
+       // spinnertype = (MaterialSpinner)views.findViewById(R.id.selectType);
         spinnerstyle = (MaterialSpinner)views.findViewById(R.id.selectStyle);
         btnNext = (Button)views.findViewById(R.id.btnNext);
         pickdate = (Button)views.findViewById(R.id.selectTimeAndDate);
@@ -131,10 +102,11 @@ public class booking extends Fragment {
 
                                 simpledateformat = new SimpleDateFormat("yyyy.MM.dd HH:mm z");
                                 Dated = simpledateformat.format(date);
-
+                                selectdate.setText(Dated);
+                                selectdate.setVisibility(View.VISIBLE);
                             }
                         })
-                        .curved()
+                        .curved().mainColor(getResources().getColor(R.color.colorPrimary))
                         .display();
             }
         });
@@ -144,11 +116,11 @@ public class booking extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent stylist = new Intent(getContext(), AllStylists.class);
-                stylist.putExtra("type",Type);
+
                 stylist.putExtra("style",Style);
                 stylist.putExtra("date",Dated);
                 stylist.putExtra("longitude",lng);
-                stylist.putExtra("spec","Barber");
+                stylist.putExtra("spec","Makeup Artist");
                 stylist.putExtra("specType","normal");
                 stylist.putExtra("latitude",lat);
                 stylist.putExtra("numberOfPerson",numberOfPeople.getText().toString().trim());
@@ -159,9 +131,6 @@ public class booking extends Fragment {
 
 
 
-        spinnertype.setItems(type);
-        spinnertype.setOnItemSelectedListener((MaterialSpinner.OnItemSelectedListener<String>) (view, position, id, item) -> Type = item);
-        spinnertype.setOnNothingSelectedListener(spinner -> Snackbar.make(spinner, "Nothing selected", Snackbar.LENGTH_LONG).show());
 
 
         spinnerstyle.setItems(style);

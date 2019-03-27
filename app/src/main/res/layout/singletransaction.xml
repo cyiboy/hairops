@@ -10,7 +10,7 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="6dp"
+        android:elevation="8dp"
         card_view:cardCornerRadius="4dp">
 
         <LinearLayout
@@ -22,14 +22,13 @@
                 android:id="@+id/linUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
-                android:layout_marginBottom="5dp">
+                android:padding="2dp">
 
 
                 <ImageView
                     android:id="@+id/imgClientBooked"
-                    android:layout_width="40dp"
-                    android:layout_height="25dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginRight="13dp"
                     android:src="@drawable/allusers" />
 
@@ -52,7 +51,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp">
+                >
 
                 <TextView
                     android:id="@+id/txtTypeBooked"
@@ -93,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="40dp"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="Style"
                     android:textColor="#000"
                     android:textSize="14sp"

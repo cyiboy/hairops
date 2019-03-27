@@ -138,7 +138,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         // Creating CameraUpdate object for zoom
-        float zoomLevel2 = 16.0f; //This goes up to 21
+        float zoomLevel2 = 21.0f; //This goes up to 21
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel2));
         hospitalLocation.animateCamera(CameraUpdateFactory.zoomTo(11));
 

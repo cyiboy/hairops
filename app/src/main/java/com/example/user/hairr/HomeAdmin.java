@@ -33,7 +33,7 @@ public class HomeAdmin extends AppCompatActivity {
                     loadFragment(fragment);
                     return true;
                 case R.id.allTransaction:
-                   fragment = new AllTransaction();
+                    fragment = new Transaction();
                     loadFragment(fragment);
                     return true;
                 case R.id.allUser:
@@ -42,7 +42,7 @@ public class HomeAdmin extends AppCompatActivity {
                     return true;
 
                 case R.id.allBookings:
-                    fragment = new Transaction();
+                    fragment = new AllTransaction();
                     loadFragment(fragment);
                     return true;
             }

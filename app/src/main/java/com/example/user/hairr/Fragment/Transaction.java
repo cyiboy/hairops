@@ -70,7 +70,6 @@ public class Transaction extends Fragment {
         fundTrans = (RecyclerView) view.findViewById(R.id.rvFundTrans);
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        mLayoutManager.setReverseLayout(true);
 
         fundTrans.setHasFixedSize(true);
         fundTrans.setLayoutManager(mLayoutManager);
@@ -108,7 +107,7 @@ public class Transaction extends Fragment {
                 viewHolder.setDate(model.getDate());
                 viewHolder.setDisplayName(model.getName());
                 viewHolder.setRequestedAmount("Payment Reference is "+model.getTransactionRef());
-                viewHolder.setUserImage(imageUrl,getContext());
+                viewHolder.setUserImage(model.getImageUrl(),getContext());
 
             }
         };
@@ -129,7 +128,7 @@ public class Transaction extends Fragment {
             mView = itemView;
             // like = (ImageView) mView.findViewById(R.id.imgLike);
             //   comment = (ImageView) mView.findViewById(R.id.imgComment);
-            userImage = (ImageView) mView.findViewById(R.id.posterImage);
+            userImage = (ImageView) mView.findViewById(R.id.profileImage);
             name = (TextView)mView.findViewById(R.id.stylistNameRequest);
             balance = (TextView)mView.findViewById(R.id.currentBalance);
             requestedAmount = (TextView)mView.findViewById(R.id.requestedAmount);

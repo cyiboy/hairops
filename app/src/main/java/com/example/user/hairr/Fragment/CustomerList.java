@@ -79,7 +79,7 @@ public class CustomerList extends Fragment {
                 Customer.class,
                 R.layout.single_user,
                 AllStylistViewHolder.class,
-                mUsersDatabase
+                stylistQuery
         ) {
             @Override
             protected void populateViewHolder(AllStylistViewHolder viewHolder, Customer model, int position) {

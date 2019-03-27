@@ -102,7 +102,13 @@ public class customerTransaction extends Fragment {
                                             viewHolder.setType(booking.getType());
                                             viewHolder.setUserImage(booking.getStylistImageUrl(), getContext());
                                             viewHolder.setDate(booking.getDate());
-                                            viewHolder.setStatus(booking.getStatusStylist());
+                                            viewHolder.setStatus(booking.getStatusClient());
+
+                                            if (booking.getStatusClient().equalsIgnoreCase("Not Started")){
+                                                viewHolder.btnStart.setText("Complete");
+                                            }else {
+                                                viewHolder.btnStart.setText("Completed");
+                                            }
 
                                             viewHolder.btnStart.setOnClickListener(new View.OnClickListener() {
                                                 @Override
@@ -155,7 +161,7 @@ public class customerTransaction extends Fragment {
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                        Toast.makeText(getContext(),databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(getContext(),databaseError.getMessage(), Toast.LENGTH_SHORT).show();
 
                                     }
                                 });
@@ -195,7 +201,7 @@ public class customerTransaction extends Fragment {
 
         public void setDate(String name){
 
-            styleBooked.setText(name);
+            date.setText(name);
 
         }
 
@@ -209,7 +215,7 @@ public class customerTransaction extends Fragment {
 
         public void setStyleBooked(String name){
 
-            date.setText(name);
+            styleBooked.setText(name);
 
         }
 

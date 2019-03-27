@@ -35,7 +35,7 @@
                 android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/roboto_bold"
-                android:text="booking"
+                android:text="barbing"
                 android:textAllCaps="true"
                 android:textColor="#000"
                 android:textSize="14dp" />
@@ -64,8 +64,9 @@
             android:layout_height="50dp"
             app:tabGravity="fill"
             app:tabMode="fixed"
-            android:background="#000"
+             android:background="@color/darkop"
             app:tabSelectedTextColor="@color/gold"
+            app:tabIndicatorColor="@color/darkop"
             app:tabTextColor="@color/colorWhite" />
 
     </android.support.design.widget.AppBarLayout>

@@ -59,7 +59,7 @@ public class StylistList extends Fragment {
         auth = FirebaseAuth.getInstance();
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        stylistRv = (RecyclerView) view.findViewById(R.id.rvAllClients);
+        stylistRv = (RecyclerView) view.findViewById(R.id.rvAllStylist);
         stylistQuery = mUsersDatabase.orderByChild("status").equalTo("stylist");
 
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -78,7 +78,7 @@ public class StylistList extends Fragment {
                 HairStylist.class,
                 R.layout.single_user,
                 AllStylistViewHolder.class,
-                mUsersDatabase
+                stylistQuery
         ) {
             @Override
             protected void populateViewHolder(AllStylistViewHolder viewHolder, HairStylist model, int position) {

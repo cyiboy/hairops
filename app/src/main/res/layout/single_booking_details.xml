@@ -4,13 +4,14 @@
     android:orientation="vertical"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="12dp">
 
 
     <TextView
         android:layout_marginTop="20dp"
         android:text="Nddy Andy"
         android:textSize="20sp"
+        android:layout_marginLeft="40dp"
         android:textColor="#000"
         android:id="@+id/clientNameDetails"
         android:layout_width="match_parent"
@@ -18,6 +19,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:text="08056432134"
+        android:layout_marginLeft="40dp"
         android:textSize="20sp"
         android:textColor="#000"
         android:id="@+id/clientNumberDetails"
@@ -27,6 +29,7 @@
     <TextView
         android:layout_marginTop="20dp"
         android:text="2 person(s)"
+        android:layout_marginLeft="40dp"
         android:textSize="20sp"
         android:textColor="#000"
         android:id="@+id/numberOFPeopleBookedFor"
@@ -39,6 +42,7 @@
         android:text="Jason Ofua"
         android:textSize="20sp"
         android:textColor="#000"
+        android:layout_marginLeft="40dp"
         android:layout_width="match_parent"
         android:id="@+id/stylistNameDetail"
         android:layout_height="wrap_content" />
@@ -49,11 +53,13 @@
         android:textSize="20sp"
         android:textColor="#000"
         android:layout_width="match_parent"
+        android:layout_marginLeft="40dp"
         android:id="@+id/stylistNumberDetail"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/totalAmountDetail"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
         android:text="N 5000"
         android:textSize="20sp"
         android:textColor="#000"
@@ -62,6 +68,7 @@
     <TextView
         android:id="@+id/bookingStatus"
         android:text="Unconfirmed"
+        android:layout_marginLeft="40dp"
         android:textSize="20sp"
         android:textColor="#000"
         android:layout_marginTop="20dp"
@@ -71,7 +78,7 @@
 
 
     <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/btnPickCustomerLocation"
+        android:id="@+id/btnConfirmBooking"
         android:layout_marginTop="20dp"
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"

@@ -3,6 +3,8 @@ package com.example.user.hairr.Fragment;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.user.hairr.AllStylists;
+import com.example.user.hairr.MapsActivity;
 import com.example.user.hairr.Model.Booking;
 import com.example.user.hairr.Model.BookingTransactionModel;
 import com.example.user.hairr.Model.StylistBookingModel;
@@ -37,6 +41,8 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.nlopez.smartlocation.OnLocationUpdatedListener;
+import io.nlopez.smartlocation.SmartLocation;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -74,8 +80,6 @@ public class stylistBookings extends Fragment {
         rvStylistBooking = (RecyclerView) view.findViewById(R.id.rvStylistBooking);
 
         mLayoutManager = new LinearLayoutManager(getContext());
-        mLayoutManager.setReverseLayout(true);
-
         rvStylistBooking.setHasFixedSize(true);
         rvStylistBooking.setLayoutManager(mLayoutManager);
     }
@@ -130,18 +134,46 @@ public class stylistBookings extends Fragment {
                                             FancyButton rejectBooking = (FancyButton)dialog.findViewById(R.id.btnRejectJob);
 
 
-                                            clientName.setText(booking.getCustomerName());
-                                            clientNumber.setText(booking.getCustomerNumber());
-                                            numberOfPerson.setText(booking.getNumberOfPeople());
-                                            typeBooked.setText(booking.getType());
-                                            dateBooked.setText(booking.getDate());
-                                            amountTotal.setText(booking.getPrice());
-                                            bookingStyle.setText(booking.getStyle());
+                                            if (booking.getStatus().equalsIgnoreCase("confirmed")){
+                                                acceptBooking.setEnabled(false);
+                                                acceptBooking.setText("Accepted Booking");
+                                            }
+
+
+                                            clientName.setText("Customers name : "+booking.getCustomerName());
+                                            clientNumber.setText("Customers number : "+booking.getCustomerNumber());
+                                            numberOfPerson.setText("Number of people : "+booking.getNumberOfPeople());
+                                            typeBooked.setText("Type booked : "+booking.getType());
+                                            dateBooked.setText("Date of service : "+booking.getDate());
+                                            amountTotal.setText("Total price : "+booking.getPrice());
+                                            bookingStyle.setText("Style booked : "+booking.getStyle());
 
 
                                             showLocation.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View view) {
+
+                                                    SmartLocation.with(getContext())
+                                                            .location()
+                                                            .oneFix()
+                                                            .start(new OnLocationUpdatedListener() {
+                                                                @Override
+                                                                public void onLocationUpdated(Location location) {
+                                                                    double myLat = location.getLatitude();
+                                                                    double mLng = location.getLongitude();
+                                                                    double mClientLat = Double.parseDouble(booking.getLatitude());
+                                                                    double mClientLng = Double.parseDouble(booking.getLongitude());
+
+                                                                    Intent goToMap = new Intent(getContext(), MapsActivity.class);
+                                                                    goToMap.putExtra("myLat",myLat);
+                                                                    goToMap.putExtra("myLng",mLng);
+                                                                    goToMap.putExtra("stylistLat",mClientLat);
+                                                                    goToMap.putExtra("stylistLng",mClientLng);
+                                                                    goToMap.putExtra("name",booking.getCustomerName());
+                                                                   getContext().startActivity(goToMap);
+
+                                                                }
+                                                            });
 
                                                 }
                                             });
@@ -166,7 +198,7 @@ public class stylistBookings extends Fragment {
                                                                                     @Override
                                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                                         if (task.isSuccessful()){
-                                                                                            Toast.makeText(getContext(), "Successfully accepted the booking, check your transaction tab to start it", Toast.LENGTH_SHORT).show();
+                                                                                            Toast.makeText(getContext(), "Successfully accepted the barbing, check your transaction tab to start it", Toast.LENGTH_SHORT).show();
                                                                                             dialog.dismiss();
                                                                                         }
                                                                                     }
@@ -197,6 +229,7 @@ public class stylistBookings extends Fragment {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if (task.isSuccessful()){
+                                                                    dialog.dismiss();
                                                                     rejectBooking.setEnabled(true);
                                                                     Toast.makeText(getContext(), "Rejected the offer", Toast.LENGTH_SHORT).show();
                                                                 }

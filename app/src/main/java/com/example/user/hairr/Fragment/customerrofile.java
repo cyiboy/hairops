@@ -239,7 +239,7 @@ SharedPreferences preferences;
                 trans.setImageUrl(model.getImageUrl());
                 trans.setDate(Date);
 
-                fundingTrans.child(uid).push().setValue(trans)
+                fundingTrans.push().setValue(trans)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {

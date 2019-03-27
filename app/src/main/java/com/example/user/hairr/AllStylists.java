@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.hairr.Fragment.booking;
 import com.example.user.hairr.Model.AdminBooking;
 import com.example.user.hairr.Model.Booking;
 import com.example.user.hairr.Model.BookingTransactionModel;
@@ -135,13 +134,13 @@ public class AllStylists extends AppCompatActivity {
 
                         Picasso.with(AllStylists.this).load(model.getImageUrl()).transform(new CircleTransform()).into(stylistImage);
 
-                        styistName.setText(model.getName());
-                        stylistSpacialization.setText(model.getSpecialization());
-                        stylistAddress.setText(model.getAddress());
+                        styistName.setText("Stylist name : "+model.getName());
+                        stylistSpacialization.setText("Specialization : "+model.getSpecialization());
+                        stylistAddress.setText("Address : "+model.getAddress());
 
-                        dateOrdered.setText(date);
-                        typeOrdered.setText(type);
-                        numberOfP.setText(numberOfPeople);
+                        dateOrdered.setText("Date picked : "+date);
+                        typeOrdered.setText("Type ordered : "+type);
+                        numberOfP.setText("Number of people : "+numberOfPeople);
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -172,6 +171,8 @@ public class AllStylists extends AppCompatActivity {
                                             booking.setStyle(style);
                                             booking.setClientImageUrl(customer.getImageUrl());
                                             booking.setStylistImageUrl(model.getImageUrl());
+                                            booking.setStylistUid(model.getUid());
+                                            booking.setCustomerUid(customer.getUid());
                                             booking.setType(type);
 
                                             if (spec.equalsIgnoreCase("Barber")){
@@ -220,7 +221,7 @@ public class AllStylists extends AppCompatActivity {
 
                                             }
 
-                                            Total.setText("N"+String.valueOf(finalPrice));
+                                            Total.setText("Total amount: N"+String.valueOf(finalPrice));
                                             booking.setNumberOfStylist(model.getNumber());
 
 
@@ -261,7 +262,7 @@ public class AllStylists extends AppCompatActivity {
                                                                                                 @Override
                                                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                                                     if (task.isSuccessful()){
-                                                                                                        Toast.makeText(AllStylists.this, "Your booking has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
+                                                                                                        Toast.makeText(AllStylists.this, "Your barbing has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
                                                                                                         dialog.dismiss();
                                                                                                         startActivity(new Intent(AllStylists.this,HomeCustomer.class));
                                                                                                     }
