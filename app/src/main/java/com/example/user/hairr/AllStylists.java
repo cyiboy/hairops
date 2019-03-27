@@ -124,10 +124,23 @@ public class AllStylists extends AppCompatActivity {
                         dialog.setContentView(R.layout.singlebookitem);
                         final ImageView stylistImage = dialog.findViewById(R.id.imgBookStylist);
                         TextView styistName = dialog.findViewById(R.id.txtBookStylistName);
-                        TextView stylistSpacialization = dialog.findViewById(R.id.txtBookStylistProfession);
+                        TextView stylistSpacialization = dialog.findViewById(R.id.txtBookStyleOrdered);
+                        TextView dateOrdered = dialog.findViewById(R.id.txtBookDate);
+                        TextView Total = dialog.findViewById(R.id.txtBookTotalPrice);
+                        TextView typeOrdered = dialog.findViewById(R.id.txtBookType);
                         TextView stylistAddress = dialog.findViewById(R.id.txtBookStylistAddress);
+                        TextView  numberOfP = dialog.findViewById(R.id.txtBookNumberOfPeople);
                         FancyButton button = dialog.findViewById(R.id.btnBook);
 
+                        Picasso.with(AllStylists.this).load(model.getImageUrl()).transform(new CircleTransform()).into(stylistImage);
+
+                        styistName.setText(model.getName());
+                        stylistSpacialization.setText(model.getSpecialization());
+                        stylistAddress.setText(model.getAddress());
+
+                        dateOrdered.setText(date);
+                        typeOrdered.setText(type);
+                        numberOfP.setText(numberOfPeople);
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -156,6 +169,8 @@ public class AllStylists extends AppCompatActivity {
                                             booking.setStatusClient("Not Started");
                                             booking.setStatusStylist("Not Started");
                                             booking.setStyle(style);
+                                            booking.setClientImageUrl(customer.getImageUrl());
+                                            booking.setStylistImageUrl(model.getImageUrl());
                                             booking.setType(type);
 
                                             if (spec.equalsIgnoreCase("Barber")){
@@ -204,6 +219,7 @@ public class AllStylists extends AppCompatActivity {
 
                                             }
 
+                                            Total.setText("N"+String.valueOf(finalPrice));
                                             booking.setNumberOfStylist(model.getNumber());
 
 
@@ -291,14 +307,22 @@ public class AllStylists extends AppCompatActivity {
                             }
                         });
 
-                        Picasso.with(AllStylists.this).load(model.getImageUrl()).transform(new CircleTransform()).into(stylistImage);
-
-                        styistName.setText(model.getName());
-                        stylistSpacialization.setText(model.getSpecialization());
-                        stylistAddress.setText(model.getAddress());
 
 
                         dialog.show();
+                    }
+                });
+
+                viewHolder.viewInMap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent goToMap = new Intent(AllStylists.this,MapsActivity.class);
+                        goToMap.putExtra("myLat",lat);
+                        goToMap.putExtra("myLng",lng);
+                        goToMap.putExtra("stylistLat",model.getLatitude());
+                        goToMap.putExtra("stylistLng",model.getLongitude());
+                        goToMap.putExtra("name",model.getName());
+                        startActivity(goToMap);
                     }
                 });
 

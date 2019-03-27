@@ -29,7 +29,7 @@
             android:gravity="center_vertical"
             android:paddingStart="32dp"
             android:text="Name"
-            android:textColor="#ffffff" />
+            android:textColor="#000000" />
 
         <TextView
             android:textSize="20sp"
@@ -43,13 +43,56 @@
             android:gravity="center_vertical"
             android:paddingStart="32dp"
             android:text="Address"
-            android:textColor="#ffffff" />
+            android:textColor="#000000" />
 
         <TextView
             android:textSize="20sp"
             android:layout_width="350dp"
             android:layout_height="56dp"
-            android:id="@+id/txtBookStylistProfession"
+            android:id="@+id/txtBookStyleOrdered"
+            android:paddingEnd="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bubble"
+            android:gravity="center_vertical"
+            android:paddingStart="32dp"
+            android:text="Style"
+            android:textColor="#000000" />
+
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="350dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:id="@+id/txtBookDate"
+            android:paddingEnd="32dp"
+            android:background="@drawable/bubble"
+            android:gravity="center_vertical"
+            android:paddingStart="32dp"
+            android:text="Date"
+            android:textColor="#000000" />
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="350dp"
+            android:layout_height="56dp"
+            android:id="@+id/txtBookNumberOfPeople"
+            android:paddingEnd="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bubble"
+            android:gravity="center_vertical"
+            android:paddingStart="32dp"
+            android:text="5 people"
+            android:textColor="#000000" />
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="350dp"
+            android:layout_height="56dp"
+            android:id="@+id/txtBookType"
             android:paddingEnd="32dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
@@ -57,7 +100,21 @@
             android:gravity="center_vertical"
             android:paddingStart="32dp"
             android:text="Barber"
-            android:textColor="#ffffff" />
+            android:textColor="#000000" />
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="350dp"
+            android:layout_height="56dp"
+            android:id="@+id/txtBookTotalPrice"
+            android:paddingEnd="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bubble"
+            android:gravity="center_vertical"
+            android:paddingStart="32dp"
+            android:text="N 5000"
+            android:textColor="#000000" />
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBook"

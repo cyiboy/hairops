@@ -2,7 +2,9 @@ package com.example.user.hairr;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
@@ -32,11 +34,18 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout login_fragment;
     FrameLayout signup_fragment;
     FlexibleFrameLayout wrapper;
+    private String status;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        status = sharedpreferences.getString("status", "");
         button = (LoginButton) findViewById(R.id.button);
         login_fragment = (FrameLayout) findViewById(R.id.login_fragment);
         signup_fragment = (FrameLayout) findViewById(R.id.sign_up_fragment);
@@ -46,7 +55,17 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null){
-            startActivity(new Intent(MainActivity.this,HomeCustomer.class));
+
+            if (!status.isEmpty() || status != null){
+                if (status.equalsIgnoreCase("admin")){
+                    startActivity(new Intent(MainActivity.this,HomeAdmin.class));
+                }else if (status.equalsIgnoreCase("customer")){
+                    startActivity(new Intent(MainActivity.this,HomeCustomer.class));
+                }else {
+                    startActivity(new Intent(MainActivity.this,HomeStylist.class));
+                }
+            }
+
         }else {
 
         }

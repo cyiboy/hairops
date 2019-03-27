@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    android:orientation="vertical"
+    tools:context=".Login.ForgetPasswword">
+
+
+
+    <EditText
+        android:layout_centerInParent="true"
+        android:id="@+id/forgetEmail"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/edittext_colorless_bg"
+        android:fontFamily="@font/roboto"
+        android:hint="Enter EMail Address"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textColorHint="@color/darkLight"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/btnResetPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/forgetEmail"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/_dark"
+        android:fontFamily="@font/roboto_bold"
+        android:foregroundTint="@color/colorPrimary"
+        android:text="Reset Password"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
+</RelativeLayout>

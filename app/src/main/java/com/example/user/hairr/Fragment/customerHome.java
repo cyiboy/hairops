@@ -80,11 +80,7 @@ public class customerHome extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        initAdapter();
-    }
+
 
     @Override
     public void onResume() {

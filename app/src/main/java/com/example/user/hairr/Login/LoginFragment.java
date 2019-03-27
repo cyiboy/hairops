@@ -37,12 +37,12 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class LoginFragment extends Fragment implements OnLoginListener {
 
-   private FirebaseAuth auth;
-   private DatabaseReference mDatabaseRef;
-   private  EditText edtEmail,edtPassword;
-   private Button login;
-   private ProgressDialog dialog;
-SharedPreferences preferences;
+    private FirebaseAuth auth;
+    private DatabaseReference mDatabaseRef;
+    private EditText edtEmail, edtPassword;
+    private Button login;
+    private ProgressDialog dialog;
+    SharedPreferences preferences;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -55,23 +55,20 @@ SharedPreferences preferences;
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_login, container, false);
         auth = FirebaseAuth.getInstance();
-        edtEmail = (EditText)root.findViewById(R.id.loginEmail);
-        edtPassword = (EditText)root.findViewById(R.id.loginPassword);
+        edtEmail = (EditText) root.findViewById(R.id.loginEmail);
+        edtPassword = (EditText) root.findViewById(R.id.loginPassword);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Users");
         dialog = new ProgressDialog(getContext());
         preferences = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
-        login = (Button)root.findViewById(R.id.loginButton);
+        login = (Button) root.findViewById(R.id.loginButton);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startLoginIn();
-              //  Toast.makeText(getActivity(), "it worked", Toast.LENGTH_SHORT).show();
+                startLoginIn();
+                //  Toast.makeText(getActivity(), "it worked", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
 
 
         return root;
@@ -84,18 +81,18 @@ SharedPreferences preferences;
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
 
-        if (email.isEmpty()||password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(getContext(), "Please enter these field to continue", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
             return;
         }
 
-        auth.signInWithEmailAndPassword(email,password)
+        auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             dialog.dismiss();
                             String uid = auth.getCurrentUser().getUid();
 
@@ -105,19 +102,11 @@ SharedPreferences preferences;
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.exists()) {
                                                 String status = dataSnapshot.child("status").getValue().toString();
-                                                String name = dataSnapshot.child("name").getValue().toString();
-                                                String phoneNumber = dataSnapshot.child("phoneNumber").getValue().toString();
-                                                String orgainzation = dataSnapshot.child("orgainzation").getValue().toString();
-                                                String imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
-                                                String address = dataSnapshot.child("address").getValue().toString();
 
 
                                                 SharedPreferences.Editor edit = preferences.edit();
-                                                edit.putString("firstName",name);
-                                                edit.putString("phoneNumber",phoneNumber);
-                                                edit.putString("oga",orgainzation);
-                                                edit.putString("imageUrl",imageUrl);
-                                                edit.putString("address",address);
+
+                                                edit.putString("status", status);
                                                 edit.apply();
 
 
@@ -130,8 +119,8 @@ SharedPreferences preferences;
                                                 }
 
 
-                                                } else {
-                                                 getContext().startActivity(new Intent(getContext(), StackActivity.class));
+                                            } else {
+                                                getContext().startActivity(new Intent(getContext(), StackActivity.class));
 
                                             }
 
@@ -155,7 +144,6 @@ SharedPreferences preferences;
 
             }
         });
-
 
 
     }
