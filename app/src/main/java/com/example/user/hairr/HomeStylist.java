@@ -65,4 +65,10 @@ public class HomeStylist extends AppCompatActivity {
         }
         return false;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+    }
 }

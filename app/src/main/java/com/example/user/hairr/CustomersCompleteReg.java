@@ -120,8 +120,11 @@ SharedPreferences preferences;
         phoneNumber = inputPhoneNumber.getText().toString().trim();
         address = homeAddress.getText().toString().trim();
 
-
-        if (mImageUri != null && name != null && email != null && phoneNumber != null&& address != null) {
+if (phoneNumber.length() != 11){
+    Toast.makeText(this, "Check the phone number", Toast.LENGTH_SHORT).show();
+    return;
+}
+        if (mImageUri != null && !name.isEmpty() && name != null && !email.isEmpty() && email != null &&!phoneNumber.isEmpty() && phoneNumber != null && !address.isEmpty() && address != null) {
 
             mProgressBar.setMessage("Completing registration.. please wait");
             mProgressBar.show();
@@ -195,6 +198,9 @@ SharedPreferences preferences;
                 }
             });
 
+
+        }else {
+            Toast.makeText(this, "Fill details completely to continue", Toast.LENGTH_SHORT).show();
 
         }
 

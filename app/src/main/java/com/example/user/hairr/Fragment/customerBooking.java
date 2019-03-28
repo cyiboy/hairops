@@ -63,8 +63,11 @@ public class customerBooking extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    tname.setText("Hello "+ dataSnapshot.child("name").getValue().toString());
+                }
 
-                tname.setText("Hello "+ dataSnapshot.child("name").getValue().toString());
+
             }
 
             @Override

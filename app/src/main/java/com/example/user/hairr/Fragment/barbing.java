@@ -88,7 +88,6 @@ public class barbing extends Fragment {
         super.onViewCreated(views, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child("Users");
-
         spinnertype = (MaterialSpinner)views.findViewById(R.id.selectType);
         spinnerstyle = (MaterialSpinner)views.findViewById(R.id.selectStyle);
         btnNext = (Button)views.findViewById(R.id.btnNext);
@@ -132,6 +131,9 @@ public class barbing extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!Type.isEmpty()&&!Style.isEmpty()&&!Dated.isEmpty()&&!lng.isEmpty()&&!lat.isEmpty()&&numberOfPeople.getText().toString().isEmpty()){
+
+
                 Intent stylist = new Intent(getContext(), AllStylists.class);
                 stylist.putExtra("type",Type);
                 stylist.putExtra("style",Style);
@@ -142,6 +144,9 @@ public class barbing extends Fragment {
                 stylist.putExtra("latitude",lat);
                 stylist.putExtra("numberOfPerson",numberOfPeople.getText().toString().trim());
                 getContext().startActivity(stylist);
+                }else {
+                    Toast.makeText(getContext(), "fiil compelety information to contune", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

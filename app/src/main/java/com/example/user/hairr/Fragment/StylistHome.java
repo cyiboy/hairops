@@ -463,9 +463,10 @@ public class StylistHome extends Fragment {
 
         public void setPostImage(String status, Context context) {
 
-            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
+            Picasso.with(context).load(status).networkPolicy(NetworkPolicy.OFFLINE).into(postImage, new Callback() {
                 @Override
                 public void onSuccess() {
+
 
                 }
 
