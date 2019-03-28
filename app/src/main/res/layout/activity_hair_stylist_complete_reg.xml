@@ -63,7 +63,8 @@
             android:layout_height="1dp"/>
 
         <EditText
-            android:layout_width="match_parent"
+            android:maxLength="11"
+                        android:layout_width="match_parent"
             android:layout_height="56dp"
             android:id="@+id/edtStylistPhoneNumber"
             android:inputType="phone"
@@ -151,6 +152,7 @@
             android:background="@drawable/bubble"
             android:textColorHint="#8effffff"
             android:inputType="number"
+            android:maxLength="10"
             android:gravity="center_vertical"
             android:paddingStart="32dp"
             android:hint="Bank Account Number"

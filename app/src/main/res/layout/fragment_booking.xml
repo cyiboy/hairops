@@ -113,7 +113,7 @@ android:background="@color/darkl5"
                         android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
 
-                        android:textSize="13sp"
+                        android:textSize="11sp"
                         android:background="@drawable/_dark"
                         android:textColor="@color/colorWhite"
                         android:layout_height="wrap_content"
@@ -154,7 +154,7 @@ android:background="@color/darkl5"
                     android:layout_marginBottom="4dp"
                     android:layout_height="wrap_content">
                     <Button
-                        android:textSize="13sp"
+                        android:textSize="11sp"
                         android:id="@+id/selectLocation"
                         android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
