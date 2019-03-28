@@ -134,13 +134,13 @@ public class AllStylists extends AppCompatActivity {
 
                         Picasso.with(AllStylists.this).load(model.getImageUrl()).transform(new CircleTransform()).into(stylistImage);
 
-                        styistName.setText(model.getName());
-                        stylistSpacialization.setText(model.getSpecialization());
-                        stylistAddress.setText(model.getAddress());
+                        styistName.setText("Stylist name: "+model.getName());
+                        stylistSpacialization.setText("Specialization: "+model.getSpecialization());
+                        stylistAddress.setText("Stylist address: "+model.getAddress());
 
-                        dateOrdered.setText(date);
-                        typeOrdered.setText(type);
-                        numberOfP.setText(numberOfPeople);
+                        dateOrdered.setText("Date: "+date);
+                        typeOrdered.setText("Style Ordered: "+type);
+                        numberOfP.setText("Number of people: "+numberOfPeople);
 
                         if (spec.equalsIgnoreCase("Barber")){
                             if (type.equalsIgnoreCase("Male")){
@@ -181,7 +181,7 @@ public class AllStylists extends AppCompatActivity {
                             }
 
                         }
-                        Total.setText("N"+String.valueOf(finalPrice));
+                        Total.setText("Total Amount: N"+String.valueOf(finalPrice));
 
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -189,103 +189,115 @@ public class AllStylists extends AppCompatActivity {
 
                                 String uid = auth.getCurrentUser().getUid();
 
+
+
                                 mUsersDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                                         if (dataSnapshot.exists()) {
                                             customer = dataSnapshot.getValue(Customer.class);
-                                            DatabaseReference book = bookingRef.push();
-                                            String key = book.getKey();
-                                            Booking booking = new Booking();
-                                            booking.setAddressOfStylist(model.getAddress());
-                                            booking.setCustomerName(customer.getName());
-                                            booking.setCustomerNumber(customer.getNumber());
-                                            booking.setDate(date);
-                                            booking.setLatitude(lat);
-                                            booking.setLongitude(lng);
-                                            booking.setNameOfStylist(model.getName());
-                                            booking.setNumberOfPeople(numberOfPeople);
-                                            booking.setBookingKey(key);
-                                            booking.setStatus("Unconfirmed");
-                                            booking.setStatusClient("Not Started");
-                                            booking.setStatusStylist("Not Started");
-                                            booking.setStyle(style);
-                                            booking.setClientImageUrl(customer.getImageUrl());
-                                            booking.setStylistImageUrl(model.getImageUrl());
-                                            booking.setType(type);
-                                            booking.setNumberOfStylist(model.getNumber());
-                                            booking.setPrice(String.valueOf(finalPrice));
+
+                                            double amount = customer.getBalance();
+
+                                            if (amount >= finalPrice){
+                                                DatabaseReference book = bookingRef.push();
+                                                String key = book.getKey();
+                                                Booking booking = new Booking();
+                                                booking.setAddressOfStylist(model.getAddress());
+                                                booking.setCustomerName(customer.getName());
+                                                booking.setCustomerNumber(customer.getNumber());
+                                                booking.setDate(date);
+                                                booking.setLatitude(lat);
+                                                booking.setLongitude(lng);
+                                                booking.setNameOfStylist(model.getName());
+                                                booking.setNumberOfPeople(numberOfPeople);
+                                                booking.setBookingKey(key);
+                                                booking.setStatus("Unconfirmed");
+                                                booking.setStatusClient("Not Started");
+                                                booking.setStatusStylist("Not Started");
+                                                booking.setStyle(style);
+                                                booking.setClientImageUrl(customer.getImageUrl());
+                                                booking.setStylistImageUrl(model.getImageUrl());
+                                                booking.setType(type);
+                                                booking.setNumberOfStylist(model.getNumber());
+                                                booking.setPrice(String.valueOf(finalPrice));
 
 
-                                            book.setValue(booking)
-                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            if (task.isSuccessful()){
+                                                book.setValue(booking)
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()){
 
-                                                                AdminBooking adminBooking = new AdminBooking();
-                                                                adminBooking.setBookingKey(key);
-                                                                adminBooking.setClientName(customer.getName());
-                                                                adminBooking.setClientNumber(customer.getNumber());
-                                                                adminBooking.setNumberOfPeople(numberOfPeople);
-                                                                adminBooking.setServiceBooked(spec);
-                                                                adminBooking.setStylistName(model.getName());
-                                                                adminBooking.setStylistNumber(model.getNumber());
-                                                                adminBooking.setTotalAmount(String.valueOf(finalPrice));
-                                                                adminBooking.setClientImageUrl(customer.getImageUrl());
-                                                                adminBooking.setStylistImageUrl(model.getImageUrl());
-                                                                adminBooking.setStyle(style);
-                                                                adminBooking.setStylistUid(model.getUid());
-                                                                adminBooking.setStatus("Unconfirmed");
+                                                                    AdminBooking adminBooking = new AdminBooking();
+                                                                    adminBooking.setBookingKey(key);
+                                                                    adminBooking.setClientName(customer.getName());
+                                                                    adminBooking.setClientNumber(customer.getNumber());
+                                                                    adminBooking.setNumberOfPeople(numberOfPeople);
+                                                                    adminBooking.setServiceBooked(spec);
+                                                                    adminBooking.setStylistName(model.getName());
+                                                                    adminBooking.setStylistNumber(model.getNumber());
+                                                                    adminBooking.setTotalAmount(String.valueOf(finalPrice));
+                                                                    adminBooking.setClientImageUrl(customer.getImageUrl());
+                                                                    adminBooking.setStylistImageUrl(model.getImageUrl());
+                                                                    adminBooking.setStyle(style);
+                                                                    adminBooking.setStylistUid(model.getUid());
+                                                                    adminBooking.setStatus("Unconfirmed");
 
 
-                                                                adminBookingRef.push().setValue(adminBooking)
-                                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                            @Override
-                                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                    adminBookingRef.push().setValue(adminBooking)
+                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                @Override
+                                                                                public void onComplete(@NonNull Task<Void> task) {
 
-                                                                                if (task.isSuccessful()){
+                                                                                    if (task.isSuccessful()){
 
-                                                                                    BookingTransactionModel bookingTransactionModel  = new BookingTransactionModel();
-                                                                                    bookingTransactionModel.setBookingKey(key);
+                                                                                        BookingTransactionModel bookingTransactionModel  = new BookingTransactionModel();
+                                                                                        bookingTransactionModel.setBookingKey(key);
 
-                                                                                    transRef.child(uid).push().setValue(bookingTransactionModel)
-                                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                                @Override
-                                                                                                public void onComplete(@NonNull Task<Void> task) {
-                                                                                                    if (task.isSuccessful()){
-                                                                                                        Toast.makeText(AllStylists.this, "Your barbing has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
-                                                                                                        dialog.dismiss();
-                                                                                                        startActivity(new Intent(AllStylists.this,HomeCustomer.class));
+                                                                                        transRef.child(uid).push().setValue(bookingTransactionModel)
+                                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                    @Override
+                                                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                                                        if (task.isSuccessful()){
+                                                                                                            Toast.makeText(AllStylists.this, "Your barbing has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
+                                                                                                            dialog.dismiss();
+                                                                                                            startActivity(new Intent(AllStylists.this,HomeCustomer.class));
+                                                                                                        }
                                                                                                     }
-                                                                                                }
-                                                                                            }).addOnFailureListener(new OnFailureListener() {
-                                                                                        @Override
-                                                                                        public void onFailure(@NonNull Exception e) {
-                                                                                            dialog.dismiss();
-                                                                                            Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                                        }
-                                                                                    });
+                                                                                                }).addOnFailureListener(new OnFailureListener() {
+                                                                                            @Override
+                                                                                            public void onFailure(@NonNull Exception e) {
+                                                                                                dialog.dismiss();
+                                                                                                Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                            }
+                                                                                        });
+
+                                                                                    }
 
                                                                                 }
+                                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                        @Override
+                                                                        public void onFailure(@NonNull Exception e) {
+                                                                            Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                        }
+                                                                    });
 
-                                                                            }
-                                                                        }).addOnFailureListener(new OnFailureListener() {
-                                                                    @Override
-                                                                    public void onFailure(@NonNull Exception e) {
-                                                                        Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                    }
-                                                                });
-
+                                                                }
                                                             }
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+
+                                            }else {
+                                                dialog.dismiss();
+                                                Toast.makeText(AllStylists.this, "Insufficient funds, Try fund your account and retry booking this service", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
 
 
 

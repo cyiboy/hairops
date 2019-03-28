@@ -105,31 +105,38 @@ public class customerTransaction extends Fragment {
                                             viewHolder.setUserImage(booking.getStylistImageUrl(), getContext());
                                             viewHolder.setDate(booking.getDate());
                                             viewHolder.setStatus(booking.getStatusClient());
-
-                                            if (booking.getStatusClient().equalsIgnoreCase("Not Started")) {
-                                                viewHolder.btnStart.setText("Complete");
-                                            } else if(booking.getStatusStylist().equalsIgnoreCase("Started")){
-                                                customerBookingRef.child(model.getBookingKey()).child("statusStylist").setValue("Finished")
-                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                if (task.isSuccessful()){
-                                                                    viewHolder.btnStart.setText("Finished");
-                                                                }
-                                                            }
-                                                        }).addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
-
-
-                                            }else if (booking.getStatusStylist().equalsIgnoreCase("started")){
-                                            viewHolder.btnStart.setText("working");
-                                        }else {
+                                            if (booking.getStatusClient().equalsIgnoreCase("Not Started")){
+                                                viewHolder.btnStart.setText("Start");
+                                            }else if (booking.getStatusClient().equalsIgnoreCase("started")){
+                                                viewHolder.btnStart.setText("working");
+                                            }else {
                                                 viewHolder.btnStart.setText("Completed");
                                             }
+
+//                                            if (booking.getStatusClient().equalsIgnoreCase("Not Started")) {
+//                                                viewHolder.btnStart.setText("Complete");
+//                                            } else if(booking.getStatusStylist().equalsIgnoreCase("Started")){
+//                                                customerBookingRef.child(model.getBookingKey()).child("statusStylist").setValue("Finished")
+//                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                                            @Override
+//                                                            public void onComplete(@NonNull Task<Void> task) {
+//                                                                if (task.isSuccessful()){
+//                                                                    viewHolder.btnStart.setText("Finished");
+//                                                                }
+//                                                            }
+//                                                        }).addOnFailureListener(new OnFailureListener() {
+//                                                    @Override
+//                                                    public void onFailure(@NonNull Exception e) {
+//                                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                                    }
+//                                                });
+//
+//
+//                                            }else if (booking.getStatusStylist().equalsIgnoreCase("started")){
+//                                            viewHolder.btnStart.setText("working");
+//                                        }else {
+//                                                viewHolder.btnStart.setText("Completed");
+//                                            }
 
                                             viewHolder.btnStart.setOnClickListener(new View.OnClickListener() {
                                                 @Override
@@ -152,14 +159,14 @@ public class customerTransaction extends Fragment {
                                                             }
                                                         });
 
-                                                    } else {
-
-                                                        customerBookingRef.child(model.getBookingKey()).child("statusClient").setValue("Finished")
+                                                    }else if(booking.getStatusStylist().equalsIgnoreCase("Started")){
+                                                        customerBookingRef.child(model.getBookingKey()).child("statusStylist").setValue("Finished")
                                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                                        if (task.isSuccessful()) {
+                                                                        if (task.isSuccessful()){
                                                                             viewHolder.btnStart.setText("Finished");
+
                                                                             if (booking.getStatusStylist().equalsIgnoreCase(booking.getStatusClient())) {
 
                                                                                 userRef.child(booking.getStylistUid()).child("balance").setValue(booking.getPrice())
@@ -227,6 +234,11 @@ public class customerTransaction extends Fragment {
                                                             }
                                                         });
 
+
+                                                    } else {
+
+                                                        Toast.makeText(getContext(), "Task already finished", Toast.LENGTH_SHORT).show();
+                                                        return;
                                                     }
 
 

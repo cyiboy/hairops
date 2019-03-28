@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.user.hairr.Fragment.Details;
+import com.example.user.hairr.Fragment.DetailsHairdressing;
 import com.example.user.hairr.Fragment.hairdressing;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.ViewPagerAdapter;
@@ -44,7 +45,7 @@ public class HairDressingCatergory extends AppCompatActivity {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new hairdressing(), "Booking");
-        adapter.addFragment(new Details(), "Details");
+        adapter.addFragment(new DetailsHairdressing(), "Details");
         viewPager.setAdapter(adapter);
     }
 }

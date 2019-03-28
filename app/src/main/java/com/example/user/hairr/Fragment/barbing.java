@@ -131,7 +131,7 @@ public class barbing extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!Type.isEmpty()&&!Style.isEmpty()&&!Dated.isEmpty()&&!lng.isEmpty()&&!lat.isEmpty()&&numberOfPeople.getText().toString().isEmpty()){
+                if(!Type.isEmpty()&&!Style.isEmpty()&&!Dated.isEmpty()&&!lng.isEmpty()&&!lat.isEmpty()&&!numberOfPeople.getText().toString().isEmpty()){
 
 
                 Intent stylist = new Intent(getContext(), AllStylists.class);
@@ -145,7 +145,7 @@ public class barbing extends Fragment {
                 stylist.putExtra("numberOfPerson",numberOfPeople.getText().toString().trim());
                 getContext().startActivity(stylist);
                 }else {
-                    Toast.makeText(getContext(), "fiil compelety information to contune", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "fill completely information to continue", Toast.LENGTH_SHORT).show();
                 }
             }
         });

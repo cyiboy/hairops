@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateStylistProfile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/onbackStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/op"
+                    app:srcCompat="@drawable/back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Edit"
+                    android:textAllCaps="true"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+                <ImageButton
+                    android:id="@+id/saveStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/op"
+                    app:srcCompat="@drawable/save" />
+            </RelativeLayout>
+        </Toolbar>
+        <ImageView
+            android:id="@+id/profileImageStyle"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/darkop"
+            />
+        <Button
+            android:id="@+id/changePicsStyle"
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/_dark"
+            android:fontFamily="@font/roboto_bold"
+            android:textAllCaps="false"
+            android:text="change profile picture"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:fontFamily="@font/roboto_bold"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textColor="@color/darkp"/>
+
+            <EditText
+                android:id="@+id/nameStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+
+                android:fontFamily="@font/roboto"
+                android:selectAllOnFocus="false"
+                android:text="name"
+                android:textSize="16dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="phone number"
+                android:fontFamily="@font/roboto_bold"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textColor="@color/darkp"/>
+
+            <EditText
+                android:id="@+id/phoneNumberStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+
+                android:fontFamily="@font/roboto"
+                android:selectAllOnFocus="false"
+                android:text="name"
+                android:textSize="16dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="email"
+                android:fontFamily="@font/roboto_bold"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textColor="@color/darkp"/>
+            <EditText
+                android:id="@+id/emailStyle"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:textSize="16dp"
+                android:text="name"
+                android:selectAllOnFocus="false"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="address"
+                android:fontFamily="@font/roboto_bold"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textColor="@color/darkp"/>
+
+            <EditText
+                android:id="@+id/addressStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+
+                android:fontFamily="@font/roboto"
+                android:selectAllOnFocus="false"
+                android:text="name"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bank Name"
+                android:fontFamily="@font/roboto_bold"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textColor="@color/darkp"/>
+
+            <EditText
+                android:id="@+id/bankName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto"
+                android:selectAllOnFocus="false"
+                android:text="Bank Name"
+                android:textSize="16dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bank Account Name"
+                android:fontFamily="@font/roboto_bold"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textColor="@color/darkp"/>
+
+            <EditText
+                android:id="@+id/bankAccountName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+
+                android:fontFamily="@font/roboto"
+                android:selectAllOnFocus="false"
+                android:text="Bank Account Name"
+                android:textSize="16dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bank Account Number"
+                android:fontFamily="@font/roboto_bold"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textColor="@color/darkp"/>
+
+            <EditText
+                android:id="@+id/bankAccountNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:inputType="number"
+                android:fontFamily="@font/roboto"
+                android:selectAllOnFocus="false"
+                android:text="Bank Account Number"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

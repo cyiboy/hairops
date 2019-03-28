@@ -23,6 +23,7 @@ import com.example.user.hairr.MainActivity;
 import com.example.user.hairr.Model.HairStylist;
 import com.example.user.hairr.Model.Withdraw;
 import com.example.user.hairr.R;
+import com.example.user.hairr.UpdateStylistProfile;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,7 +51,7 @@ public class StylistProfile extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference userRef,requestMoney;
     private ImageView userImage;
-    private TextView stylistName,stylistBalance,stylistAddress,stylistSpec;
+    private TextView stylistName,stylistBalance,txtUpdateStylistProfile;
     private ProgressDialog dialog;
     private LinearLayout withdraw,logout,help,updateProfile;
     private HairStylist model;
@@ -81,6 +82,7 @@ public class StylistProfile extends Fragment {
         requestMoney = FirebaseDatabase.getInstance().getReference().child("MoneyRequest");
         userImage = (ImageView)view.findViewById(R.id.profileImageStylist);
         stylistBalance = (TextView)view.findViewById(R.id.walletBalanceSytlist);
+        txtUpdateStylistProfile = (TextView)view.findViewById(R.id.txtUpdateStylistProfile);
         stylistName = (TextView)view.findViewById(R.id.nameOfUserStylist);
         logout = (LinearLayout) view.findViewById(R.id.logoutStylist);
         help = (LinearLayout) view.findViewById(R.id.txtHelpStylist);
@@ -103,10 +105,19 @@ public class StylistProfile extends Fragment {
             }
         });
 
+
+        txtUpdateStylistProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), UpdateStylistProfile.class));
+            }
+        });
         updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // TODo create update page for update profile
+
+                startActivity(new Intent(getContext(), UpdateStylistProfile.class));
             }
         });
         

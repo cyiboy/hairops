@@ -49,12 +49,23 @@ style available for children\n
 
     <string name="hair_dressing"><b>style available for women</b> \n
 
-      Braiding cut\n
+        Braiding cut\n
 	    Braiding : 3000 + Transport : 500 = 3500\n
            \n
 
 	Fixing \n
 	Fixing : 2500 + transport : 500 = 3000\n
            
+    </string>
+
+    <string name="make_up"><b>style available for women</b> \n
+
+        Normal Makeup\n
+	   Normal Makeup N3500 + Transport 500 = 4000\n
+           \n
+
+	Bridal Makeup \n
+	Bridal Makeup N25000  + Transport  500 = 25500\n
+
     </string>
 </resources>

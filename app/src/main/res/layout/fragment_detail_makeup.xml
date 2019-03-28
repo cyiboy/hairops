@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.DetailsHairdressing">
+    tools:context=".Fragment.DetailMakeup">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hair_dressing" />
+            android:text="@string/make_up" />
     </ScrollView>
 
 </FrameLayout>

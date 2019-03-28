@@ -73,6 +73,12 @@ public class CustomerList extends Fragment {
         initAdapter();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        initAdapter();
+    }
+
     private void initAdapter() {
 
         FirebaseRecyclerAdapter<Customer,AllStylistViewHolder> adapter = new FirebaseRecyclerAdapter<Customer, AllStylistViewHolder>(

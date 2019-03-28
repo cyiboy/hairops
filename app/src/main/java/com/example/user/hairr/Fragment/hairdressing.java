@@ -59,13 +59,8 @@ public class hairdressing extends Fragment {
 
     private static final String[] style = {
             "Style",
-            "Low cut",
-            "skin cut",
-            "afro cut",
-            "ponk",
-            "black niterbacar",
-            "Round cut",
-            "gallas"
+            "Fixing",
+            "Braiding"
 
     };
 
@@ -137,7 +132,7 @@ public class hairdressing extends Fragment {
                 stylist.putExtra("date",Dated);
                 stylist.putExtra("longitude",lng);
                 stylist.putExtra("spec","Hair Stylist");
-                stylist.putExtra("specType","normal");
+                stylist.putExtra("specType",Style);
                 stylist.putExtra("latitude",lat);
                 stylist.putExtra("numberOfPerson",numberOfPeople.getText().toString().trim());
                 getContext().startActivity(stylist);

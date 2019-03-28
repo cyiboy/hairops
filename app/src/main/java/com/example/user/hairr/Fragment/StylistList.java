@@ -73,6 +73,12 @@ public class StylistList extends Fragment {
         initAdapter();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        initAdapter();
+    }
+
     private void initAdapter() {
         FirebaseRecyclerAdapter<HairStylist,AllStylistViewHolder> adapter = new FirebaseRecyclerAdapter<HairStylist, AllStylistViewHolder>(
                 HairStylist.class,

@@ -48,7 +48,7 @@ public class CustomersCompleteReg extends AppCompatActivity {
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
-    public static final String MyPREFERENCES = "MyPrefs";
+    public static final String MyPREFERENCES = "user";
     public static final String STATUS = "status";
     SharedPreferences sharedpreferences;
     FirebaseAuth mAuth;

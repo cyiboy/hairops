@@ -107,7 +107,7 @@ public class stylistTransaction extends Fragment {
                                             viewHolder.setDate(booking.getDate());
                                             viewHolder.setStatus(booking.getStatusStylist());
                                             if (booking.getStatusStylist().equalsIgnoreCase("Not Started")){
-                                                viewHolder.btnStart.setText("Complete");
+                                                viewHolder.btnStart.setText("Start");
                                             }else if (booking.getStatusStylist().equalsIgnoreCase("started")){
                                                 viewHolder.btnStart.setText("working");
                                             }else {
@@ -142,25 +142,6 @@ public class stylistTransaction extends Fragment {
                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                         if (task.isSuccessful()){
                                                                             viewHolder.btnStart.setText("Finished");
-                                                                        }
-                                                                    }
-                                                                }).addOnFailureListener(new OnFailureListener() {
-                                                            @Override
-                                                            public void onFailure(@NonNull Exception e) {
-                                                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        });
-
-
-                                                    }else {
-
-                                                        customerBookingRef.child(model.getBookingKey()).child("statusStylist").setValue("Finished")
-                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                    @Override
-                                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                                        if (task.isSuccessful()){
-                                                                            viewHolder.setStatus("Finished");
-
                                                                             if (booking.getStatusStylist().equalsIgnoreCase(booking.getStatusClient())){
 
                                                                                 userRef.child(booking.getStylistUid()).child("balance").setValue(booking.getPrice())
@@ -199,7 +180,7 @@ public class stylistTransaction extends Fragment {
                                                                                                                     });
 
 
-                                                                                                                    
+
 
 
                                                                                                                 }
@@ -230,6 +211,12 @@ public class stylistTransaction extends Fragment {
                                                                 Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                                             }
                                                         });
+
+
+                                                    }else {
+
+                                                        Toast.makeText(getContext(), "Task already finished", Toast.LENGTH_SHORT).show();
+                                                        return;
 
                                                     }
 

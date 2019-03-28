@@ -88,6 +88,12 @@ public class customerHome extends Fragment {
         initAdapter();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        initAdapter();
+    }
+
     private void initAdapter() {
         FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(
                 Post.class,
@@ -295,7 +301,7 @@ public class customerHome extends Fragment {
 
         public void setUserImage(String status, Context context) {
 
-            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
+            Picasso.with(context).load(status).networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
                 @Override
                 public void onSuccess() {
 

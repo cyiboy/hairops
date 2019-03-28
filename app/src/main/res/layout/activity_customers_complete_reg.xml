@@ -17,11 +17,11 @@
 
 
         <ImageView
-            android:layout_width="90dp"
+            android:layout_width="80dp"
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/add_a_photo"
             android:id="@+id/addImageCustomer"
-            android:layout_height="90dp" />
+            android:layout_height="80dp" />
         <EditText
             android:textSize="20sp"
             android:layout_width="match_parent"

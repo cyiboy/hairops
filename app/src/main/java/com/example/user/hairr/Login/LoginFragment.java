@@ -142,6 +142,7 @@ public class LoginFragment extends Fragment implements OnLoginListener {
                                                     edit.putString("imageUrl",imageUrl);
                                                     edit.putString("bankName",bankName);
                                                     edit.putString("bankAccountName",bankAccountName);
+                                                    edit.putString("address",address);
                                                     edit.putString("bankAccountNumber",bankAccountNumber);
                                                     edit.apply();
                                                     startActivity(new Intent(getContext(), HomeStylist.class));
