@@ -141,6 +141,48 @@ public class AllStylists extends AppCompatActivity {
                         dateOrdered.setText(date);
                         typeOrdered.setText(type);
                         numberOfP.setText(numberOfPeople);
+
+                        if (spec.equalsIgnoreCase("Barber")){
+                            if (type.equalsIgnoreCase("Male")){
+                                int number = Integer.parseInt(numberOfPeople);
+                                int price = number * 1000;
+                                finalPrice = price + 500;
+
+                            }else if (type.equalsIgnoreCase("Female")){
+                                int number = Integer.parseInt(numberOfPeople);
+                                int price = number * 1000;
+                                finalPrice = price + 500;
+                            }else {
+                                int number = Integer.parseInt(numberOfPeople);
+                                int price = number * 700;
+                                finalPrice = price + 500;
+                            }
+                        }else if (spec.equalsIgnoreCase("Makeup Artist")){
+                            if (specType.equalsIgnoreCase("normal")){
+                                int number = Integer.parseInt(numberOfPeople);
+                                int price = number * 1000;
+                                finalPrice = price + 500;
+                            }else {
+                                int number = Integer.parseInt(numberOfPeople);
+                                int price = number * 25000;
+                                finalPrice = price + 500;
+
+                            }
+                        }else {
+
+                            if (specType.equalsIgnoreCase("braiding")){
+                                int number = Integer.parseInt(numberOfPeople);
+                                int price = number * 3000;
+                                finalPrice = price + 500;
+                            }else {
+                                int number = Integer.parseInt(numberOfPeople);
+                                int price = number * 3000;
+                                finalPrice = price + 500;
+                            }
+
+                        }
+                        Total.setText("N"+String.valueOf(finalPrice));
+
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -172,55 +214,8 @@ public class AllStylists extends AppCompatActivity {
                                             booking.setClientImageUrl(customer.getImageUrl());
                                             booking.setStylistImageUrl(model.getImageUrl());
                                             booking.setType(type);
-
-                                            if (spec.equalsIgnoreCase("Barber")){
-                                                if (type.equalsIgnoreCase("Male")){
-                                                    int number = Integer.parseInt(numberOfPeople);
-                                                    int price = number * 1000;
-                                                    finalPrice = price + 500;
-                                                    booking.setPrice(String.valueOf(finalPrice));
-
-                                                }else if (type.equalsIgnoreCase("Female")){
-                                                    int number = Integer.parseInt(numberOfPeople);
-                                                    int price = number * 1000;
-                                                    finalPrice = price + 500;
-                                                    booking.setPrice(String.valueOf(finalPrice));
-                                                }else {
-                                                    int number = Integer.parseInt(numberOfPeople);
-                                                    int price = number * 700;
-                                                     finalPrice = price + 500;
-                                                    booking.setPrice(String.valueOf(finalPrice));
-                                                }
-                                            }else if (spec.equalsIgnoreCase("Makeup Artist")){
-                                               if (specType.equalsIgnoreCase("normal")){
-                                                   int number = Integer.parseInt(numberOfPeople);
-                                                   int price = number * 1000;
-                                                    finalPrice = price + 500;
-                                                   booking.setPrice(String.valueOf(finalPrice));
-                                               }else {
-                                                   int number = Integer.parseInt(numberOfPeople);
-                                                   int price = number * 25000;
-                                                    finalPrice = price + 500;
-                                                   booking.setPrice(String.valueOf(finalPrice));
-                                               }
-                                            }else {
-
-                                                if (specType.equalsIgnoreCase("braiding")){
-                                                    int number = Integer.parseInt(numberOfPeople);
-                                                    int price = number * 3000;
-                                                    finalPrice = price + 500;
-                                                    booking.setPrice(String.valueOf(finalPrice));
-                                                }else {
-                                                    int number = Integer.parseInt(numberOfPeople);
-                                                    int price = number * 3000;
-                                                    finalPrice = price + 500;
-                                                    booking.setPrice(String.valueOf(finalPrice));
-                                                }
-
-                                            }
-
-                                            Total.setText("N"+String.valueOf(finalPrice));
                                             booking.setNumberOfStylist(model.getNumber());
+                                            booking.setPrice(String.valueOf(finalPrice));
 
 
                                             book.setValue(booking)

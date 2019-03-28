@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-android:background="@color/darkl5"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-
     android:layout_height="match_parent"
-    tools:context=".Fragment.barbing">
-    <android.support.v4.widget.NestedScrollView
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+    android:background="@color/darkl5"
 
-            android:layout_height="wrap_content">
+    android:orientation="vertical"
+    tools:context=".Fragment.barbing">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
+
                 <TextView
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="For Whom"
                     android:textColor="#000"
-                    android:textSize="16sp"
-                    android:text="For Whom"/>
+                    android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/selectType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
                     android:hint="Select Type"
                     android:textColorHint="@color/colorPrimary"
                     app:ms_arrow_tint="@color/colorPrimary"
@@ -51,32 +54,33 @@ android:background="@color/darkl5"
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/darkli"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.5dp"
+                android:background="@color/darkli" />
 
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginBottom="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:orientation="vertical">
+
                 <TextView
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Hair Style"
                     android:textColor="#000"
-                    android:textSize="16sp"
-                    android:text="Hair Style"/>
+                    android:textSize="16sp" />
 
                 <com.jaredrummler.materialspinner.MaterialSpinner
                     android:id="@+id/selectStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
                     android:hint="Select Style"
                     android:textColorHint="@color/colorPrimary"
                     app:ms_arrow_tint="@color/colorPrimary"
@@ -89,98 +93,105 @@ android:background="@color/darkl5"
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/darkli"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.5dp"
+                android:background="@color/darkli" />
+
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginBottom="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:orientation="vertical">
+
                 <TextView
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Pick A Date"
                     android:textColor="#000"
-                    android:textSize="16sp"
-                    android:text="Pick A Date"/>
+                    android:textSize="16sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <Button
                         android:id="@+id/selectTimeAndDate"
-                        android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
 
-                        android:textSize="13sp"
-                        android:background="@drawable/_dark"
-                        android:textColor="@color/colorWhite"
-                        android:layout_height="wrap_content"
-                        android:text="select date"/>
-                    <TextView
-                        android:visibility="invisible"
-                        android:id="@+id/dateText"
                         android:layout_marginLeft="20dp"
-                        android:textColor="@color/colorPrimary"
+                        android:background="@drawable/_dark"
+                        android:text="select date"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/dateText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:text="select"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="13sp"
-                        />
+                        android:visibility="invisible" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/darkli"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.5dp"
+                android:background="@color/darkli" />
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <TextView
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Pick A Location"
                     android:textColor="#000"
-                    android:textSize="16sp"
-                    android:text="Pick A Location"/>
+                    android:textSize="16sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginBottom="4dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp">
+
                     <Button
-                        android:textSize="13sp"
                         android:id="@+id/selectLocation"
-                        android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
-                        android:padding="8dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:background="@drawable/_dark"
+                        android:padding="8dp"
+                        android:text="select location"
                         android:textColor="@color/colorWhite"
-                        android:layout_height="wrap_content"
-                        android:text="select location"/>
+                        android:textSize="13sp" />
+
                     <TextView
-                        android:visibility="invisible"
                         android:id="@+id/locationText"
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:text="select"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="20sp"
-                        />
+                        android:visibility="invisible" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:background="@color/darkli"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.5dp"
+                android:background="@color/darkli" />
 
 
             <LinearLayout
@@ -190,38 +201,38 @@ android:background="@color/darkl5"
 
                 <TextView
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layout_weight="2"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="Number of People"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:layout_margin="5dp"
-                    android:layout_height="wrap_content" />
+                    android:textSize="16sp" />
 
                 <EditText
+                    android:id="@+id/edtNumberOfPeople"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:hint="0"
-                    android:selectAllOnFocus="false"
                     android:inputType="number"
-                    android:id="@+id/edtNumberOfPeople"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="wrap_content" />
+                    android:selectAllOnFocus="false" />
 
 
             </LinearLayout>
 
             <Button
                 android:id="@+id/btnNext"
-                android:layout_gravity="center"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/_dark"
                 android:fontFamily="@font/roboto_bold"
-                android:textAllCaps="false"
                 android:text="Next"
+                android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
 

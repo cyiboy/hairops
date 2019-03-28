@@ -104,15 +104,46 @@ public class LoginFragment extends Fragment implements OnLoginListener {
                                                 String status = dataSnapshot.child("status").getValue().toString();
 
 
-                                                SharedPreferences.Editor edit = preferences.edit();
-
-                                                edit.putString("status", status);
-                                                edit.apply();
-
 
                                                 if (status.equalsIgnoreCase("customer")) {
+
+                                                    String name = dataSnapshot.child("name").getValue().toString();
+                                                    String email = dataSnapshot.child("email").getValue().toString();
+                                                    String phoneNumber = dataSnapshot.child("number").getValue().toString();
+                                                    String orgainzation = dataSnapshot.child("orgainzation").getValue().toString();
+                                                    String imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
+                                                    String address = dataSnapshot.child("address").getValue().toString();
+
+                                                    SharedPreferences.Editor edit = preferences.edit();
+                                                    edit.putString("status", status);
+                                                    edit.putString("firstName",name);
+                                                    edit.putString("email",email);
+                                                    edit.putString("phoneNumber",phoneNumber);
+                                                    edit.putString("oga",orgainzation);
+                                                    edit.putString("imageUrl",imageUrl);
+                                                    edit.putString("address",address);
+                                                    edit.apply();
                                                     startActivity(new Intent(getContext(), HomeCustomer.class));
                                                 } else if (status.equalsIgnoreCase("stylist")) {
+                                                    String name = dataSnapshot.child("name").getValue().toString();
+                                                    String email = dataSnapshot.child("email").getValue().toString();
+                                                    String phoneNumber = dataSnapshot.child("number").getValue().toString();
+                                                    String bankName = dataSnapshot.child("bankName").getValue().toString();
+                                                    String bankAccountName = dataSnapshot.child("bankAccountName").getValue().toString();
+                                                    String bankAccountNumber = dataSnapshot.child("bankAccountNumber").getValue().toString();
+                                                    String imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
+                                                    String address = dataSnapshot.child("address").getValue().toString();
+
+                                                    SharedPreferences.Editor edit = preferences.edit();
+                                                    edit.putString("status", status);
+                                                    edit.putString("firstName",name);
+                                                    edit.putString("email",email);
+                                                    edit.putString("phoneNumber",phoneNumber);
+                                                    edit.putString("imageUrl",imageUrl);
+                                                    edit.putString("bankName",bankName);
+                                                    edit.putString("bankAccountName",bankAccountName);
+                                                    edit.putString("bankAccountNumber",bankAccountNumber);
+                                                    edit.apply();
                                                     startActivity(new Intent(getContext(), HomeStylist.class));
                                                 } else if (status.equalsIgnoreCase("admin")) {
                                                     startActivity(new Intent(getContext(), HomeAdmin.class));

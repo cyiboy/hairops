@@ -51,6 +51,7 @@ public class barbing extends Fragment {
     private SimpleDateFormat simpledateformat;
 
     private static final String[] type = {
+            "Type",
             "Male",
             "Female",
             "Children"
@@ -59,6 +60,7 @@ public class barbing extends Fragment {
     };
 
     private static final String[] style = {
+            "Style",
             "Low cut",
             "skin cut",
             "afro cut",

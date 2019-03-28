@@ -60,7 +60,7 @@ public class customerrofile extends Fragment {
     private DatabaseReference userRef,fundingTrans;
     private ImageView userImage;
     private LinearLayout logout,help,updateProfile,fundWallet, updateuserprofile;
-    TextView stylistName,stylistBalance;
+    TextView stylistName,stylistBalance,txtViewOrUpdateProfile;
     private ProgressDialog dialog;
     private  Dialog dialogs;
     private Calendar calendar;
@@ -105,6 +105,7 @@ SharedPreferences preferences;
         fundWallet =  view.findViewById(R.id.btnFundWallet);
         updateProfile = view.findViewById(R.id.updateProfileUser);
         updateuserprofile = view.findViewById(R.id.update);
+        txtViewOrUpdateProfile = view.findViewById(R.id.txtViewOrUpdateProfile);
       //  withdraw = (FancyButton)view.findViewById(R.id.btnFundWallet);
 
         fundWallet.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +120,13 @@ SharedPreferences preferences;
             public void onClick(View view) {
                showDialog();
 
+            }
+        });
+
+        txtViewOrUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), com.example.user.hairr.updateProfile.class));
             }
         });
 

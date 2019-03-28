@@ -17,11 +17,10 @@
     <string name="title_activity_home_customer">HomeCustomer</string>
     <string name="title_activity_home_stylist">HomeStylist</string>
     <string name="title_activity_maps">Map</string>
-    <string name="hello">
-         ...
-</string>
+
+
     <string name="title_activity_stylist_map">Map</string>
-    <string name="barbing"><b>style aivalble for men</b> \n
+    <string name="barbing"><b>style available for men</b> \n
 
       low cut\n
 	    skin cut\n
@@ -32,19 +31,30 @@
 	    black niterbacar\n
 	    men hair cut + transport = 1,500\n
            \n
-style aivalble for women\n
+style available for women\n
 	low cut\n
 	skin cut\n
 	gallas\n
 	afro\n
 	women hair cut + transport = 1,500\n
             \n
-style aivalble for children\n
+style available for children\n
 	low cut\n
 	afro cut\n
 	ponk hair cut\n
 	gallas hair cut\n
 	children hair cut + transport = 1,000\n
 
+    </string>
+
+    <string name="hair_dressing"><b>style available for women</b> \n
+
+      Braiding cut\n
+	    Braiding : 3000 + Transport : 500 = 3500\n
+           \n
+
+	Fixing \n
+	Fixing : 2500 + transport : 500 = 3000\n
+           
     </string>
 </resources>

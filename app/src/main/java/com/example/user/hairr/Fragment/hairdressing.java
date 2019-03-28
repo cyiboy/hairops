@@ -51,13 +51,14 @@ public class hairdressing extends Fragment {
     private SimpleDateFormat simpledateformat;
 
     private static final String[] type = {
-            "Woman",
-            "Young Girl"
+            "Type",
+            "Woman"
 
 
     };
 
     private static final String[] style = {
+            "Style",
             "Low cut",
             "skin cut",
             "afro cut",
