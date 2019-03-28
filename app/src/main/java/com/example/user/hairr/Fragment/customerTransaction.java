@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.user.hairr.Model.Booking;
 import com.example.user.hairr.Model.BookingTransactionModel;
+import com.example.user.hairr.Model.Customer;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -40,7 +41,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class customerTransaction extends Fragment {
     FirebaseAuth auth;
     private RecyclerView rvStylistTransaction;
-    private DatabaseReference customerBookingRef,stylistBookingRef;
+    private DatabaseReference customerBookingRef, stylistBookingRef,userRef;
     private LinearLayoutManager mLayoutManager;
 
 
@@ -63,6 +64,7 @@ public class customerTransaction extends Fragment {
         String uid = auth.getCurrentUser().getUid();
         stylistBookingRef = FirebaseDatabase.getInstance().getReference().child("bookingTransaction").child(uid);
         customerBookingRef = FirebaseDatabase.getInstance().getReference().child("Bookings");
+        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         rvStylistTransaction = (RecyclerView) view.findViewById(R.id.rvStylistCustomerTransaction);
 
@@ -79,11 +81,11 @@ public class customerTransaction extends Fragment {
     }
 
     private void initAdapter() {
-        FirebaseRecyclerAdapter<BookingTransactionModel,StylistBookingViewHolder> adapter = new
+        FirebaseRecyclerAdapter<BookingTransactionModel, StylistBookingViewHolder> adapter = new
                 FirebaseRecyclerAdapter<BookingTransactionModel, StylistBookingViewHolder>(
                         BookingTransactionModel.class,
                         R.layout.singletransaction,
-                       StylistBookingViewHolder.class,
+                        StylistBookingViewHolder.class,
                         stylistBookingRef
 
                 ) {
@@ -104,9 +106,28 @@ public class customerTransaction extends Fragment {
                                             viewHolder.setDate(booking.getDate());
                                             viewHolder.setStatus(booking.getStatusClient());
 
-                                            if (booking.getStatusClient().equalsIgnoreCase("Not Started")){
+                                            if (booking.getStatusClient().equalsIgnoreCase("Not Started")) {
                                                 viewHolder.btnStart.setText("Complete");
-                                            }else {
+                                            } else if(booking.getStatusStylist().equalsIgnoreCase("Started")){
+                                                customerBookingRef.child(model.getBookingKey()).child("statusStylist").setValue("Finished")
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()){
+                                                                    viewHolder.btnStart.setText("Finished");
+                                                                }
+                                                            }
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+
+
+                                            }else if (booking.getStatusStylist().equalsIgnoreCase("started")){
+                                            viewHolder.btnStart.setText("working");
+                                        }else {
                                                 viewHolder.btnStart.setText("Completed");
                                             }
 
@@ -115,12 +136,12 @@ public class customerTransaction extends Fragment {
                                                 public void onClick(View view) {
 
 
-                                                    if (booking.getStatusClient().equalsIgnoreCase("Not Started")){
+                                                    if (booking.getStatusClient().equalsIgnoreCase("Not Started")) {
                                                         customerBookingRef.child(model.getBookingKey()).child("statusClient").setValue("Started")
                                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                                        if (task.isSuccessful()){
+                                                                        if (task.isSuccessful()) {
                                                                             viewHolder.btnStart.setText("Complete");
                                                                         }
                                                                     }
@@ -131,14 +152,72 @@ public class customerTransaction extends Fragment {
                                                             }
                                                         });
 
-                                                    }else {
+                                                    } else {
 
                                                         customerBookingRef.child(model.getBookingKey()).child("statusClient").setValue("Finished")
                                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<Void> task) {
-                                                                        if (task.isSuccessful()){
-                                                                            viewHolder.btnStart.setText("Completed");
+                                                                        if (task.isSuccessful()) {
+                                                                            viewHolder.btnStart.setText("Finished");
+                                                                            if (booking.getStatusStylist().equalsIgnoreCase(booking.getStatusClient())) {
+
+                                                                                userRef.child(booking.getStylistUid()).child("balance").setValue(booking.getPrice())
+                                                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                            @Override
+                                                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                                                if (task.isSuccessful()) {
+
+
+                                                                                                    userRef.child(booking.getCustomerUid()).
+                                                                                                            addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                                                                @Override
+                                                                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                                                                    Customer customer = dataSnapshot.getValue(Customer.class);
+
+                                                                                                                    double balance = customer.getBalance();
+
+                                                                                                                    double newAmount = balance - Double.parseDouble(booking.getPrice());
+
+                                                                                                                    String b = String.valueOf(newAmount);
+
+                                                                                                                    userRef.child(booking.getCustomerUid()).child("balance").setValue(b)
+                                                                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                                                @Override
+                                                                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                                                                    if (task.isSuccessful()) {
+                                                                                                                                        Toast.makeText(getContext(), "Wallet Deducted with :" + booking.getPrice(), Toast.LENGTH_SHORT).show();
+
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                                                                        @Override
+                                                                                                                        public void onFailure(@NonNull Exception e) {
+                                                                                                                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                                                        }
+                                                                                                                    });
+
+
+                                                                                                                }
+
+                                                                                                                @Override
+                                                                                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                                                                                }
+                                                                                                            });
+                                                                                                }
+                                                                                            }
+                                                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                                                    @Override
+                                                                                    public void onFailure(@NonNull Exception e) {
+
+                                                                                    }
+                                                                                });
+
+                                                                            } else {
+                                                                                Toast.makeText(getContext(), "Transaction complete, to send the amount booked for. kindly allow the stylist to end the transaction.", Toast.LENGTH_SHORT).show();
+
+                                                                            }
                                                                         }
                                                                     }
                                                                 }).addOnFailureListener(new OnFailureListener() {
@@ -171,10 +250,10 @@ public class customerTransaction extends Fragment {
         rvStylistTransaction.setAdapter(adapter);
     }
 
-    public static class StylistBookingViewHolder extends RecyclerView.ViewHolder{
+    public static class StylistBookingViewHolder extends RecyclerView.ViewHolder {
         View mView;
         ImageView userImage;
-        TextView type,styleBooked,date,status;
+        TextView type, styleBooked, date, status;
         FancyButton btnStart;
 
         public StylistBookingViewHolder(View itemView) {
@@ -183,50 +262,46 @@ public class customerTransaction extends Fragment {
             mView = itemView;
 
             userImage = (ImageView) mView.findViewById(R.id.imgClientBooked);
-            type = (TextView)mView.findViewById(R.id.txtTypeBooked);
-            styleBooked = (TextView)mView.findViewById(R.id.txtStyleBooked);
-            date = (TextView)mView.findViewById(R.id.dateOfService);
-            status = (TextView)mView.findViewById(R.id.txtStatus);
+            type = (TextView) mView.findViewById(R.id.txtTypeBooked);
+            styleBooked = (TextView) mView.findViewById(R.id.txtStyleBooked);
+            date = (TextView) mView.findViewById(R.id.dateOfService);
+            status = (TextView) mView.findViewById(R.id.txtStatus);
 
-            btnStart = (FancyButton)mView.findViewById(R.id.btnStartService);
+            btnStart = (FancyButton) mView.findViewById(R.id.btnStartService);
 
         }
 
-        public void setType(String sname){
+        public void setType(String sname) {
 
             type.setText(sname);
 
         }
 
 
-        public void setDate(String name){
+        public void setDate(String name) {
 
             date.setText(name);
 
         }
 
 
-        public void setStatus(String name){
+        public void setStatus(String name) {
 
             status.setText(name);
 
         }
 
 
-        public void setStyleBooked(String name){
+        public void setStyleBooked(String name) {
 
             styleBooked.setText(name);
 
         }
 
 
+        public void setUserImage(String status, Context context) {
 
-
-
-
-        public void setUserImage(String status, Context context){
-
-            Picasso.with(context).load(status).transform(new CircleTransform()) .networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
+            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
                 @Override
                 public void onSuccess() {
 
@@ -239,7 +314,6 @@ public class customerTransaction extends Fragment {
 
                 }
             });
-
 
 
         }

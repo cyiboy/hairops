@@ -178,6 +178,29 @@ public class stylistTransaction extends Fragment {
 
                                                                                                                     double balance = customer.getBalance();
 
+                                                                                                                    double newAmount = balance - Double.parseDouble(booking.getPrice());
+
+                                                                                                                    String b = String.valueOf(newAmount);
+
+                                                                                                                    userRef.child(booking.getCustomerUid()).child("balance").setValue(b)
+                                                                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                                                @Override
+                                                                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                                                                    if (task.isSuccessful()){
+                                                                                                                                        Toast.makeText(getContext(), "Wallet credited with :"+booking.getPrice(), Toast.LENGTH_SHORT).show();
+
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                                                                        @Override
+                                                                                                                        public void onFailure(@NonNull Exception e) {
+                                                                                                                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                                                        }
+                                                                                                                    });
+
+
+                                                                                                                    
+
 
                                                                                                                 }
 
