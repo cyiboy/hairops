@@ -66,6 +66,7 @@
             android:layout_height="1dp"/>
 
         <EditText
+            android:maxLength="11"
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="56dp"

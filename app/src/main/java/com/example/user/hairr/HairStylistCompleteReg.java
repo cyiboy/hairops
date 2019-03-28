@@ -50,7 +50,9 @@ public class HairStylistCompleteReg extends AppCompatActivity {
     private StorageTask mUploadTask;
     public static final String MyPREFERENCES = "MyPrefs";
     public static final String STATUS = "status";
-    SharedPreferences sharedpreferences;
+    SharedPreferences sharedpreferences, sharedpreference;
+    public static final String MyPREFERENCE = "user";
+
     FirebaseAuth mAuth;
     EditText inputEmail, inputName,inputPhoneNumber,homeAddress,bankName,bankAccount,bankNumber;
     private LatLng latLng;
@@ -92,10 +94,11 @@ public class HairStylistCompleteReg extends AppCompatActivity {
         bankAccount = (EditText)findViewById(R.id.edtStylistAccountName);
         bankName = (EditText)findViewById(R.id.edtStylistBankName);
         bankNumber = (EditText)findViewById(R.id.edtStylistAccountNumber);
+
         spinnerExperienceLevel = (MaterialSpinner)findViewById(R.id.experienceLevel);
         spinnerSpecialization = (MaterialSpinner)findViewById(R.id.specialization);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
+        sharedpreference = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
         spinnerSpecialization.setItems(Specialization);
         spinnerSpecialization.setOnItemSelectedListener((MaterialSpinner.OnItemSelectedListener<String>) (view, position, id, item) -> specialization = item);
         spinnerSpecialization.setOnNothingSelectedListener(spinner -> Snackbar.make(spinner, "Nothing selected", Snackbar.LENGTH_LONG).show());
@@ -129,6 +132,7 @@ public class HairStylistCompleteReg extends AppCompatActivity {
 
         });
     }
+
     private void startSignUp() {
         name = inputName.getText().toString().trim();
         email = inputEmail.getText().toString().trim();
@@ -138,9 +142,16 @@ public class HairStylistCompleteReg extends AppCompatActivity {
         banknumber = bankNumber.getText().toString().trim();
         bankaccountname = bankAccount.getText().toString().trim();
 
+if (banknumber.length() != 10){
+    Toast.makeText(this, "Check Account Number", Toast.LENGTH_SHORT).show();
+    return;
+}
+if(phoneNumber.length() !=11){
+    Toast.makeText(this, "Check Phone Number", Toast.LENGTH_SHORT).show();
+    return;
+}
 
-
-        if (mImageUri != null && name != null && email != null && phoneNumber != null&& address != null && bankaccountname != null && banknumber != null && bankname != null) {
+        if (mImageUri != null &&!name.isEmpty() && name != null && !email.isEmpty()&& email != null &&!phoneNumber.isEmpty() && phoneNumber != null &&!address.isEmpty() && address != null &&!banknumber.isEmpty()&& banknumber != null &&!bankname.isEmpty()&& bankname != null) {
 
             mProgressBar.setMessage("Completing registration.. please wait");
             mProgressBar.show();
@@ -212,6 +223,8 @@ public class HairStylistCompleteReg extends AppCompatActivity {
             });
 
 
+        } else {
+            Toast.makeText(this, "Fill details completely to continue", Toast.LENGTH_SHORT).show();
         }
 
 
