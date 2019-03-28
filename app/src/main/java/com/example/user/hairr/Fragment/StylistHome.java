@@ -47,6 +47,10 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**
@@ -135,6 +139,7 @@ public class StylistHome extends Fragment {
     }
 
     private void startUpload(String trim) {
+        String date = new SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).format(new Date());
 
         if (mImageUri != null) {
             mProgressBar.setMessage("Uploading Post.. please wait");
@@ -172,6 +177,7 @@ public class StylistHome extends Fragment {
                                 post.setUserImage(imageUrls);
                                 post.setUsername(name);
                                 post.setUserSpecialization(spec);
+                                post.setDate(date);
                                 post.setComments(0);
                                 post.setLikes(0);
 
@@ -244,6 +250,7 @@ public class StylistHome extends Fragment {
                 viewHolder.setPostImage(model.getPostImageUrl(), getContext());
                 viewHolder.setUserImage(model.getUserImage(), getContext());
                 viewHolder.setLikeBtn(key);
+                viewHolder.date.setText(model.getDate());
                 viewHolder.setNumberOfLikes(key);
                 viewHolder.postText.setText(model.getPosttText());
                 viewHolder.userLayout.setOnClickListener(new View.OnClickListener() {
@@ -362,7 +369,7 @@ public class StylistHome extends Fragment {
         ImageView postImage;
         LinearLayout userLayout;
         FirebaseAuth auth;
-        TextView numberOfLikes,postText;
+        TextView numberOfLikes,postText,date;
         DatabaseReference likes;
         String uidd;
 
@@ -378,6 +385,8 @@ public class StylistHome extends Fragment {
             userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
             numberOfLikes = (TextView)mView.findViewById(R.id.numberOfLikes);
             postText = (TextView)mView.findViewById(R.id.postalText);
+            date = mView.findViewById(R.id.date);
+
             auth = FirebaseAuth.getInstance();
             uidd = auth.getCurrentUser().getUid();
             likes = FirebaseDatabase.getInstance().getReference().child("Likes");

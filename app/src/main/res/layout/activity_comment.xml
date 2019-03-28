@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+        >
+
 
 
     <android.support.v7.widget.RecyclerView
@@ -15,47 +18,52 @@
         android:layout_marginBottom="0dp">
 
     </android.support.v7.widget.RecyclerView>
+<TextView
+    android:visibility="invisible"
+    android:layout_centerInParent="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="No Comment"
+    android:textSize="30sp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="No Comment"
-        android:textSize="30sp"
-        android:visibility="invisible" />
+
+
 
 
     <Toolbar
 
         android:id="@+id/linCOmmentFields"
+        android:layout_alignParentBottom="true"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+
+
         tools:ignore="InvalidId">
 
         <LinearLayout
+android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
 
-            <EditText
-                android:id="@+id/edtComments"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/comment_edittext"
-                android:hint="Write a comment"
+
+                <EditText
+                    android:id="@+id/edtComments"
+                    android:textColor="@color/darkp"
+android:layout_weight="1"
+                    android:textSize="15sp"
+                     android:background="@drawable/comment_edittext"
                 android:paddingLeft="10dp"
-                android:textColor="@color/darkp"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:id="@+id/imgSendComment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:src="@drawable/send" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:hint="Write a comment" />
+<ImageView
+    android:id="@+id/imgSendComment"
+    android:layout_margin="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/send"/>
 
         </LinearLayout>
 

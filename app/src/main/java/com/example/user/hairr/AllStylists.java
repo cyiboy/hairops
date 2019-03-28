@@ -134,62 +134,13 @@ public class AllStylists extends AppCompatActivity {
 
                         Picasso.with(AllStylists.this).load(model.getImageUrl()).transform(new CircleTransform()).into(stylistImage);
 
-                        styistName.setText("Stylist name : "+model.getName());
-                        stylistSpacialization.setText("Specialization : "+model.getSpecialization());
-                        stylistAddress.setText("Address : "+model.getAddress());
+                        styistName.setText(model.getName());
+                        stylistSpacialization.setText(model.getSpecialization());
+                        stylistAddress.setText(model.getAddress());
 
-                        dateOrdered.setText("Date picked : "+date);
-                        typeOrdered.setText("Type ordered : "+type);
-                        numberOfP.setText("Number of people : "+numberOfPeople);
-
-                        if (spec.equalsIgnoreCase("Barber")){
-                            if (type.equalsIgnoreCase("Male")){
-                                int number = Integer.parseInt(numberOfPeople);
-                                int price = number * 1000;
-                                finalPrice = price + 500;
-
-
-                            }else if (type.equalsIgnoreCase("Female")){
-                                int number = Integer.parseInt(numberOfPeople);
-                                int price = number * 1000;
-                                finalPrice = price + 500;
-
-                            }else {
-                                int number = Integer.parseInt(numberOfPeople);
-                                int price = number * 700;
-                                finalPrice = price + 500;
-
-                            }
-                        }else if (spec.equalsIgnoreCase("Makeup Artist")){
-                            if (specType.equalsIgnoreCase("normal")){
-                                int number = Integer.parseInt(numberOfPeople);
-                                int price = number * 1000;
-                                finalPrice = price + 500;
-
-                            }else {
-                                int number = Integer.parseInt(numberOfPeople);
-                                int price = number * 25000;
-                                finalPrice = price + 500;
-
-                            }
-                        }else {
-
-                            if (specType.equalsIgnoreCase("braiding")){
-                                int number = Integer.parseInt(numberOfPeople);
-                                int price = number * 3000;
-                                finalPrice = price + 500;
-
-                            }else {
-                                int number = Integer.parseInt(numberOfPeople);
-                                int price = number * 3000;
-                                finalPrice = price + 500;
-
-                            }
-
-                        }
-
-                        Total.setText("Total amount: N"+String.valueOf(finalPrice));
-
+                        dateOrdered.setText(date);
+                        typeOrdered.setText(type);
+                        numberOfP.setText(numberOfPeople);
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -202,107 +153,144 @@ public class AllStylists extends AppCompatActivity {
 
                                         if (dataSnapshot.exists()) {
                                             customer = dataSnapshot.getValue(Customer.class);
+                                            DatabaseReference book = bookingRef.push();
+                                            String key = book.getKey();
+                                            Booking booking = new Booking();
+                                            booking.setAddressOfStylist(model.getAddress());
+                                            booking.setCustomerName(customer.getName());
+                                            booking.setCustomerNumber(customer.getNumber());
+                                            booking.setDate(date);
+                                            booking.setLatitude(lat);
+                                            booking.setLongitude(lng);
+                                            booking.setNameOfStylist(model.getName());
+                                            booking.setNumberOfPeople(numberOfPeople);
+                                            booking.setBookingKey(key);
+                                            booking.setStatus("Unconfirmed");
+                                            booking.setStatusClient("Not Started");
+                                            booking.setStatusStylist("Not Started");
+                                            booking.setStyle(style);
+                                            booking.setClientImageUrl(customer.getImageUrl());
+                                            booking.setStylistImageUrl(model.getImageUrl());
+                                            booking.setType(type);
+
+                                            if (spec.equalsIgnoreCase("Barber")){
+                                                if (type.equalsIgnoreCase("Male")){
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 1000;
+                                                    finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+
+                                                }else if (type.equalsIgnoreCase("Female")){
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 1000;
+                                                    finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+                                                }else {
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 700;
+                                                     finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+                                                }
+                                            }else if (spec.equalsIgnoreCase("Makeup Artist")){
+                                               if (specType.equalsIgnoreCase("normal")){
+                                                   int number = Integer.parseInt(numberOfPeople);
+                                                   int price = number * 1000;
+                                                    finalPrice = price + 500;
+                                                   booking.setPrice(String.valueOf(finalPrice));
+                                               }else {
+                                                   int number = Integer.parseInt(numberOfPeople);
+                                                   int price = number * 25000;
+                                                    finalPrice = price + 500;
+                                                   booking.setPrice(String.valueOf(finalPrice));
+                                               }
+                                            }else {
+
+                                                if (specType.equalsIgnoreCase("braiding")){
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 3000;
+                                                    finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+                                                }else {
+                                                    int number = Integer.parseInt(numberOfPeople);
+                                                    int price = number * 3000;
+                                                    finalPrice = price + 500;
+                                                    booking.setPrice(String.valueOf(finalPrice));
+                                                }
+
+                                            }
+
+                                            Total.setText("N"+String.valueOf(finalPrice));
+                                            booking.setNumberOfStylist(model.getNumber());
 
 
-                                           if (customer.getBalance() >= finalPrice){
-                                               DatabaseReference book = bookingRef.push();
-                                               String key = book.getKey();
-                                               Booking booking = new Booking();
-                                               booking.setAddressOfStylist(model.getAddress());
-                                               booking.setCustomerName(customer.getName());
-                                               booking.setCustomerNumber(customer.getNumber());
-                                               booking.setDate(date);
-                                               booking.setLatitude(lat);
-                                               booking.setLongitude(lng);
-                                               booking.setNameOfStylist(model.getName());
-                                               booking.setNumberOfPeople(numberOfPeople);
-                                               booking.setBookingKey(key);
-                                               booking.setStatus("Unconfirmed");
-                                               booking.setStatusClient("Not Started");
-                                               booking.setStatusStylist("Not Started");
-                                               booking.setStyle(style);
-                                               booking.setClientImageUrl(customer.getImageUrl());
-                                               booking.setStylistImageUrl(model.getImageUrl());
-                                               booking.setStylistUid(model.getUid());
-                                               booking.setCustomerUid(customer.getUid());
-                                               booking.setType(type);
-                                               booking.setPrice(String.valueOf(finalPrice));
-                                               booking.setNumberOfStylist(model.getNumber());
+                                            book.setValue(booking)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()){
 
-                                               book.setValue(booking)
-                                                       .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                           @Override
-                                                           public void onComplete(@NonNull Task<Void> task) {
-                                                               if (task.isSuccessful()){
-
-                                                                   AdminBooking adminBooking = new AdminBooking();
-                                                                   adminBooking.setBookingKey(key);
-                                                                   adminBooking.setClientName(customer.getName());
-                                                                   adminBooking.setClientNumber(customer.getNumber());
-                                                                   adminBooking.setNumberOfPeople(numberOfPeople);
-                                                                   adminBooking.setServiceBooked(spec);
-                                                                   adminBooking.setStylistName(model.getName());
-                                                                   adminBooking.setStylistNumber(model.getNumber());
-                                                                   adminBooking.setTotalAmount(String.valueOf(finalPrice));
-                                                                   adminBooking.setClientImageUrl(customer.getImageUrl());
-                                                                   adminBooking.setStylistImageUrl(model.getImageUrl());
-                                                                   adminBooking.setStyle(style);
-                                                                   adminBooking.setStylistUid(model.getUid());
-                                                                   adminBooking.setStatus("Unconfirmed");
+                                                                AdminBooking adminBooking = new AdminBooking();
+                                                                adminBooking.setBookingKey(key);
+                                                                adminBooking.setClientName(customer.getName());
+                                                                adminBooking.setClientNumber(customer.getNumber());
+                                                                adminBooking.setNumberOfPeople(numberOfPeople);
+                                                                adminBooking.setServiceBooked(spec);
+                                                                adminBooking.setStylistName(model.getName());
+                                                                adminBooking.setStylistNumber(model.getNumber());
+                                                                adminBooking.setTotalAmount(String.valueOf(finalPrice));
+                                                                adminBooking.setClientImageUrl(customer.getImageUrl());
+                                                                adminBooking.setStylistImageUrl(model.getImageUrl());
+                                                                adminBooking.setStyle(style);
+                                                                adminBooking.setStylistUid(model.getUid());
+                                                                adminBooking.setStatus("Unconfirmed");
 
 
-                                                                   adminBookingRef.push().setValue(adminBooking)
-                                                                           .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                               @Override
-                                                                               public void onComplete(@NonNull Task<Void> task) {
+                                                                adminBookingRef.push().setValue(adminBooking)
+                                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                            @Override
+                                                                            public void onComplete(@NonNull Task<Void> task) {
 
-                                                                                   if (task.isSuccessful()){
+                                                                                if (task.isSuccessful()){
 
-                                                                                       BookingTransactionModel bookingTransactionModel  = new BookingTransactionModel();
-                                                                                       bookingTransactionModel.setBookingKey(key);
+                                                                                    BookingTransactionModel bookingTransactionModel  = new BookingTransactionModel();
+                                                                                    bookingTransactionModel.setBookingKey(key);
 
-                                                                                       transRef.child(uid).push().setValue(bookingTransactionModel)
-                                                                                               .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                                   @Override
-                                                                                                   public void onComplete(@NonNull Task<Void> task) {
-                                                                                                       if (task.isSuccessful()){
-                                                                                                           Toast.makeText(AllStylists.this, "Your barbing has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
-                                                                                                           dialog.dismiss();
-                                                                                                           startActivity(new Intent(AllStylists.this,HomeCustomer.class));
-                                                                                                       }
-                                                                                                   }
-                                                                                               }).addOnFailureListener(new OnFailureListener() {
-                                                                                           @Override
-                                                                                           public void onFailure(@NonNull Exception e) {
-                                                                                               dialog.dismiss();
-                                                                                               Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                                           }
-                                                                                       });
+                                                                                    transRef.child(uid).push().setValue(bookingTransactionModel)
+                                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                @Override
+                                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                                    if (task.isSuccessful()){
+                                                                                                        Toast.makeText(AllStylists.this, "Your barbing has been placed, go to the transaction tab to review it", Toast.LENGTH_SHORT).show();
+                                                                                                        dialog.dismiss();
+                                                                                                        startActivity(new Intent(AllStylists.this,HomeCustomer.class));
+                                                                                                    }
+                                                                                                }
+                                                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                                        @Override
+                                                                                        public void onFailure(@NonNull Exception e) {
+                                                                                            dialog.dismiss();
+                                                                                            Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                        }
+                                                                                    });
 
-                                                                                   }
+                                                                                }
 
-                                                                               }
-                                                                           }).addOnFailureListener(new OnFailureListener() {
-                                                                       @Override
-                                                                       public void onFailure(@NonNull Exception e) {
-                                                                           Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                       }
-                                                                   });
+                                                                            }
+                                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                                    @Override
+                                                                    public void onFailure(@NonNull Exception e) {
+                                                                        Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });
 
-                                                               }
-                                                           }
-                                                       }).addOnFailureListener(new OnFailureListener() {
-                                                   @Override
-                                                   public void onFailure(@NonNull Exception e) {
-                                                       Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                   }
-                                               });
-
-
-                                           }else {
-                                               Toast.makeText(AllStylists.this, "Insufficient Funds, please fund your wallet with the required amount and try again", Toast.LENGTH_SHORT).show();
-                                               return;
-                                           }
+                                                            }
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(AllStylists.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
 
 
 

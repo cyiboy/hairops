@@ -50,8 +50,10 @@ public class makup extends Fragment {
     private Calendar calendar;
     private SimpleDateFormat simpledateformat;
     private static final String[] style = {
-            "Bridal Makeup",
-            "Normal Makeup"
+            "Brider Makeup",
+
+
+            "Nomal Makeup"
 
     };
     public makup() {

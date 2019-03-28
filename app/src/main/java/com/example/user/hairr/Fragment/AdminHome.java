@@ -110,7 +110,7 @@ public class AdminHome extends Fragment {
                 viewHolder.setLikeBtn(key);
                 viewHolder.setNumberOfLikes(key);
                 viewHolder.postText.setText(model.getPosttText());
-
+                viewHolder.date.setText(model.getDate());
                 viewHolder.delete.setVisibility(View.VISIBLE);
                 viewHolder.delete.setOnClickListener(view -> {
                     showDialog(key);
@@ -238,7 +238,7 @@ public class AdminHome extends Fragment {
         ImageView postImage;
         LinearLayout userLayout;
         FirebaseAuth auth;
-        TextView numberOfLikes,postText;
+        TextView numberOfLikes,postText,date;
         DatabaseReference likes;
         String uidd;
 
@@ -254,6 +254,7 @@ public class AdminHome extends Fragment {
             userLayout = (LinearLayout) mView.findViewById(R.id.linUser);
             numberOfLikes = (TextView)mView.findViewById(R.id.numberOfLikes);
             postText = (TextView)mView.findViewById(R.id.postalText);
+            date = mView.findViewById(R.id.date);
             auth = FirebaseAuth.getInstance();
             uidd = auth.getCurrentUser().getUid();
             likes = FirebaseDatabase.getInstance().getReference().child("Likes");

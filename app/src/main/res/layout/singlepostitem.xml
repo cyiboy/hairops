@@ -5,7 +5,7 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+android:layout_marginBottom="10dp"
     android:background="@color/colorWhite"
     android:elevation="5dp"
     app:ignore="NamespaceTypo"
@@ -64,11 +64,11 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/adminDeleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:visibility="gone"
+                android:id="@+id/adminDeleteButton"
                 app:srcCompat="@drawable/vert" />
 
         </LinearLayout>
@@ -96,7 +96,7 @@
             android:layout_marginBottom="3dp"
 
 
-            />
+             />
 
 
         <LinearLayout
@@ -122,19 +122,19 @@
                     android:src="@drawable/ic_unlike" />
 
                 <TextView
-                    android:id="@+id/numberOfLikes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text=""
+                    android:id="@+id/numberOfLikes"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linComment"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
+                android:id="@+id/linComment"
                 android:layout_weight="1"
                 android:gravity="right">
 
