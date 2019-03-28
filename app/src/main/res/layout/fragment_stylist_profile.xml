@@ -146,7 +146,7 @@
 
             </LinearLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/profileImageStylist"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
