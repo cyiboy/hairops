@@ -1,13 +1,12 @@
 package com.example.user.hairr;
 
 import android.location.Location;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,7 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Marker mCurrLocationMarker2;
     double theirLatitude;
     double theirLongitude;
-    String name;
+    String name, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         theirLatitude = Double.parseDouble(getIntent().getStringExtra("stylistLat"));
         theirLongitude = Double.parseDouble(getIntent().getStringExtra("stylistLng"));
         name = getIntent().getStringExtra("name");
+        address = getIntent().getStringExtra("address");
         //show error dialog if Google Play Services not available
         if (!isGooglePlayServicesAvailable()) {
             Log.d("onCreate", "Google Play Services not available. Ending Test case.");
@@ -77,15 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -93,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         hospitalLocation = googleMap;
 
         // Add a marker in Sydney and move the camera
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
 
         myLatLng = new LatLng(myLat,myLng);
@@ -106,7 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(myLatLng);
-        markerOptions.title("Am Here");
+        markerOptions.title("My current location");
 
         // Adding colour to the marker
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
@@ -132,13 +124,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerOptions2.position(latLng);
         // Adding Title to the Marker
         // Adding Marker to the Camera.
+        markerOptions2.snippet("Stylist current location: "+address);
         mCurrLocationMarker2 = mMap.addMarker(markerOptions2);
         // Adding colour to the marker
         markerOptions2.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
 
         // Creating CameraUpdate object for zoom
-        float zoomLevel2 = 21.0f; //This goes up to 21
+        float zoomLevel2 = 17.0f; //This goes up to 21
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel2));
         hospitalLocation.animateCamera(CameraUpdateFactory.zoomTo(11));
 

@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/userImageThumbNail"
             android:scaleType="centerCrop"
-            android:src="@drawable/adduser"
+            android:src="@drawable/add_a_photo"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:layout_width="120dp"

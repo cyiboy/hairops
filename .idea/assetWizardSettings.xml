@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="add_a_photo" />
-                            <entry key="sourceFile" value="C:\Users\MR AGBENRO" />
+                            <entry key="outputName" value="profile" />
+                            <entry key="sourceFile" value="C:\Users\MR AGBENRO\Desktop\hackerton\spacefinder design\edit\blue\iconfinder_jee-74_2180663 (1).svg" />
                           </map>
                         </option>
                       </PersistentState>

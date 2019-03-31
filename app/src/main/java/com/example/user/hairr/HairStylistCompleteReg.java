@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -59,7 +60,8 @@ public class HairStylistCompleteReg extends AppCompatActivity {
     private String lat,lng,email,name,phoneNumber,specialization,experienceLevel,address,bankname,banknumber,bankaccountname;
     private MaterialSpinner spinnerExperienceLevel,spinnerSpecialization;
 
-    private FancyButton setLocation,completeSignupCustomer;
+    private FancyButton setLocation;
+         Button completeSignupCustomer;
 
     private static final String[] Specialization = {
             "specialization",
@@ -117,7 +119,7 @@ public class HairStylistCompleteReg extends AppCompatActivity {
 
 
         setLocation = (FancyButton)findViewById(R.id.btnPickStylistLocation);
-        completeSignupCustomer = (FancyButton)findViewById(R.id.btnCompleteStylistRegistration);
+        completeSignupCustomer = findViewById(R.id.btnCompleteStylistRegistration);
         completeSignupCustomer.setOnClickListener(view -> startSignUp());
         setLocation.setOnClickListener(view -> {
             PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();

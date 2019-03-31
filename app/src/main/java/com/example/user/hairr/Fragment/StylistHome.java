@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.user.hairr.Model.Post;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
+import com.example.user.hairr.imageviewer;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -70,6 +71,8 @@ public class StylistHome extends Fragment {
     private StorageTask mUploadTask;
     private boolean mProcessLike = false;
     private String key,uid;
+    imageviewer imageviewer;
+
     public StylistHome() {
         // Required empty public constructor
     }
@@ -97,6 +100,7 @@ public class StylistHome extends Fragment {
         postList = (RecyclerView) view.findViewById(R.id.rvPost);
         addPost = (FloatingActionButton) view.findViewById(R.id.btnAddPost);
 
+         imageviewer = new imageviewer(getContext());
         addPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +109,10 @@ public class StylistHome extends Fragment {
         });
 
         mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
         postList.setHasFixedSize(true);
+
         postDatabase.keepSynced(true);
         likes.keepSynced(true);
         postList.setLayoutManager(mLayoutManager);
@@ -193,6 +200,7 @@ public class StylistHome extends Fragment {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     mProgressBar.dismiss();
+                                                    onStart();
                                                     Toast.makeText(getContext(), "upload done", Toast.LENGTH_SHORT).show();
 
                                                 }
@@ -327,6 +335,14 @@ public class StylistHome extends Fragment {
 
                     }
                 });
+                viewHolder.postImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        imageviewer.startdi(model.getPostImageUrl(),model.getPosttText());
+
+                    }
+                });
+
 
 
 

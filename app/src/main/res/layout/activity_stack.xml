@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="16dp"
+    android:background="@mipmap/backgroundtwo"
     android:layout_height="match_parent"
     tools:context="com.example.user.hairr.StackActivity">
 
@@ -53,7 +54,7 @@
             android:text="Hair Stylist"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:layout_height="wrap_content" />
 
 
@@ -62,7 +63,7 @@
             android:layout_width="0dp"
             android:textAlignment="center"
             android:text="Customers"
-            android:textColor="#000"
+            android:textColor="@color/colorWhite"
             android:textSize="16sp"
             android:layout_weight="1"
             android:layout_height="wrap_content" />
