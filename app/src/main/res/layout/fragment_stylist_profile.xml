@@ -134,7 +134,7 @@
                     android:fontFamily="@font/roboto_bold"
 
                     android:textColor="#000"
-                    android:textSize="36sp" />
+                    android:textSize="26sp" />
 
                 <TextView
                     android:id="@+id/txtUpdateStylistProfile"
