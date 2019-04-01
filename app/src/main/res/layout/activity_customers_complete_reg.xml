@@ -10,7 +10,7 @@
     tools:context=".CustomersCompleteReg">
 
     <LinearLayout
-        android:layout_gravity="center"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -26,16 +26,17 @@
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_gravity="center_horizontal"
+
             android:layout_marginTop="20dp"
             android:id="@+id/edtCustomerName"
             android:textColorHint="#8effffff"
-            android:paddingEnd="32dp"
+
             android:background="@drawable/bubble"
             android:gravity="center_vertical"
             android:paddingStart="32dp"
             android:hint="Name"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:paddingLeft="32dp" />
         <RelativeLayout
             android:layout_margin="10dp"
             android:layout_centerInParent="true"
@@ -54,7 +55,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/bubble"
             android:textColorHint="#8effffff"
-            android:gravity="center_vertical"
+
             android:paddingStart="32dp"
             android:hint="Email"
             android:textColor="#ffffff" />
@@ -142,14 +143,14 @@
             android:id="@+id/btnCompleteCustomerRegistration"
             android:layout_gravity="center"
             android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_below="@id/loginPassword"
             android:layout_marginTop="60dp"
             android:background="@drawable/_dark"
             android:fontFamily="@font/roboto_bold"
             android:textAllCaps="false"
             android:foregroundTint="@color/darkop"
-            android:text="complete Registration"
+            android:text="Complete Registration"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />
     </LinearLayout>

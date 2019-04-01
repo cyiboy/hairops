@@ -33,9 +33,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class comment extends AppCompatActivity{
+public class comment extends AppCompatActivity {
     TextView date;
-    ImageView  send;
+    ImageView send;
     EditText comment;
     FirebaseAuth auth;
     RecyclerView list;
@@ -50,36 +50,39 @@ public class comment extends AppCompatActivity{
         setContentView(R.layout.activity_comment);
         auth = FirebaseAuth.getInstance();
         Intent intent = getIntent();
-         key = intent.getStringExtra("postid");
+        key = intent.getStringExtra("postid");
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         postDatabase = FirebaseDatabase.getInstance().getReference().child("comment").child(key);
 
 
-        comment=findViewById(R.id.edtComments);
-        send=findViewById(R.id.imgSendComment);
-        list=findViewById(R.id.rvComments);
-        date= findViewById(R.id.commentTime);
-         send.setOnClickListener(new View.OnClickListener() {
+        comment = findViewById(R.id.edtComments);
+        send = findViewById(R.id.imgSendComment);
+        list = findViewById(R.id.rvComments);
+        date = findViewById(R.id.commentTime);
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            sendcomment();
+                sendcomment();
 
             }
         });
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         list.setHasFixedSize(true);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
         list.setLayoutManager(mLayoutManager);
 
 
     }
 
-   private void sendcomment() {
+    private void sendcomment() {
         String date = new SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).format(new Date());
         String mainComment = comment.getText().toString().trim();
         String uid = auth.getCurrentUser().getUid();
+        comment.setText("");
         mUsersDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("name").getValue().toString();
                 String imageUrls = dataSnapshot.child("imageUrl").getValue().toString();
                 commentM commentM = new commentM();
@@ -91,10 +94,11 @@ public class comment extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         comment.clearComposingText();
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
 
 
                         }
+
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -153,9 +157,6 @@ public class comment extends AppCompatActivity{
         View mView;
         TextView commentName, comment, date;
         ImageView userImage;
-
-
-
 
 
         public PostViewHolder(View itemView) {

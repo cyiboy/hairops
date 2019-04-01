@@ -132,9 +132,9 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Jason Ofua"
+
                     android:textColor="#000"
-                    android:textSize="36sp" />
+                    android:textSize="26sp" />
 
                 <TextView
                     android:id="@+id/txtUpdateStylistProfile"
@@ -146,20 +146,15 @@
 
             </LinearLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/profileImageStylist"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:src="@drawable/user" />
+                  />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="5dp"
-            android:background="@color/darkli"></LinearLayout>
 
 
         <TextView

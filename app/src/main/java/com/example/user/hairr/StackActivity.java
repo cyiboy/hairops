@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class StackActivity extends AppCompatActivity {
 

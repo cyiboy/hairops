@@ -102,7 +102,7 @@ public class updateProfile extends AppCompatActivity {
         String Address = address.getText().toString().trim();
 
 
-        if (mImageUri != null && Name != null && Email != null && phone != null && Address != null) {
+        if ( !Name.isEmpty() && !Email.isEmpty()&& !phone.isEmpty() && !Address.isEmpty()) {
 
             mProgressBar.setMessage("updating.. please wait");
             mProgressBar.show();
@@ -167,6 +167,8 @@ public class updateProfile extends AppCompatActivity {
             });
             mProgressBar.show();
 
+        }else {
+            Toast.makeText(this, "Fill complete information", Toast.LENGTH_SHORT).show();
         }
     }
 

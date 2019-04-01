@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.user.hairr.Model.Post;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
+import com.example.user.hairr.imageviewer;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +46,7 @@ public class customerHome extends Fragment {
     private LinearLayoutManager mLayoutManager;
     private LinearLayout comment;
     private String key,uid;
+    imageviewer imageviewer;
     private boolean mProcessLike = false;
 
 
@@ -73,10 +75,13 @@ public class customerHome extends Fragment {
         postList = (RecyclerView) view.findViewById(R.id.lastestNews);
 
         mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager.setStackFromEnd(true);
+        mLayoutManager.setReverseLayout(true);
         postDatabase.keepSynced(true);
         likes.keepSynced(true);
         postList.setHasFixedSize(true);
         postList.setLayoutManager(mLayoutManager);
+       imageviewer = new imageviewer(getContext());
 
     }
 
@@ -183,6 +188,13 @@ public class customerHome extends Fragment {
 
 
 
+
+                    }
+                });
+                viewHolder.postImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        imageviewer.startdi(model.getPostImageUrl(),model.getPosttText());
 
                     }
                 });
@@ -301,7 +313,7 @@ public class customerHome extends Fragment {
 
         public void setUserImage(String status, Context context) {
 
-            Picasso.with(context).load(status).networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
+            Picasso.with(context).load(status).transform(new CircleTransform()).networkPolicy(NetworkPolicy.OFFLINE).into(userImage, new Callback() {
                 @Override
                 public void onSuccess() {
 

@@ -34,7 +34,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Jason Ofua"
+                    android:text=""
                     android:textColor="#000"
 
                     android:textSize="36sp" />
@@ -49,13 +49,13 @@
 
             </LinearLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/profileImage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:src="@drawable/user" />
+                  />
         </LinearLayout>
 
         <LinearLayout

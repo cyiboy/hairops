@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,6 +24,7 @@ import android.widget.Toast;
 import com.example.user.hairr.Model.Post;
 import com.example.user.hairr.R;
 import com.example.user.hairr.Utils.CircleTransform;
+import com.example.user.hairr.imageviewer;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -53,6 +53,7 @@ public class AdminHome extends Fragment {
     private LinearLayout comment;
     private String key,uid;
     private boolean mProcessLike = false;
+    imageviewer imageviewer;
 
 
 
@@ -77,8 +78,10 @@ public class AdminHome extends Fragment {
         postDatabase = FirebaseDatabase.getInstance().getReference().child("Posts");
         likes = FirebaseDatabase.getInstance().getReference().child("Likes");
         postList = (RecyclerView) view.findViewById(R.id.rvAdminHome);
-
+imageviewer = new imageviewer(getContext());
         mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager.setStackFromEnd(true);
+        mLayoutManager.setReverseLayout(true);
         postDatabase.keepSynced(true);
         likes.keepSynced(true);
         postList.setHasFixedSize(true);
@@ -180,6 +183,13 @@ public class AdminHome extends Fragment {
 
 
 
+
+                    }
+                });
+                viewHolder.postImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        imageviewer.startdi(model.getPostImageUrl(),model.getPosttText());
 
                     }
                 });

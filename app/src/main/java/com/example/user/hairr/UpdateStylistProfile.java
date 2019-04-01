@@ -6,9 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.user.hairr.Model.Customer;
 import com.example.user.hairr.Model.HairStylist;
 import com.example.user.hairr.Utils.CircleTransform;
 import com.google.android.gms.tasks.Continuation;
@@ -111,7 +110,7 @@ public class UpdateStylistProfile extends AppCompatActivity {
         String BankAccntNumber = bankAccountNumber.getText().toString().trim();
 
 
-        if (mImageUri != null && Name != null && Email != null && phone != null && Address != null && BankName != null && BankAccntNumber != null && BankAccntName != null) {
+        if ( !Name.isEmpty() && !Email.isEmpty()&& !phone.isEmpty() && !Address.isEmpty() && !BankName.isEmpty() && !BankAccntNumber.isEmpty() && !BankAccntName.isEmpty()) {
 
             mProgressBar.setMessage("updating.. please wait");
             mProgressBar.show();
@@ -182,7 +181,10 @@ public class UpdateStylistProfile extends AppCompatActivity {
             });
             mProgressBar.show();
 
+        }else {
+            Toast.makeText(this, "complete details to continue", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     private String getFileExtension(Uri uri) {

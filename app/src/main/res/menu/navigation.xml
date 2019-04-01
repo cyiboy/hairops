@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/customerHome"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/home"
         android:title="@string/title_home" />
 
     <item
@@ -17,7 +17,7 @@
         android:title="Transaction" />
     <item
         android:id="@+id/customerProfile"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/profile"
         android:title="Profile" />
 
 </menu>

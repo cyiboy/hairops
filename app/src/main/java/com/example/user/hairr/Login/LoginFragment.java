@@ -110,7 +110,7 @@ public class LoginFragment extends Fragment implements OnLoginListener {
                                                     String name = dataSnapshot.child("name").getValue().toString();
                                                     String email = dataSnapshot.child("email").getValue().toString();
                                                     String phoneNumber = dataSnapshot.child("number").getValue().toString();
-                                                    String orgainzation = dataSnapshot.child("orgainzation").getValue().toString();
+                                                   // String orgainzation = dataSnapshot.child("orgainzation").getValue().toString();
                                                     String imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
                                                     String address = dataSnapshot.child("address").getValue().toString();
 
@@ -119,7 +119,7 @@ public class LoginFragment extends Fragment implements OnLoginListener {
                                                     edit.putString("firstName",name);
                                                     edit.putString("email",email);
                                                     edit.putString("phoneNumber",phoneNumber);
-                                                    edit.putString("oga",orgainzation);
+                                                 //   edit.putString("oga",orgainzation);
                                                     edit.putString("imageUrl",imageUrl);
                                                     edit.putString("address",address);
                                                     edit.apply();

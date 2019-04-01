@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="center"
-        android:background="@drawable/barbing" />
+        android:background="@drawable/afrocut" />
 
     <android.support.design.widget.AppBarLayout
 

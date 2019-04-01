@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.hairr.AllStylists;
 import com.example.user.hairr.MapsActivity;
 import com.example.user.hairr.Model.Booking;
 import com.example.user.hairr.Model.BookingTransactionModel;
@@ -40,7 +39,6 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -264,7 +262,7 @@ public class stylistBookings extends Fragment {
 
     public static class StylistBookingViewHolder extends RecyclerView.ViewHolder{
         View mView;
-        CircleImageView userImage;
+        ImageView userImage;
         TextView name,styleBooked;
 
         public StylistBookingViewHolder(View itemView) {
@@ -272,7 +270,7 @@ public class stylistBookings extends Fragment {
 
             mView = itemView;
 
-            userImage = (CircleImageView)mView.findViewById(R.id.customerStylistBookingImage);
+            userImage = mView.findViewById(R.id.customerStylistBookingImage);
             name = (TextView)mView.findViewById(R.id.customerStylistBookingName);
             styleBooked = (TextView)mView.findViewById(R.id.customerStyleBooking);
 
