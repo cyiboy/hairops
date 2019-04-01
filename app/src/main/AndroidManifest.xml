@@ -20,12 +20,12 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:screefnOrientation="portrait"
+        android:screenOrientation="portrait"
         android:supportsRtl="true">
         <activity android:name=".UpdateStylistProfile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Login.ForgetPasswword"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -68,6 +68,8 @@ public class comment extends AppCompatActivity {
         });
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
         list.setHasFixedSize(true);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
         list.setLayoutManager(mLayoutManager);
 
 
@@ -77,6 +79,7 @@ public class comment extends AppCompatActivity {
         String date = new SimpleDateFormat("yyyy-mm-dd", Locale.getDefault()).format(new Date());
         String mainComment = comment.getText().toString().trim();
         String uid = auth.getCurrentUser().getUid();
+        comment.setText("");
         mUsersDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -93,9 +96,9 @@ public class comment extends AppCompatActivity {
                         comment.clearComposingText();
                         if (task.isSuccessful()) {
 
-                            comment.setText("");
+
                         }
-                        comment.setText("");
+
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
