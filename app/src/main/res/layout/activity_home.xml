@@ -8,7 +8,7 @@
     app:edPosition="1"
     app:edMenuSize="260dp"
     app:edMenuBackground="@color/gold"
-    tools:context="com.example.user.hairr.Home">
+    tools:context="com.hairops.hair.hairr.Home">
 
 
     <RelativeLayout

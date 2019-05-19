@@ -5,11 +5,11 @@ android {
     buildToolsVersion "28.0.3"
 
     defaultConfig {
-        applicationId "com.example.user.hairr"
+        applicationId "com.hairops.hair.hairr"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "6.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -56,11 +56,10 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     // implementation 'com.google.android.gms:play-services:12.0.1'
     implementation 'com.github.medyo:fancybuttons:1.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.0.1'
     // implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     //implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.squareup.okhttp:okhttp:2.4.0'
+
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.jaredrummler:material-spinner:1.2.5'
     implementation('com.squareup.retrofit2:retrofit:2.0.0-beta4') {

@@ -21,10 +21,6 @@
             "package_name": "com.example.user.hairr",
             "certificate_hash": "6510c9c1d3bc813ff79104d67af1390d84ed8295"
           }
-        },
-        {
-          "client_id": "283586131338-ki6ea4cqn6unff2a76sqo7qhrvrhufq6.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
@@ -33,20 +29,46 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "283586131338-ki6ea4cqn6unff2a76sqo7qhrvrhufq6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283586131338:android:07dec1326cd1bc59",
+        "android_client_info": {
+          "package_name": "com.hairops.hair.hairr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283586131338-mmvrquf1npilbno2o6uo8nuf2kh0blta.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hairops.hair.hairr",
+            "certificate_hash": "33a30d5c8ee6a528e46624b574ef7bf071011434"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiKzab1vBpHyXU_Bug7iMoUZeKlTjesxY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283586131338-ki6ea4cqn6unff2a76sqo7qhrvrhufq6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

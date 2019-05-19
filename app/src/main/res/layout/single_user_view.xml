@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="90dp"
+        android:id="@+id/stylistImage"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="90dp" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="Nddy Andy"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:id="@+id/stylistName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="08056432134"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#000"
+        android:id="@+id/stylistNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="2-5 years"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:id="@+id/stylistExperienceLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+
+        android:layout_marginTop="20dp"
+        android:text="Barbing"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:id="@+id/stylistSpecialization"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="Address"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:id="@+id/stylistAddress"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/stylistBankName"
+        android:layout_marginTop="20dp"
+        android:text="Access Bank"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/stylistBankAccountName"
+        android:text="Jason Ofua"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/stylistBankAccountNumber"
+        android:text="1234567890"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

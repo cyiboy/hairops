@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.user.hairr">
+    package="com.hairops.hair.hairr">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -22,11 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true">
-        <activity android:name=".UpdateStylistProfile"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Login.ForgetPasswword"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,12 +36,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+
+        <activity
+            android:name=".MapsActivitys"
+            android:label="@string/title_activity_maps_activitys"></activity>
+        <activity android:name=".Login.FullNameCompleteReg" />
+        <activity android:name=".Login.PersonalCompleteReg" />
+        <activity
+            android:name=".UpdateStylistProfile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Login.ForgetPasswword"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".StylistMap"
             android:label="@string/title_activity_stylist_map">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.user.hairr.AllStylists" />
+                android:value="com.hairops.hair.hairr.AllStylists" />
         </activity>
         <activity
             android:name=".AllStylists"

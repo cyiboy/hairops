@@ -146,6 +146,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/loginPassword"
             android:layout_marginTop="60dp"
+            android:drawableLeft="@drawable/ic_home_black_24dp"
             android:background="@drawable/_dark"
             android:fontFamily="@font/roboto_bold"
             android:textAllCaps="false"
