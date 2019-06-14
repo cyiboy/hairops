@@ -18,6 +18,25 @@
     <string name="title_activity_home_stylist">HomeStylist</string>
     <string name="title_activity_maps">Map</string>
 
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Quality Tutor!</string>
+    <string name="slide_1_desc">We assure you and your child quality tutors equipped to fit the need of your child!</string>
+
+    <string name="slide_2_title">Guaranteed Academic Success</string>
+    <string name="slide_2_desc">Equipped with the best tutor and an awesome child, we confidently guarantee sure academic success!</string>
+
+    <string name="slide_3_title">Real time progress</string>
+    <string name="slide_3_desc">Monitor and track the progress of your child at your own comfort!</string>
+
+    <string name="slide_4_title">World Travel</string>
+    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> Primedclass -> clear data</string>
+    <string name="play_again">Play Again</string>
+
 
     <string name="title_activity_stylist_map">Map</string>
     <string name="barbing"><b>style available for men</b> \n

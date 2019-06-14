@@ -17,7 +17,7 @@ public class intro extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(intro.this, com.hairops.hair.hairr.MainActivity.class));
+                startActivity(new Intent(intro.this, Onboarding.class));
                 finish();
             }
         }, secounds * 1000);

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.hairops.hair.hairr.intro.Signup;
 
 
 public class StackActivity extends AppCompatActivity {
@@ -25,7 +26,9 @@ public class StackActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(StackActivity.this, "you clicked stylist", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(StackActivity.this,HairStylistCompleteReg.class));
+                Intent intent = new Intent(StackActivity.this, Signup.class);
+                intent.putExtra("tag","stylist");
+                startActivity(intent);
             }
         });
 
@@ -34,7 +37,9 @@ public class StackActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(StackActivity.this, "you clicked customer", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(StackActivity.this,CustomersCompleteReg.class));
+                Intent intent = new Intent(StackActivity.this, Signup.class);
+                intent.putExtra("tag","customer");
+                startActivity(intent);
             }
         });
     }

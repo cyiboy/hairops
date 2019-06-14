@@ -9,4 +9,11 @@
     <dimen name="bottom_width">100dp</dimen>
     <dimen name="bottom_height">50dp</dimen>
     <dimen name="text_margin">11dp</dimen>
+
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">300dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
 </resources>

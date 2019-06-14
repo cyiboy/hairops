@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#fff"
+    tools:context=".intro.LoginActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="194dp"
+            android:layout_height="85dp"
+            android:src="@mipmap/logo"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome,"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login to continue"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/otherColor"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp"
+            android:textSize="16sp"/>
+
+
+        <EditText
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/loginEmail"
+            android:paddingEnd="32dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
+            android:inputType="textEmailAddress"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bubble2"
+            android:textColorHint="#fff"
+            android:gravity="center_vertical"
+            android:paddingStart="32dp"
+            android:hint="Email"
+            android:textColor="#ffffff" />
+
+
+        <EditText
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/loginPassword"
+            android:paddingEnd="32dp"
+            android:inputType="textPassword"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bubble2"
+            android:textColorHint="#fff"
+            android:gravity="center_vertical"
+            android:paddingStart="32dp"
+            android:hint="Password"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_gravity="center"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bubble"
+            android:textAllCaps="false"
+            android:foregroundTint="@color/darkop"
+            android:text="Login"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Forgot Password?"
+            android:layout_marginTop="15dp"
+            android:textColor="#000"
+            android:id="@+id/forget"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp"
+            android:textSize="14sp"/>
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:id="@+id/txtRegister"
+            android:text="New to Primedclass? Register here"
+            android:gravity="bottom"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+</ScrollView>
